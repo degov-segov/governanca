@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEGOV - Projetos Estratégicos</title>
+<link rel="stylesheet" href="estilo.css">
+<style>
+.project-toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:0 0 22px;flex-wrap:wrap}
+.project-search{flex:1;min-width:260px;max-width:560px;position:relative}
+.project-search input{width:100%;padding:13px 16px 13px 42px;border:1px solid var(--borda,#d9e2ec);border-radius:14px;background:#fff;font-size:14px;outline:none}
+.project-search:before{content:"⌕";position:absolute;left:15px;top:8px;font-size:24px;color:var(--azul,#082f63)}
+.project-filter{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{border:1px solid var(--borda,#d9e2ec);background:#fff;color:var(--azul,#082f63);padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer}
+.filter-btn.active{background:var(--azul,#082f63);color:#fff}
+.portfolio-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.summary-card{background:#fff;border:1px solid var(--borda,#d9e2ec);border-radius:18px;padding:18px;box-shadow:var(--sombra,0 14px 30px rgba(8,47,99,.10))}
+.summary-card small{display:block;color:var(--muted,#66788a);font-weight:800;text-transform:uppercase;font-size:11px}
+.summary-card strong{display:block;color:var(--azul,#082f63);font-size:30px;margin-top:6px}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project-card{background:#fff;border:1px solid var(--borda,#d9e2ec);border-radius:20px;padding:20px;box-shadow:var(--sombra,0 14px 30px rgba(8,47,99,.10));transition:.2s ease}
+.project-card:hover{border-color:var(--dourado,#c9962e);transform:translateY(-2px)}
+.project-head{display:grid;grid-template-columns:58px 1fr 38px;gap:14px;align-items:start}
+.project-number{width:58px;height:58px;border-radius:16px;background:var(--azul-claro,#eaf1fb);color:var(--azul,#082f63);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900}
+.project-label{font-size:10px;letter-spacing:.8px;color:var(--dourado,#c9962e);font-weight:900;margin-bottom:4px}
+.project-card h2{font-size:19px;line-height:1.25;color:var(--azul,#082f63)}
+.expand-btn{width:36px;height:36px;border:0;border-radius:11px;background:var(--azul-claro,#eaf1fb);color:var(--azul,#082f63);font-size:24px;cursor:pointer;transition:.2s}
+.project-card.open .expand-btn{transform:rotate(45deg);background:var(--dourado,#c9962e);color:#fff}
+.objective{color:var(--muted,#66788a);font-size:14px;line-height:1.5;margin:15px 0 0}
+.project-highlight{margin-top:12px;padding:10px 12px;border-left:4px solid var(--dourado,#c9962e);background:#fff8e8;color:#6e5210;font-size:13px;font-weight:800;border-radius:8px}
+.project-detail{display:none;border-top:1px solid #edf2f7;margin-top:16px;padding-top:15px}
+.project-card.open .project-detail{display:block}
+.project-detail h3{font-size:14px;color:var(--azul,#082f63);margin-bottom:10px}
+.project-detail ul{padding-left:20px;color:#44566c;font-size:13px;line-height:1.5}
+.project-detail li{margin-bottom:7px}
+.source-note{margin-top:20px;background:#eef4fb;border:1px solid #d8e4f2;border-radius:14px;padding:14px 16px;color:#53677e;font-size:12px;line-height:1.45}
+.back-inline{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--azul,#082f63);color:#fff;padding:11px 15px;border-radius:12px;font-weight:800}
+.back-inline:hover{background:var(--azul-medio,#0f407a)}
+@media(max-width:900px){.projects-grid{grid-template-columns:1fr}.portfolio-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.portfolio-summary{grid-template-columns:1fr}.project-head{grid-template-columns:50px 1fr 34px}.project-number{width:50px;height:50px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brandmark">TJCE</div>
+      <div class="sidebar-title"><strong>SEGOV</strong><span>Diretoria de Estratégia e Governança</span></div>
+    </div>
+    <button class="toggle" onclick="toggleSidebar()">☰ Recolher</button>
+    <nav class="nav">
+      <a href="index.html"><span class="ico">⌂</span><span>Início</span></a>
+      <a href="rede.html"><span class="ico">◎</span><span>Rede de Governança</span></a>
+      <a href="processos.html"><span class="ico">☑</span><span>Arquitetura de Processos</span></a>
+      <a href="projetos.html" class="active"><span class="ico">🎯</span><span>Projetos Estratégicos</span></a>
+      <a href="orcamento.html"><span class="ico">↗</span><span>Execução Orçamentária</span></a>
+      <a href="pac.html"><span class="ico">▦</span><span>PAC</span></a>
+      <a href="contratos.html"><span class="ico">📝</span><span>Execução Contratual</span></a>
+      <a href="riscos.html"><span class="ico">🛡</span><span>Gestão de Riscos</span></a>
+      <a href="indicadores.html"><span class="ico">◔</span><span>Indicadores</span></a>
+      <a href="gam.html"><span class="ico">▣</span><span>GAM</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="breadcrumb">SEGOV <span>›</span> Projetos Estratégicos</div>
+      <a class="back-inline" href="index.html">← Voltar ao Cockpit</a>
+    </header>
+
+    <section class="content">
+      <section class="hero">
+        <div>
+          <h1>Projetos Estratégicos</h1>
+          <p>Portfólio estratégico consolidado a partir do 18º COEX Estratégico, com objetivos e principais entregas apresentadas para cada projeto.</p>
+        </div>
+        <div class="hero-badge"><strong>21</strong><span>Projetos</span></div>
+      </section>
+
+      <section class="portfolio-summary">
+        <div class="summary-card"><small>Portfólio estratégico</small><strong>21</strong></div>
+        <div class="summary-card"><small>Projetos Promojud</small><strong>19</strong></div>
+        <div class="summary-card"><small>Outras iniciativas</small><strong>2</strong></div>
+        <div class="summary-card"><small>Referência</small><strong style="font-size:22px">COEX</strong></div>
+      </section>
+
+      <div class="project-toolbar">
+        <div class="project-search"><input id="projectSearch" placeholder="Pesquisar projeto, objetivo ou entrega..." oninput="filterProjects()"></div>
+        <div class="project-filter">
+          <button class="filter-btn active" onclick="showAll(this)">Todos</button>
+          <button class="filter-btn" onclick="expandAll(this)">Expandir detalhes</button>
+          <button class="filter-btn" onclick="collapseAll(this)">Recolher</button>
+        </div>
+      </div>
+
+      <section class="projects-grid" id="projectsGrid">
+        
+    <article class="project-card" data-search="1 Projeto Expansão do PJe Aprimorar e expandir o PJe como sistema único em todas as competências do Poder Judiciário, exceto Execuções Penais. Migrações concluídas: Direito Público e Precatórios. 4ª fase: migração Cível Comum e Cível Especializada. Implantação de fluxos complementares e integrações com outros sistemas/PDPJ. Família e Sucessões; Empresarial/Recuperação; Infância e Juventude; Criminal a iniciar. Nova versão PJe 2.7.1.0 em andamento (46%); Evolução do Migrador HOMOPROD (70%); Fluxos de Tramitação 1º e 2º grau (70%).">
+      <div class="project-head">
+        <div class="project-number">01</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Projeto Expansão do PJe</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Aprimorar e expandir o PJe como sistema único em todas as competências do Poder Judiciário, exceto Execuções Penais.</p>
+      <div class="project-highlight">Em dezembro/2024, 58% do acervo tramitava no PJe.</div>
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Migrações concluídas: Direito Público e Precatórios.</li><li>4ª fase: migração Cível Comum e Cível Especializada.</li><li>Implantação de fluxos complementares e integrações com outros sistemas/PDPJ.</li><li>Família e Sucessões; Empresarial/Recuperação; Infância e Juventude; Criminal a iniciar.</li><li>Nova versão PJe 2.7.1.0 em andamento (46%); Evolução do Migrador HOMOPROD (70%); Fluxos de Tramitação 1º e 2º grau (70%).</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="2 Soluções tecnológicas e humanização do atendimento Aperfeiçoar o atendimento ao público com foco em humanização, acessibilidade e inclusão, por meio de novos modelos de atendimento, expansão das CAJs, canais e ferramentas tecnológicas. Expansão das CAJs: 33 implantadas e mais de 600 mil atendimentos. 23 Pontos de Inclusão Digital (PIDs). Balcão Virtual no Teams para todas as unidades judiciárias. CIAT – Central Interna de Atendimento. Evoluções do TJCE Mobile e implantação do canal de atendimento dos magistrados. Expansão TJCE Mobile em andamento (90%).">
+      <div class="project-head">
+        <div class="project-number">02</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Soluções tecnológicas e humanização do atendimento</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Aperfeiçoar o atendimento ao público com foco em humanização, acessibilidade e inclusão, por meio de novos modelos de atendimento, expansão das CAJs, canais e ferramentas tecnológicas.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Expansão das CAJs: 33 implantadas e mais de 600 mil atendimentos.</li><li>23 Pontos de Inclusão Digital (PIDs).</li><li>Balcão Virtual no Teams para todas as unidades judiciárias.</li><li>CIAT – Central Interna de Atendimento.</li><li>Evoluções do TJCE Mobile e implantação do canal de atendimento dos magistrados.</li><li>Expansão TJCE Mobile em andamento (90%).</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="3 Inteligência Artificial na Prestação Jurisdicional Automatizar rotinas e demandas repetitivas, como expedientes, modelos de julgamento e sobrestamento processual, por meio de ferramentas de Inteligência Artificial. Soluções Midas, Berna, Talia, Precedentes e Predição de Risco. Expansão do Modelo Precedentes para o 1º grau em andamento (75%). Piloto de Prescrição Intercorrente em Execuções Fiscais e Comuns. Piloto de Prevenção e Conexão a iniciar.">
+      <div class="project-head">
+        <div class="project-number">03</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Inteligência Artificial na Prestação Jurisdicional</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Automatizar rotinas e demandas repetitivas, como expedientes, modelos de julgamento e sobrestamento processual, por meio de ferramentas de Inteligência Artificial.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Soluções Midas, Berna, Talia, Precedentes e Predição de Risco.</li><li>Expansão do Modelo Precedentes para o 1º grau em andamento (75%).</li><li>Piloto de Prescrição Intercorrente em Execuções Fiscais e Comuns.</li><li>Piloto de Prevenção e Conexão a iniciar.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="4 Implantação da LGPD Implementar, no Poder Judiciário cearense, as especificidades da Lei Geral de Proteção de Dados. Contratação de consultoria especializada em implantação da LGPD. Aquisição de soluções tecnológicas para Governança da Privacidade e Proteção de Dados. Execução do contrato de consultoria com a Módulo em andamento (17%). Contratação de empresa de sustentação da LGPD a iniciar.">
+      <div class="project-head">
+        <div class="project-number">04</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Implantação da LGPD</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implementar, no Poder Judiciário cearense, as especificidades da Lei Geral de Proteção de Dados.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Contratação de consultoria especializada em implantação da LGPD.</li><li>Aquisição de soluções tecnológicas para Governança da Privacidade e Proteção de Dados.</li><li>Execução do contrato de consultoria com a Módulo em andamento (17%).</li><li>Contratação de empresa de sustentação da LGPD a iniciar.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="5 Robotização, aprimoramento e automação de processos de trabalho Desenvolver soluções automatizadas capazes de executar atividades repetitivas com precisão, promovendo padronização, redução de erros e aumento da produtividade. Desenvolvimento de 38 robôs para a área judiciária. Contratação de consultor para desenvolvimento de robôs RPA/IPA. Contratação de serviços de consultoria em BPM – Publix. Contratação de ferramenta RPA em andamento (83%). Novos pacotes de desenvolvimento a iniciar.">
+      <div class="project-head">
+        <div class="project-number">05</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Robotização, aprimoramento e automação de processos de trabalho</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Desenvolver soluções automatizadas capazes de executar atividades repetitivas com precisão, promovendo padronização, redução de erros e aumento da produtividade.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Desenvolvimento de 38 robôs para a área judiciária.</li><li>Contratação de consultor para desenvolvimento de robôs RPA/IPA.</li><li>Contratação de serviços de consultoria em BPM – Publix.</li><li>Contratação de ferramenta RPA em andamento (83%).</li><li>Novos pacotes de desenvolvimento a iniciar.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="6 Fortalecimento do enfrentamento à violência doméstica Intensificar o combate à violência doméstica contra a mulher e promover celeridade no julgamento e concessão de medidas protetivas, com ferramentas tecnológicas e padronização de procedimentos. Criação de Núcleo de Combate à Violência Doméstica. Criação de protocolo de atendimento à vítima. Painéis de monitoramento de indicadores. Projeto Justiça pela Mulher da Justiça. Plataforma de apoio à mulher – versão 2 em andamento (98%). Expansão do piloto de predição de riscos e do Nucevid prevista.">
+      <div class="project-head">
+        <div class="project-number">06</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Fortalecimento do enfrentamento à violência doméstica</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Intensificar o combate à violência doméstica contra a mulher e promover celeridade no julgamento e concessão de medidas protetivas, com ferramentas tecnológicas e padronização de procedimentos.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Criação de Núcleo de Combate à Violência Doméstica.</li><li>Criação de protocolo de atendimento à vítima.</li><li>Painéis de monitoramento de indicadores.</li><li>Projeto Justiça pela Mulher da Justiça.</li><li>Plataforma de apoio à mulher – versão 2 em andamento (98%).</li><li>Expansão do piloto de predição de riscos e do Nucevid prevista.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="7 Fortalecimento das soluções consensuais de conflito Fortalecer as soluções consensuais de conflito, promovendo efetividade, tempestividade da prestação jurisdicional e pacificação social. Sistema de Pagamento de Auxiliares da Justiça (PAJ) para conciliadores e mediadores. Aprimoramento do PAJ para facilitadores da Justiça Restaurativa (94%). Contratação de empresa para ferramenta de conciliação virtual – ODR. Desenvolvimento e implantação da ferramenta ODR a iniciar.">
+      <div class="project-head">
+        <div class="project-number">07</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Fortalecimento das soluções consensuais de conflito</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Fortalecer as soluções consensuais de conflito, promovendo efetividade, tempestividade da prestação jurisdicional e pacificação social.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Sistema de Pagamento de Auxiliares da Justiça (PAJ) para conciliadores e mediadores.</li><li>Aprimoramento do PAJ para facilitadores da Justiça Restaurativa (94%).</li><li>Contratação de empresa para ferramenta de conciliação virtual – ODR.</li><li>Desenvolvimento e implantação da ferramenta ODR a iniciar.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="8 Solução tecnológica para busca integrada de jurisprudências Implantar o Sistema de Jurisprudência do TJCE (SJURIS) para busca integrada de julgamentos, jurisprudências, atos normativos e pareceres normativos. SJURIS com consultas simples e avançadas, atos normativos, decisões monocráticas e súmulas. Integração de dados SAJ x SJURIS em andamento (93%). Aprimoramentos futuros absorvidos pelo projeto Cientista-Chefe.">
+      <div class="project-head">
+        <div class="project-number">08</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Solução tecnológica para busca integrada de jurisprudências</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implantar o Sistema de Jurisprudência do TJCE (SJURIS) para busca integrada de julgamentos, jurisprudências, atos normativos e pareceres normativos.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>SJURIS com consultas simples e avançadas, atos normativos, decisões monocráticas e súmulas.</li><li>Integração de dados SAJ x SJURIS em andamento (93%).</li><li>Aprimoramentos futuros absorvidos pelo projeto Cientista-Chefe.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="9 Cientista-Chefe Desenvolver ferramentas computacionais para explorar grandes volumes de documentos do Poder Judiciário, extrair informações úteis e apoiar a tomada de decisão. Classificador de Assuntos. Classificador de Petição Inicial. Classificador de Documentos. Sara – Sumarizador. Busca Ativa de Jurisprudência. Grafo de Legislação.">
+      <div class="project-head">
+        <div class="project-number">09</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Cientista-Chefe</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Desenvolver ferramentas computacionais para explorar grandes volumes de documentos do Poder Judiciário, extrair informações úteis e apoiar a tomada de decisão.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Classificador de Assuntos.</li><li>Classificador de Petição Inicial.</li><li>Classificador de Documentos.</li><li>Sara – Sumarizador.</li><li>Busca Ativa de Jurisprudência.</li><li>Grafo de Legislação.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="10 Modernização da infraestrutura tecnológica Aprimorar a infraestrutura tecnológica do PJCE por meio de aquisições de equipamentos, serviços e desenvolvimento de aplicações. Aquisições de virtualização, backup, switches, firewall, processamento de servidores e nuvem Microsoft. DataCenter em andamento (95%). Power BI Premium, CloudBroker, links de contingência, conectividade de núcleo e hiperconvergência. Virtualização de servidores, IA Generativa e serviços de tecnologia para o PJe em andamento.">
+      <div class="project-head">
+        <div class="project-number">10</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Modernização da infraestrutura tecnológica</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Aprimorar a infraestrutura tecnológica do PJCE por meio de aquisições de equipamentos, serviços e desenvolvimento de aplicações.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Aquisições de virtualização, backup, switches, firewall, processamento de servidores e nuvem Microsoft.</li><li>DataCenter em andamento (95%).</li><li>Power BI Premium, CloudBroker, links de contingência, conectividade de núcleo e hiperconvergência.</li><li>Virtualização de servidores, IA Generativa e serviços de tecnologia para o PJe em andamento.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="11 Prêmio CNJ de Qualidade Alcançar certificação no Prêmio CNJ da Qualidade, que avalia comparativamente os tribunais nos eixos Governança, Transparência, Dados e Tecnologia e Produtividade. Evolução do TJCE de 49,90% em 2020 para 70,30% em 2024. Em Dados e TI (Datajud), passou de 2 indicadores cumpridos em 2023 para 21 em 2024. Em 2024: 164 pontos de 204 possíveis no eixo Dados e TI (80%). Redução da taxa de congestionamento líquida, do tempo médio dos pendentes e do tempo médio da ação penal. Mapeamento das pontuações críticas não atingidas: inspeções socioeducativas, Codex, governança de TI, adoção e acolhimento, IRDR, Ouvidoria, SEEU e BNMP.">
+      <div class="project-head">
+        <div class="project-number">11</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Prêmio CNJ de Qualidade</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Alcançar certificação no Prêmio CNJ da Qualidade, que avalia comparativamente os tribunais nos eixos Governança, Transparência, Dados e Tecnologia e Produtividade.</p>
+      <div class="project-highlight">Evolução superior a 20 pontos percentuais na gestão 2023–2024.</div>
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Evolução do TJCE de 49,90% em 2020 para 70,30% em 2024.</li><li>Em Dados e TI (Datajud), passou de 2 indicadores cumpridos em 2023 para 21 em 2024.</li><li>Em 2024: 164 pontos de 204 possíveis no eixo Dados e TI (80%).</li><li>Redução da taxa de congestionamento líquida, do tempo médio dos pendentes e do tempo médio da ação penal.</li><li>Mapeamento das pontuações críticas não atingidas: inspeções socioeducativas, Codex, governança de TI, adoção e acolhimento, IRDR, Ouvidoria, SEEU e BNMP.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="12 Arquitetura corporativa de sistemas e infraestrutura de TI Analisar e definir, a partir da arquitetura de negócios e do mapa de capacidades do TJCE, as ferramentas, sistemas e equipamentos mais adequados às necessidades funcionais do PJCE. Consultoria Elogroup para identificação da arquitetura tecnológica necessária. Consultor individual para avaliação de propostas e controle de qualidade. Diagnóstico da arquitetura corporativa – Etapa 1 em andamento (99%). Identificação de tecnologias para aprimoramento da prestação jurisdicional – Etapa 2 (74%). Proposição de projeto de arquitetura corporativa e plano de implementação a iniciar.">
+      <div class="project-head">
+        <div class="project-number">12</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Arquitetura corporativa de sistemas e infraestrutura de TI</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Analisar e definir, a partir da arquitetura de negócios e do mapa de capacidades do TJCE, as ferramentas, sistemas e equipamentos mais adequados às necessidades funcionais do PJCE.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Consultoria Elogroup para identificação da arquitetura tecnológica necessária.</li><li>Consultor individual para avaliação de propostas e controle de qualidade.</li><li>Diagnóstico da arquitetura corporativa – Etapa 1 em andamento (99%).</li><li>Identificação de tecnologias para aprimoramento da prestação jurisdicional – Etapa 2 (74%).</li><li>Proposição de projeto de arquitetura corporativa e plano de implementação a iniciar.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="13 Programa de Desenvolvimento de Pessoas Prover servidores e magistrados dos conhecimentos, habilidades e atitudes necessários ao trabalho em ambiente novo, dinâmico e moderno, incluindo revisão do mapeamento de competências e trilhas de aprendizagem. Plano de capacitação dos servidores 2023–2024. Mapeamento de competências e trilhas de capacitação dos servidores. Mapeamento de competências dos magistrados. MBA em Gestão Pública e Poder Judiciário – Unifor. Sistema de Gestão Acadêmica da ESMEC, nova turma de MBA e revitalização do ambiente EAD.">
+      <div class="project-head">
+        <div class="project-number">13</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Programa de Desenvolvimento de Pessoas</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Prover servidores e magistrados dos conhecimentos, habilidades e atitudes necessários ao trabalho em ambiente novo, dinâmico e moderno, incluindo revisão do mapeamento de competências e trilhas de aprendizagem.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Plano de capacitação dos servidores 2023–2024.</li><li>Mapeamento de competências e trilhas de capacitação dos servidores.</li><li>Mapeamento de competências dos magistrados.</li><li>MBA em Gestão Pública e Poder Judiciário – Unifor.</li><li>Sistema de Gestão Acadêmica da ESMEC, nova turma de MBA e revitalização do ambiente EAD.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="14 Implantação de solução tecnológica para gestão de recursos sob custódia Implantar soluções para gerir os recursos financeiros sob custódia do TJCE, com foco inicial em precatórios e depósitos judiciais. Implantação da nova versão do SAPRE. Absorção do sistema BANKJUS. Migração dos processos de precatórios do SAJSG para PJe. Integração SAPRE–BANKJUS (83%) e BANKJUS–PJe (86%). Integração BANKJUS–CAIXA em andamento (73%).">
+      <div class="project-head">
+        <div class="project-number">14</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Implantação de solução tecnológica para gestão de recursos sob custódia</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implantar soluções para gerir os recursos financeiros sob custódia do TJCE, com foco inicial em precatórios e depósitos judiciais.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Implantação da nova versão do SAPRE.</li><li>Absorção do sistema BANKJUS.</li><li>Migração dos processos de precatórios do SAJSG para PJe.</li><li>Integração SAPRE–BANKJUS (83%) e BANKJUS–PJe (86%).</li><li>Integração BANKJUS–CAIXA em andamento (73%).</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="15 Otimização e modernização da Área Administrativa Implantar soluções tecnológicas para modernizar a área administrativa, aprimorando a gestão orçamentária, financeira e de custos, gestão patrimonial, aquisições e recursos humanos. 242 painéis de BI para aprimoramento da gestão administrativa. Implantação e evolução de 7 módulos do ADMRH. Ferramenta low-code em andamento (99%). Desenvolvimento de 8 robôs para a área administrativa e implantação do SEI. Consultorias de Gestão Patrimonial, Gestão das Contratações e Gestão de Custos em andamento.">
+      <div class="project-head">
+        <div class="project-number">15</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Otimização e modernização da Área Administrativa</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implantar soluções tecnológicas para modernizar a área administrativa, aprimorando a gestão orçamentária, financeira e de custos, gestão patrimonial, aquisições e recursos humanos.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>242 painéis de BI para aprimoramento da gestão administrativa.</li><li>Implantação e evolução de 7 módulos do ADMRH.</li><li>Ferramenta low-code em andamento (99%).</li><li>Desenvolvimento de 8 robôs para a área administrativa e implantação do SEI.</li><li>Consultorias de Gestão Patrimonial, Gestão das Contratações e Gestão de Custos em andamento.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="16 Institucionalização e fortalecimento da cultura de inovação Intensificar a cultura de inovação do PJCE com Laboratório de Inovação e soluções como simplificação da linguagem dos atos processuais e oficinas de ideação e prototipação. Consultores em design gráfico e Letras. Simplificação de 43 atos de comunicação. Oficinas de ideação para projetos inovadores. Premiações de inovação em 2024. Hackathon a iniciar e consultoria em Design Thinking em andamento.">
+      <div class="project-head">
+        <div class="project-number">16</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Institucionalização e fortalecimento da cultura de inovação</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Intensificar a cultura de inovação do PJCE com Laboratório de Inovação e soluções como simplificação da linguagem dos atos processuais e oficinas de ideação e prototipação.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Consultores em design gráfico e Letras.</li><li>Simplificação de 43 atos de comunicação.</li><li>Oficinas de ideação para projetos inovadores.</li><li>Premiações de inovação em 2024.</li><li>Hackathon a iniciar e consultoria em Design Thinking em andamento.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="17 Aprimoramento das políticas e ferramentas de segurança da informação Implantar serviços e ferramentas para garantir a segurança da informação, alinhados às Resoluções do CNJ. Centro de Operações de Segurança (SOC). Revisão de 14 processos de trabalho de Segurança da Informação. Firewall de grande porte e antivírus AntiMalware. Capacitação em Segurança da Informação. Revisão das Políticas de Segurança da Informação (96%) e Auditoria AD (73%).">
+      <div class="project-head">
+        <div class="project-number">17</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Aprimoramento das políticas e ferramentas de segurança da informação</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implantar serviços e ferramentas para garantir a segurança da informação, alinhados às Resoluções do CNJ.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Centro de Operações de Segurança (SOC).</li><li>Revisão de 14 processos de trabalho de Segurança da Informação.</li><li>Firewall de grande porte e antivírus AntiMalware.</li><li>Capacitação em Segurança da Informação.</li><li>Revisão das Políticas de Segurança da Informação (96%) e Auditoria AD (73%).</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="18 Clima Organizacional Gerir mudanças institucionais decorrentes da transformação digital no âmbito do Poder Judiciário cearense. Consultoria para capacitação das equipes em Gestão de Mudanças. Plano Integrado de Gestão de Mudanças Organizacionais – GMO. Plataforma de saúde mental. Justiça pela Mulher da Justiça, Vida em Equilíbrio e Pesquisa de Clima Organizacional. Execução do Plano Integrado de GMO e reestruturação da Pesquisa de Clima.">
+      <div class="project-head">
+        <div class="project-number">18</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Clima Organizacional</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Gerir mudanças institucionais decorrentes da transformação digital no âmbito do Poder Judiciário cearense.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Consultoria para capacitação das equipes em Gestão de Mudanças.</li><li>Plano Integrado de Gestão de Mudanças Organizacionais – GMO.</li><li>Plataforma de saúde mental.</li><li>Justiça pela Mulher da Justiça, Vida em Equilíbrio e Pesquisa de Clima Organizacional.</li><li>Execução do Plano Integrado de GMO e reestruturação da Pesquisa de Clima.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="19 Aperfeiçoamento da Gestão da Arrecadação Aprimorar a arrecadação de custas judiciais e incrementar receitas do Fermoju por meio de sistemas e ferramentas de controle. Sistema de Custas Iniciais, Intermediárias e Finais integrado ao PJe (SGA). Aprimoramento das normas de gestão, controle da arrecadação e fiscalização. Painel de Monitoramento dos Cartórios. Painel de créditos encaminhados à PGE em andamento (92%). Expansão do selo digital e soluções para reconhecimento de firma e autenticação.">
+      <div class="project-head">
+        <div class="project-number">19</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Aperfeiçoamento da Gestão da Arrecadação</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Aprimorar a arrecadação de custas judiciais e incrementar receitas do Fermoju por meio de sistemas e ferramentas de controle.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Sistema de Custas Iniciais, Intermediárias e Finais integrado ao PJe (SGA).</li><li>Aprimoramento das normas de gestão, controle da arrecadação e fiscalização.</li><li>Painel de Monitoramento dos Cartórios.</li><li>Painel de créditos encaminhados à PGE em andamento (92%).</li><li>Expansão do selo digital e soluções para reconhecimento de firma e autenticação.</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="20 Programa de Fortalecimento de Lideranças Femininas Implementar políticas de incentivo e valorização da atuação das mulheres do Poder Judiciário cearense em cargos de liderança. Repositórios de mulheres juristas e mulheres gestoras. Rede Colaborativa Mulheres Líderes. Plano de melhorias para fortalecimento de lideranças femininas. Espaço online de conteúdo do programa. Consultoria especializada e consultoria individual em equidade de gênero. Serviços da consultoria em andamento (91%) e plano de implantação das ações (13%).">
+      <div class="project-head">
+        <div class="project-number">20</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Programa de Fortalecimento de Lideranças Femininas</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implementar políticas de incentivo e valorização da atuação das mulheres do Poder Judiciário cearense em cargos de liderança.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Repositórios de mulheres juristas e mulheres gestoras.</li><li>Rede Colaborativa Mulheres Líderes.</li><li>Plano de melhorias para fortalecimento de lideranças femininas.</li><li>Espaço online de conteúdo do programa.</li><li>Consultoria especializada e consultoria individual em equidade de gênero.</li><li>Serviços da consultoria em andamento (91%) e plano de implantação das ações (13%).</li></ul>
+      </div>
+    </article>
+    
+    <article class="project-card" data-search="21 Plano de Obras Implantar o Plano de Obras 2023–2025 do PJCE, entregando fóruns e ESMEC reformados em plenas condições de uso. Concluídas: reforma e ampliação da ESMEC e reformas de fóruns como Beberibe, Crato, Marco, Jaguaribe, Araripe, Quixadá e Ipueiras. Em andamento: sistema de áudio e vídeo, reforma da Sede Administrativa, serviços complementares e recuperação estrutural do Fórum de Boa Viagem. Construções e reformas em andamento em diversas comarcas, incluindo Icó, Nova Olinda, Cascavel, Aracati, Milagres e Quixeramobim. Entregas em planejamento em Tianguá, Caucaia, Maranguape, Sobral, Iguatu, Independência, Redenção, Tabuleiro do Norte e Maracanaú. Entregas em licitação, a iniciar e suspensas conforme detalhamento da apresentação.">
+      <div class="project-head">
+        <div class="project-number">21</div>
+        <div>
+          <div class="project-label">PROJETO ESTRATÉGICO</div>
+          <h2>Plano de Obras</h2>
+        </div>
+        <button class="expand-btn" aria-label="Expandir projeto" onclick="toggleProject(this)">+</button>
+      </div>
+      <p class="objective">Implantar o Plano de Obras 2023–2025 do PJCE, entregando fóruns e ESMEC reformados em plenas condições de uso.</p>
+      
+      <div class="project-detail">
+        <h3>Principais entregas e situação</h3>
+        <ul><li>Concluídas: reforma e ampliação da ESMEC e reformas de fóruns como Beberibe, Crato, Marco, Jaguaribe, Araripe, Quixadá e Ipueiras.</li><li>Em andamento: sistema de áudio e vídeo, reforma da Sede Administrativa, serviços complementares e recuperação estrutural do Fórum de Boa Viagem.</li><li>Construções e reformas em andamento em diversas comarcas, incluindo Icó, Nova Olinda, Cascavel, Aracati, Milagres e Quixeramobim.</li><li>Entregas em planejamento em Tianguá, Caucaia, Maranguape, Sobral, Iguatu, Independência, Redenção, Tabuleiro do Norte e Maracanaú.</li><li>Entregas em licitação, a iniciar e suspensas conforme detalhamento da apresentação.</li></ul>
+      </div>
+    </article>
+    
+      </section>
+
+      <div class="source-note">
+        <strong>Nota sobre os dados:</strong> conteúdo compilado e padronizado a partir da apresentação “18º COEX Estratégico”. As datas e percentuais foram preservados conforme constam nos slides, que apresentam referências de atualização distintas entre os projetos.
+      </div>
+
+      <div class="footer">SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</div>
+    </section>
+  </main>
+</div>
+
+<script src="app.js"></script>
+<script>
+function toggleProject(btn) {
+  btn.closest('.project-card').classList.toggle('open');
+}
+function filterProjects() {
+  const q = document.getElementById('projectSearch').value.toLowerCase().trim();
+  document.querySelectorAll('.project-card').forEach(card => {
+    const txt = card.dataset.search.toLowerCase();
+    card.style.display = txt.includes(q) ? '' : 'none';
+  });
+}
+function expandAll(btn) {
+  document.querySelectorAll('.project-card').forEach(card => card.classList.add('open'));
+  setActiveFilter(btn);
+}
+function collapseAll(btn) {
+  document.querySelectorAll('.project-card').forEach(card => card.classList.remove('open'));
+  setActiveFilter(btn);
+}
+function showAll(btn) {
+  document.getElementById('projectSearch').value = '';
+  document.querySelectorAll('.project-card').forEach(card => card.style.display = '');
+  setActiveFilter(btn);
+}
+function setActiveFilter(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
