@@ -1,4 +1,284 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEGOV | Cockpit de Governança</title><link rel="stylesheet" href="estilo.css"></head><body><div class="app"><aside class="sidebar">
-      <div class="sidebar-header"><div class="brandmark">TJCE</div><div class="sidebar-title"><strong>SEGOV</strong><span>Secretaria de Governança Institucional<br>Diretoria de Estratégia e Governança</span></div></div>
-      <button class="toggle" onclick="toggleSidebar()">☰ Recolher</button><nav class="nav"><a href="index.html" class="active"><span class="ico">⌂</span><span>Início</span></a><a href="rede.html"><span class="ico">◎</span><span>Rede de Governança</span></a><a href="processos.html"><span class="ico">☑</span><span>Arquitetura de Processos</span></a><a href="projetos.html"><span class="ico">🎯</span><span>Projetos Estratégicos</span></a><a href="orcamento.html"><span class="ico">↗</span><span>Execução Orçamentária</span></a><a href="pac.html"><span class="ico">▦</span><span>PAC</span></a><a href="contratos.html"><span class="ico">📝</span><span>Execução Contratual</span></a><a href="riscos.html"><span class="ico">🛡</span><span>Gestão de Riscos</span></a><a href="indicadores.html"><span class="ico">◔</span><span>Indicadores</span></a><a href="gam.html"><span class="ico">▣</span><span>GAM</span></a></nav>
-    </aside><main class="main"><header class="topbar"><div class="breadcrumb">SEGOV <span>›</span> Cockpit de Governança</div></header><section class="content"><section class="hero"><div><h1>Cockpit de Governança</h1><p>Ambiente integrado para acompanhamento das principais frentes de governança institucional da SEGOV.</p></div><div class="hero-badge"><strong>9</strong><span>Áreas</span></div></section><section class="grid"><a class="card" href="rede.html"><div class="icon">◎</div><h2>Rede de Governança</h2><p>Acompanhamento da rede colaborativa, ações, maturidade e articulação institucional.</p></a><a class="card" href="processos.html"><div class="icon">☑</div><h2>Arquitetura de Processos</h2><p>Visão de processos, mapeamentos, redesenhos e iniciativas de melhoria.</p></a><a class="card" href="projetos.html"><div class="icon">🎯</div><h2>Projetos Estratégicos</h2><p>Portfólio consolidado dos 21 projetos estratégicos e suas principais entregas.</p></a><a class="card" href="orcamento.html"><div class="icon">↗</div><h2>Execução Orçamentária</h2><p>Espaço para acompanhamento da execução orçamentária e financeira.</p></a><a class="card" href="pac.html"><div class="icon">▦</div><h2>PAC</h2><p>Acesso ao acompanhamento do Plano Anual de Contratações.</p></a><a class="card" href="contratos.html"><div class="icon">📝</div><h2>Execução Contratual</h2><p>Acompanhamento de contratos, vigências, entregas e fiscalização.</p></a><a class="card" href="riscos.html"><div class="icon">🛡</div><h2>Gestão de Riscos</h2><p>Registro e acompanhamento dos riscos institucionais e respectivos controles.</p></a><a class="card" href="indicadores.html"><div class="icon">◔</div><h2>Indicadores</h2><p>Painel para acompanhamento de indicadores estratégicos e de governança.</p></a><a class="card" href="gam.html"><div class="icon">▣</div><h2>GAM</h2><p>Acompanhamento das informações relacionadas à Gratificação de Alcance de Metas.</p></a></section><div class="footer">SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</div></section></main></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEGOV | Cockpit de Governança</title>
+  <meta name="description" content="Cockpit de Governança da Secretaria de Governança Institucional - TJCE" />
+  <style>
+    :root{
+      --navy:#072f63;
+      --navy-2:#0b417f;
+      --blue:#0f4f95;
+      --blue-2:#155da9;
+      --ink:#082b5c;
+      --muted:#687b96;
+      --line:#dfe7f1;
+      --soft:#f4f7fb;
+      --white:#fff;
+      --gold:#d8a92d;
+      --shadow:0 10px 28px rgba(25,52,87,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(31,93,162,.05), transparent 28%),
+        linear-gradient(180deg,#fbfdff 0%,#f4f7fb 100%);
+      min-height:100vh;
+    }
+
+    .page{min-height:100vh; display:flex; flex-direction:column}
+
+    /* CABEÇALHO */
+    .topbar{
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid #e4ebf3;
+      box-shadow:0 4px 18px rgba(10,38,72,.045);
+    }
+
+    .topbar-inner{
+      width:min(1540px,calc(100% - 48px));
+      margin:0 auto;
+      min-height:114px;
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+
+    .tjce-brand{display:flex; align-items:center; gap:16px; padding-right:28px; border-right:1px solid #d9e1eb}
+
+    .tjce-symbol{width:64px;height:56px;position:relative;display:flex;align-items:center;justify-content:center}
+    .tjce-symbol svg{width:64px;height:56px;display:block}
+
+    .tjce-word{font-size:42px;line-height:1;font-weight:800;letter-spacing:.5px;color:#0a356f}
+
+    .segov-brand h1{margin:0 0 4px;font-size:29px;line-height:1;font-weight:800;letter-spacing:.2px;color:#0b346c}
+    .segov-brand p{margin:1px 0;font-size:14px;line-height:1.35;color:#173d6b;font-weight:500}
+
+    /* CONTEÚDO */
+    main{width:min(1540px,calc(100% - 48px));margin:24px auto 0;flex:1}
+
+    .hero{
+      min-height:230px;
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      padding:44px 48px 42px 300px;
+      display:flex;
+      align-items:center;
+      color:#fff;
+      background:
+        radial-gradient(circle at 75% 12%, rgba(53,139,224,.25), transparent 35%),
+        linear-gradient(106deg,#082e60 0%,#0a3b76 58%,#0a3267 100%);
+      box-shadow:0 12px 28px rgba(5,44,91,.13);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.72;
+      background-image:
+        radial-gradient(circle at 78% 70%, rgba(255,255,255,.16) 0 1.2px, transparent 1.6px),
+        linear-gradient(112deg, transparent 0 57%, rgba(255,255,255,.04) 57.2% 57.5%, transparent 57.7% 100%);
+      background-size:18px 18px,100% 100%;
+      mask-image:linear-gradient(90deg,transparent 38%,black 70%,black 100%);
+    }
+
+    .wave{
+      position:absolute;left:220px;right:-120px;bottom:-34px;height:170px;opacity:.32;pointer-events:none;
+    }
+
+    .building-watermark{
+      position:absolute;
+      left:28px;
+      bottom:-10px;
+      width:235px;
+      height:210px;
+      opacity:.22;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.08));
+      pointer-events:none;
+    }
+
+    .hero-content{position:relative;z-index:2;max-width:850px}
+    .hero h2{margin:0 0 12px;font-size:48px;line-height:1.05;letter-spacing:-1.3px;font-weight:800}
+    .hero p{margin:0;max-width:790px;font-size:20px;line-height:1.5;color:rgba(255,255,255,.93);font-weight:400}
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .card{
+      min-height:138px;
+      padding:24px 26px;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+      background:rgba(255,255,255,.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      cursor:pointer;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      border-color:#bfd1e6;
+      box-shadow:0 16px 32px rgba(22,56,95,.12);
+    }
+    .card:focus-visible{outline:3px solid rgba(25,102,181,.25);outline-offset:3px}
+
+    .icon-wrap{
+      width:72px;height:72px;flex:0 0 72px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,#eef4fb,#f8fbff);
+      box-shadow:inset 0 0 0 1px #e4ecf6;
+      color:#0b3978;
+    }
+    .icon-wrap svg{width:39px;height:39px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .card h3{margin:0 0 8px;font-size:20px;line-height:1.2;color:#0a3169;font-weight:800}
+    .card p{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+    footer{
+      width:min(1540px,calc(100% - 48px));
+      margin:38px auto 24px;
+      text-align:center;
+      color:#75859a;
+      font-size:12px;
+    }
+
+    @media (max-width:1100px){
+      .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero{padding-left:240px}
+      .building-watermark{width:190px}
+    }
+    @media (max-width:760px){
+      .topbar-inner{width:min(100% - 28px,1540px);min-height:92px;gap:16px}
+      .tjce-brand{padding-right:14px;gap:10px}
+      .tjce-word{font-size:30px}
+      .tjce-symbol{width:48px;height:44px}.tjce-symbol svg{width:48px;height:44px}
+      .segov-brand h1{font-size:21px}.segov-brand p{font-size:11px}
+      main,footer{width:min(100% - 28px,1540px)}
+      .hero{min-height:250px;padding:34px 26px 34px 26px;align-items:flex-end}
+      .building-watermark{width:175px;height:165px;left:auto;right:2px;bottom:-10px;opacity:.12}
+      .hero h2{font-size:34px}.hero p{font-size:16px}
+      .cards{grid-template-columns:1fr}
+      .card{min-height:122px;padding:20px}.icon-wrap{width:62px;height:62px;flex-basis:62px}.icon-wrap svg{width:33px;height:33px}
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="tjce-brand" aria-label="Tribunal de Justiça do Estado do Ceará">
+        <div class="tjce-symbol" aria-hidden="true">
+          <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 19 L55 3 L58 12 L10 28 Z" fill="#d6a62e"/>
+            <path d="M12 31 L59 15 L62 24 L15 40 Z" fill="#0a356f"/>
+            <path d="M16 45 h8 v16 h-8zM30 40 h8 v21h-8zM44 35 h8 v26h-8zM58 30 h8 v31h-8z" fill="#0a356f"/>
+            <path d="M10 61h62v5H10z" fill="#0a356f"/>
+          </svg>
+        </div>
+        <div class="tjce-word">TJCE</div>
+      </div>
+      <div class="segov-brand">
+        <h1>SEGOV</h1>
+        <p>Secretaria de Governança Institucional</p>
+        <p>Diretoria de Estratégia e Governança</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="titulo-cockpit">
+      <!-- Marca d'água estilizada da sede: mantida à esquerda; brasão do lado direito removido -->
+      <svg class="building-watermark" viewBox="0 0 260 220" aria-hidden="true">
+        <g fill="none" stroke="#ffffff" stroke-width="3">
+          <path d="M18 64 L128 20 L242 64" />
+          <path d="M28 68 H230" />
+          <path d="M40 81 H218" />
+          <path d="M48 81 V184 M82 81 V184 M116 81 V184 M150 81 V184 M184 81 V184 M218 81 V184" />
+          <path d="M36 184 H226" />
+          <path d="M25 194 H238" />
+          <path d="M16 204 H246" />
+          <path d="M60 57 H195" opacity=".7"/>
+        </g>
+        <text x="87" y="74" fill="#fff" font-size="20" font-family="Arial, sans-serif" font-weight="700">TJCE</text>
+      </svg>
+
+      <svg class="wave" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,135 C220,95 335,170 545,115 C760,58 855,110 1200,50" fill="none" stroke="#7db7ee" stroke-width="1.4"/>
+        <path d="M0,146 C230,108 350,178 560,126 C780,70 900,126 1200,64" fill="none" stroke="#7db7ee" stroke-width="1" opacity=".8"/>
+        <path d="M0,157 C240,120 365,186 580,138 C805,85 925,143 1200,80" fill="none" stroke="#7db7ee" stroke-width=".9" opacity=".6"/>
+      </svg>
+
+      <div class="hero-content">
+        <h2 id="titulo-cockpit">Cockpit de Governança</h2>
+        <p>Ambiente integrado para acompanhamento das principais frentes de governança institucional da SEGOV.</p>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="Áreas do Cockpit de Governança">
+      <a class="card" href="#" aria-label="Acessar Rede de Governança">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><circle cx="24" cy="10" r="5"/><circle cx="10" cy="34" r="5"/><circle cx="38" cy="34" r="5"/><path d="M21 14 13 29M27 14l8 15M15 34h18"/></svg></div>
+        <div><h3>Rede de Governança</h3><p>Acompanhamento da rede colaborativa, ações, maturidade e articulação institucional.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Arquitetura de Processos">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><rect x="17" y="5" width="14" height="9" rx="1"/><rect x="4" y="34" width="14" height="9" rx="1"/><rect x="30" y="34" width="14" height="9" rx="1"/><path d="M24 14v10M11 34v-7h26v7"/></svg></div>
+        <div><h3>Arquitetura de Processos</h3><p>Visão de processos, mapeamentos, redesenhos e iniciativas de melhoria.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Projetos Estratégicos">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><circle cx="22" cy="26" r="15"/><circle cx="22" cy="26" r="9"/><circle cx="22" cy="26" r="3"/><path d="m27 20 13-13M34 7h6v6"/></svg></div>
+        <div><h3>Projetos Estratégicos</h3><p>Portfólio consolidado dos projetos estratégicos e suas principais entregas.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Execução Orçamentária">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M7 37h7V25H7zM20 37h7V18h-7zM33 37h7V10h-7z"/><path d="m7 19 10-8 8 3 15-9"/></svg></div>
+        <div><h3>Execução Orçamentária</h3><p>Espaço para acompanhamento da execução orçamentária e financeira.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar PAC">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="34" rx="2"/><path d="M18 7v34M30 7v34M7 18h34M7 30h34"/></svg></div>
+        <div><h3>PAC</h3><p>Acesso ao acompanhamento do Plano Anual de Contratações.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Execução Contratual">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M11 5h19l8 8v15"/><path d="M30 5v8h8M11 5v38h18"/><path d="M17 21h14M17 27h10M17 33h7"/><path d="m29 39 10-10 4 4-10 10-6 1z"/></svg></div>
+        <div><h3>Execução Contratual</h3><p>Acompanhamento de contratos, vigências, entregas e fiscalização.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Gestão de Riscos">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M24 5 40 11v11c0 10-6 17-16 21C14 39 8 32 8 22V11z"/><path d="m17 24 5 5 10-11"/></svg></div>
+        <div><h3>Gestão de Riscos</h3><p>Registro e acompanhamento dos riscos institucionais e respectivos controles.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar Indicadores">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M24 5a19 19 0 1 0 19 19H24z"/><path d="M28 5v15h15A19 19 0 0 0 28 5z"/></svg></div>
+        <div><h3>Indicadores</h3><p>Painel para acompanhamento de indicadores estratégicos e de governança.</p></div>
+      </a>
+
+      <a class="card" href="#" aria-label="Acessar GAM">
+        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M9 17V9h8M31 9h8v8M39 31v8h-8M17 39H9v-8"/><circle cx="24" cy="24" r="6" fill="currentColor" stroke="none"/></svg></div>
+        <div><h3>GAM</h3><p>Acompanhamento das informações relacionadas à Gratificação de Alcance de Metas.</p></div>
+      </a>
+    </section>
+  </main>
+
+  <footer>SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</footer>
+</div>
+</body>
+</html>
