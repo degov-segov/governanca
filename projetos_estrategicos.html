@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos Estratégicos | SEGOV/TJCE</title>
+<style>
+:root{
+  --navy:#0b2f63;--navy2:#164f91;--blue:#1f66b3;--blueSoft:#eaf2fb;
+  --gold:#c99317;--goldSoft:#fbf3df;--bg:#f3f6fb;--card:#fff;--text:#10213d;
+  --muted:#66758a;--line:#dfe7f1;--green:#16865c;--shadow:0 8px 22px rgba(31,58,91,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{text-decoration:none;color:inherit}
+.topbar{background:#fff;border-bottom:1px solid #e4eaf2}
+.topbar-inner{max-width:1380px;margin:auto;padding:18px 30px;display:flex;align-items:center;gap:18px}
+.brand-mark{width:78px;height:58px;border-radius:12px;background:linear-gradient(145deg,#0c2d5e,#174d8d);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:21px;letter-spacing:.04em}
+.brand-copy strong{font-size:22px;color:var(--navy);display:block}
+.brand-copy span{font-size:12px;color:#4f627a;display:block;line-height:1.3}
+.spacer{flex:1}
+.back-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #c9d5e5;color:var(--navy);background:#fff;padding:10px 14px;border-radius:9px;font-weight:700;font-size:13px;transition:.18s}
+.back-btn:hover{background:#eef4fb;transform:translateY(-1px)}
+.wrap{max-width:1380px;margin:auto;padding:24px 30px 48px}
+.hero{background:linear-gradient(115deg,#082d61 0%,#0e407f 60%,#174f91 100%);border-radius:18px;color:#fff;padding:34px 38px;position:relative;overflow:hidden;box-shadow:0 14px 30px rgba(21,56,100,.12)}
+.hero:before{content:"";position:absolute;left:-30px;bottom:-70px;width:380px;height:230px;opacity:.09;background:linear-gradient(90deg,transparent 0 8%,#fff 8% 12%,transparent 12% 22%,#fff 22% 26%,transparent 26% 36%,#fff 36% 40%,transparent 40% 50%,#fff 50% 54%,transparent 54% 100%);transform:skewX(-7deg);border-top:26px solid #fff}
+.hero:after{content:"";position:absolute;right:-90px;top:-130px;width:650px;height:430px;background:radial-gradient(circle,rgba(255,255,255,.13),rgba(255,255,255,0) 68%)}
+.hero-content{position:relative;z-index:2;max-width:880px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:8px}
+.hero h1{font-size:36px;line-height:1.15;margin-bottom:10px}
+.hero p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.85)}
+
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.summary-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.summary-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#7c8898;margin-bottom:6px}
+.summary-value{font-size:25px;color:var(--navy);font-weight:800}
+.summary-sub{font-size:12px;color:#7a8796;margin-top:4px}
+
+.toolbar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:10px;align-items:center;margin-bottom:22px;box-shadow:var(--shadow)}
+.search{flex:1;border:1px solid #d6e0ec;border-radius:9px;padding:11px 12px;font:inherit;color:var(--text);outline:none}
+.search:focus{border-color:#8fb1db;box-shadow:0 0 0 3px rgba(31,102,179,.09)}
+.filter-btn{border:1px solid #d6e0ec;background:#fff;border-radius:9px;padding:10px 12px;font-size:12px;font-weight:700;color:#52647a;cursor:pointer}
+.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+.section{margin-top:22px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:12px}
+.section-title{font-size:18px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:9px}
+.section-title:before{content:"";width:5px;height:20px;border-radius:4px;background:var(--blue)}
+.section.outros .section-title:before{background:var(--gold)}
+.section-count{font-size:12px;color:var(--blue);background:var(--blueSoft);border-radius:999px;padding:5px 9px;font-weight:700}
+.section.outros .section-count{color:#8a6410;background:var(--goldSoft)}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.project-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:15px;padding:18px 19px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:245px;transition:.18s}
+.project-card.outros{border-top-color:var(--gold)}
+.project-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(31,58,91,.09)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:9px}
+.number{width:34px;height:34px;border-radius:10px;background:var(--blueSoft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:0 0 auto}
+.project-card.outros .number{background:var(--goldSoft);color:#8a6410}
+.badge{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;border-radius:999px;padding:5px 8px;background:#edf4fc;color:var(--blue);white-space:nowrap}
+.project-card.outros .badge{background:var(--goldSoft);color:#8a6410}
+.project-title{font-size:16px;font-weight:800;color:var(--navy);line-height:1.28;margin-bottom:8px}
+.objective{font-size:12.5px;color:#647489;line-height:1.48;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.highlight{margin-top:10px;background:#f7f9fc;border-radius:8px;padding:8px 10px;font-size:11px;color:#5f6f83}
+.actions{margin-top:auto;padding-top:14px;display:flex;justify-content:flex-end}
+.detail-btn{border:0;background:var(--blueSoft);color:var(--blue);font-weight:800;font-size:12px;border-radius:9px;padding:9px 12px;cursor:pointer}
+.project-card.outros .detail-btn{background:var(--goldSoft);color:#8a6410}
+
+.modal{position:fixed;inset:0;background:rgba(7,25,49,.58);display:none;align-items:center;justify-content:center;padding:24px;z-index:1000}
+.modal.open{display:flex}
+.modal-box{width:min(920px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 70px rgba(0,0,0,.25)}
+.modal-head{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;z-index:2}
+.modal-number{width:42px;height:42px;border-radius:12px;background:var(--blueSoft);color:var(--blue);font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.modal-title{font-size:22px;color:var(--navy);line-height:1.25}
+.modal-group{font-size:11px;color:#77879a;margin-top:3px;text-transform:uppercase;letter-spacing:.07em}
+.close{margin-left:auto;border:0;background:#eef2f7;color:#53657b;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:20px}
+.modal-body{padding:24px}
+.block{margin-bottom:22px}
+.block h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin-bottom:9px}
+.block p{font-size:14px;line-height:1.58;color:#506177}
+.block ul{padding-left:20px;color:#506177}
+.block li{font-size:13.5px;line-height:1.5;margin-bottom:7px}
+.modal-highlight{background:#eef5fd;border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;color:#365676;font-size:13px;margin-bottom:20px}
+
+.empty{display:none;background:#fff;border:1px dashed #cbd7e5;border-radius:14px;padding:35px;text-align:center;color:#718196}
+.footer{margin-top:28px;text-align:center;font-size:12px;color:#8793a3;padding-top:18px;border-top:1px solid #dce4ee}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.summary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+ .topbar-inner,.wrap{padding-left:16px;padding-right:16px}.topbar-inner{flex-wrap:wrap}.spacer{display:none}.back-btn{width:100%;justify-content:center}
+ .hero{padding:28px 24px}.hero h1{font-size:28px}.summary{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}
+ .toolbar{flex-wrap:wrap}.search{width:100%;flex-basis:100%}.modal{padding:10px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="topbar-inner">
+   <div class="brand-mark">TJCE</div>
+   <div class="brand-copy"><strong>SEGOV</strong><span>Secretaria de Governança Institucional</span><span>Diretoria de Estratégia e Governança</span></div>
+   <div class="spacer"></div>
+   <a class="back-btn" href="https://degov-segov.github.io/governanca/">← Voltar ao Cockpit</a>
+ </div>
+</header>
+
+<main class="wrap">
+ <section class="hero">
+   <div class="hero-content">
+     <div class="eyebrow">Cockpit de Governança · Portfólio Estratégico</div>
+     <h1>Projetos Estratégicos</h1>
+     <p>Visão consolidada do portfólio da Gestão 2023–2025, reunindo os projetos do Promojud e outras iniciativas estratégicas do TJCE.</p>
+   </div>
+ </section>
+
+ <section class="summary">
+   <div class="summary-card"><div class="summary-label">Projetos estratégicos</div><div class="summary-value">21</div><div class="summary-sub">Portfólio consolidado</div></div>
+   <div class="summary-card"><div class="summary-label">Projetos Promojud</div><div class="summary-value">19</div><div class="summary-sub">12 do Componente 1 + 7 do Componente 2</div></div>
+   <div class="summary-card"><div class="summary-label">Outras iniciativas</div><div class="summary-value">2</div><div class="summary-sub">Prêmio CNJ e Plano de Obras</div></div>
+   <div class="summary-card"><div class="summary-label">Referência da carteira</div><div class="summary-value" style="font-size:20px">Gestão 2023–2025</div><div class="summary-sub">18º COEX Estratégico</div></div>
+ </section>
+
+ <div class="toolbar">
+   <input id="search" class="search" type="search" placeholder="Buscar projeto por nome ou objetivo...">
+   <button class="filter-btn active" data-filter="todos">Todos</button>
+   <button class="filter-btn" data-filter="promojud">Promojud</button>
+   <button class="filter-btn" data-filter="outros">Outras iniciativas</button>
+ </div>
+
+ <section class="section promojud" id="sec-promojud">
+   <div class="section-head"><div class="section-title">Projetos Promojud</div><div class="section-count">19 projetos</div></div>
+   <div class="grid" id="grid-promojud"></div>
+ </section>
+
+ <section class="section outros" id="sec-outros">
+   <div class="section-head"><div class="section-title">Outras Iniciativas Estratégicas</div><div class="section-count">2 projetos</div></div>
+   <div class="grid" id="grid-outros"></div>
+ </section>
+
+ <div class="empty" id="empty">Nenhum projeto encontrado para os filtros informados.</div>
+
+ <div class="footer">SEGOV — Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</div>
+</main>
+
+<div class="modal" id="modal" aria-hidden="true">
+ <div class="modal-box" role="dialog" aria-modal="true">
+  <div class="modal-head">
+    <div class="modal-number" id="modalNumber"></div>
+    <div><div class="modal-title" id="modalTitle"></div><div class="modal-group" id="modalGroup"></div></div>
+    <button class="close" id="closeModal" aria-label="Fechar">×</button>
+  </div>
+  <div class="modal-body">
+    <div id="modalHighlight"></div>
+    <div class="block"><h3>Objetivo do projeto</h3><p id="modalObjective"></p></div>
+    <div class="block" id="gestaoBlock"><h3>Entregas da Gestão 2023–2025</h3><ul id="modalGestao"></ul></div>
+    <div class="block" id="aposBlock"><h3>Entregas / continuidade após a Gestão</h3><ul id="modalApos"></ul></div>
+  </div>
+ </div>
+</div>
+
+<script>
+const projetos = [{"id": 1, "nome": "Expansão do PJe", "grupo": "promojud", "objetivo": "Aprimorar e expandir o PJe como sistema único em todas as competências do Poder Judiciário, exceto Execuções Penais.", "gestao": ["Migrações concluídas: Direito Público e Precatórios.", "4ª fase: Migração Cível Comum (agosto/2024) e Cível Especializada (outubro/2024).", "Implantação de fluxos complementares e integrações com outros sistemas/PDPJ: SGA, Domicílio Judicial Eletrônico, PJe Mídias, PJe Documentos e E-Cartas."], "apos": ["Migrações: Família e Sucessões (abril/2025); Empresarial/Recuperação (abril/2025); Infância e Juventude (julho/2025); Criminal (a iniciar).", "Atualização para a versão PJe 2.7.1.0 — em andamento, 46% (07/2025).", "Evolução do Migrador — HOMOPROD — em andamento, 70% (07/2025).", "Soluções PDPJ — a iniciar (05/2025).", "Fluxos de Tramitação de 1º e 2º graus — em andamento, 70% (07/2025)."], "destaque": "Dezembro/2024: 58% do acervo tramitando no PJe."}, {"id": 2, "nome": "Soluções tecnológicas e humanização do atendimento", "grupo": "promojud", "objetivo": "Aperfeiçoar o atendimento ao público com foco em humanização, acessibilidade e inclusão, mediante novos modelos de atendimento, expansão das CAJs, canais de atendimento e ferramentas tecnológicas.", "gestao": ["Expansão das CAJs: 33 CAJs implantadas e mais de 600 mil atendimentos.", "23 Pontos de Inclusão Digital — PIDs.", "Balcão Virtual no Teams para todas as unidades judiciárias — 23.007 atendimentos em 2024.", "CIAT — Central Interna de Atendimento.", "TJCE Mobile: certidão para pessoa jurídica; autorização de viagem para menores; Quero Conciliar; área para mulher vítima de violência doméstica; consulta processual no PJe; notificações push pelo WhatsApp.", "Canal de atendimento dos magistrados — em andamento, 83% (01/2025)."], "apos": ["Expansão do TJCE Mobile — em andamento, 90% (06/2025)."]}, {"id": 3, "nome": "Inteligência Artificial na Prestação Jurisdicional", "grupo": "promojud", "objetivo": "Automatizar rotinas e demandas repetitivas, como expedientes, modelos de julgamento e sobrestamento processual, por meio de ferramentas de Inteligência Artificial.", "gestao": ["Soluções de IA apresentadas: Midas, Berna, Talia, Precedentes e Predição de Risco."], "apos": ["Expansão do Modelo Precedentes para o 1º Grau — em andamento, 75% (04/2025).", "Piloto Prescrição Intercorrente para Execuções Fiscais e Comuns — em andamento (06/2025).", "Piloto Prevenção e Conexão — a iniciar."]}, {"id": 4, "nome": "Implantação da LGPD", "grupo": "promojud", "objetivo": "Implementar, no Poder Judiciário cearense, todas as especificidades da Lei Geral de Proteção de Dados — Lei nº 13.709/2018.", "gestao": ["Contratação de consultoria especializada em implantação da LGPD e aquisição de soluções tecnológicas para Governança da Privacidade e Proteção de Dados."], "apos": ["Execução do contrato da Consultoria Módulo — em andamento, 17% (06/2025).", "Contratação de empresa de sustentação da LGPD — a iniciar."]}, {"id": 5, "nome": "Robotização, aprimoramento e automação de processos de trabalho", "grupo": "promojud", "objetivo": "Desenvolver soluções automatizadas capazes de realizar atividades repetitivas com precisão, promovendo padronização, redução de erros e aumento da produtividade nas unidades.", "gestao": ["Desenvolvimento de 38 robôs para a área judiciária, com mais 4 robôs previstos até janeiro/2025.", "Contratação de consultor individual para desenvolvimento de robôs RPA/IPA.", "Contratação de serviços de consultoria em BPM — Empresa Publix.", "Contratação de ferramenta RPA — em andamento, 83% (01/2025)."], "apos": ["Contratação de mais 1 consultor para desenvolvimento de robôs — suspensa.", "Novos pacotes de desenvolvimento — a iniciar."]}, {"id": 6, "nome": "Fortalecimento do enfrentamento à violência doméstica", "grupo": "promojud", "objetivo": "Intensificar o combate à violência doméstica contra a mulher e promover celeridade no julgamento dos processos e concessão de medidas protetivas, com ferramentas tecnológicas e padronização de procedimentos.", "gestao": ["Criação de Núcleo de Combate à violência doméstica.", "Criação do protocolo de atendimento à vítima de violência.", "Painéis de monitoramento dos indicadores relacionados à violência doméstica.", "Justiça pela Mulher da Justiça."], "apos": ["Plataforma de apoio à mulher — Rede de apoio e garantia de direitos — Versão 2, em andamento, 98% (02/2025).", "Previstas: divulgação do projeto Proteção na Medida no TJCE; expansão do piloto de predição de riscos; expansão do Nucevid."]}, {"id": 7, "nome": "Fortalecimento das soluções consensuais de conflito", "grupo": "promojud", "objetivo": "Fortalecer as soluções consensuais de conflito, propiciando efetividade e tempestividade à prestação jurisdicional e à pacificação social.", "gestao": ["Sistema de Pagamento de Auxiliares da Justiça — PAJ — Conciliadores e Mediadores.", "Aprimoramento dos pagamentos do PAJ para Facilitadores da Justiça Restaurativa — em andamento, 94% (01/2025)."], "apos": ["Contratação de empresa para desenvolvimento de ferramenta de conciliação virtual — ODR — Empresa KPMG, em andamento (02/2025).", "Desenvolvimento e implantação da ferramenta ODR — a iniciar."]}, {"id": 8, "nome": "Solução tecnológica para busca integrada de jurisprudências", "grupo": "promojud", "objetivo": "Implantar o Sistema de Jurisprudência do TJCE — SJURIS — para busca integrada de julgamentos, jurisprudências, atos normativos e pareceres normativos.", "gestao": ["SJURIS: consulta de jurisprudências TJCE 2º Grau e Turma Recursal; consulta simples e avançada; busca de atos normativos; busca por decisões monocráticas e súmulas.", "Integração de Dados SAJ x SJURIS — em andamento, 93% (01/2025)."], "apos": ["Os aprimoramentos serão absorvidos pelo projeto Cientista-Chefe."]}, {"id": 9, "nome": "Cientista-Chefe", "grupo": "promojud", "objetivo": "Desenvolver ferramentas computacionais para explorar grandes volumes de documentos do Poder Judiciário, extrair informações úteis e apoiar a tomada de decisão.", "gestao": [], "apos": ["Classificador de Assuntos.", "Classificador de Petição Inicial.", "Classificador de Documentos.", "Sara — Sumarizador.", "Busca Ativa de Jurisprudência.", "Grafo de Legislação."]}, {"id": 10, "nome": "Modernização da infraestrutura tecnológica", "grupo": "promojud", "objetivo": "Aprimorar a infraestrutura tecnológica do PJCE por meio da aquisição de equipamentos, serviços e desenvolvimento de aplicações.", "gestao": ["Aquisições concluídas: virtualização de servidores; backup; switches SAN; suporte técnico para balanceadores de carga; switches de acesso; firewall pequeno; processamento de servidores para PJe e banco de dados; Nuvem Microsoft; empresa para desenvolvimento de aplicações.", "DataCenter — em andamento, 95% (01/2025)."], "apos": ["Solução Omnichannel, ITSM e gestão de demandas — a planejar.", "Licenças do Power BI Premium — em andamento (05/2025).", "Serviço em Nuvem — CloudBroker — em andamento (03/2025).", "Links de Contingência — em andamento (07/2025).", "Conectividade de Núcleo — Switches — em andamento (04/2025).", "Servidores de Hiperconvergência — FERMOJU — em andamento (04/2025).", "Solução Tecnológica de Virtualização de Servidores — Lote 1 — em andamento (08/2025).", "IA Generativa — em andamento (06/2025).", "Serviços de Tecnologia para o sistema PJe — em andamento (04/2025)."]}, {"id": 11, "nome": "Prêmio CNJ de Qualidade", "grupo": "outros", "objetivo": "Alcançar certificação no Prêmio CNJ da Qualidade, que avalia comparativamente os Tribunais Estaduais nos eixos de Governança, Transparência, Dados e Tecnologia e Produtividade.", "gestao": ["Evolução do TJCE: 49,90% (2020), 57,55% (2021), 49,74% (2022), 60,80% (2023) e 70,30% (2024).", "Mais de 20 pontos percentuais de evolução na gestão 2023-2024.", "Eixo Dados e TI — Datajud: em 2023, 2 de 19 indicadores cumpridos, 20 de 170 pontos possíveis (11%); em 2024, 21 de 26 indicadores cumpridos, 164 de 204 pontos possíveis (80%).", "Eixo Produtividade: redução de 2,46% na taxa de congestionamento líquida; cumprimento das Metas Nacionais; redução de 353 dias no tempo médio dos pendentes líquidos; redução de 574 dias no tempo médio da ação penal; redução do percentual de processos mais antigos de 33% para 27,1%; aumento do julgamento de processos antigos ambientais de 13,8% para 46,4%."], "apos": ["Pontos críticos não atingidos destacados na apresentação: inspeções no sistema socioeducativo; Codex; Governança em TI; Adoção e Acolhimento; julgamento de IRDR; Ouvidoria; SEEU; BNMP."], "destaque": "Diferença para selo Prata: 13 pontos; Ouro: 173 pontos; Diamante: 354 pontos."}, {"id": 12, "nome": "Arquitetura corporativa de sistemas e infraestrutura de TI", "grupo": "promojud", "objetivo": "Analisar e definir, a partir da arquitetura de negócios e mapa de capacidades do TJCE, as melhores ferramentas, sistemas e equipamentos para atender às necessidades funcionais do PJCE.", "gestao": ["Contratação de consultoria para identificação da arquitetura tecnológica necessária — Empresa Elogroup (05/2024).", "Contratação de consultor individual para avaliação de propostas e controle de qualidade do projeto (08/2023).", "Diagnóstico da arquitetura corporativa — Etapa 1 — em andamento, 99% (01/2025).", "Identificação de tecnologias para aprimoramento da prestação jurisdicional — Etapa 2 — em andamento, 74% (01/2025)."], "apos": ["Proposição de projeto de arquitetura corporativa — a iniciar.", "Plano de Implementação — a iniciar."]}, {"id": 13, "nome": "Programa de Desenvolvimento de Pessoas", "grupo": "promojud", "objetivo": "Prover servidores e magistrados dos conhecimentos, habilidades e atitudes necessários ao trabalho em ambiente novo, dinâmico e moderno, com ferramentas tecnológicas, plano de capacitação, revisão do mapeamento de competências e trilhas de aprendizagem.", "gestao": ["Plano de capacitação dos servidores 2023-2024.", "Mapeamento de competências e trilhas de capacitação dos servidores — Empresa Leme Consultoria.", "Mapeamento de competências dos magistrados.", "Contratação de MBA em Gestão Pública e Poder Judiciário — Unifor."], "apos": ["Sistema de Gestão Acadêmica — ESMEC — em andamento.", "Plano de capacitação de 2024 — em andamento, 72% (06/2025).", "MBA em Gestão Pública, Inovação e Poder Judiciário — 2ª turma — em andamento, 46% (03/2025).", "Revitalização de ambiente virtual de aprendizagem para EAD — a iniciar.", "Política Integrada de Capacitação para Magistrados e Servidores — a iniciar."]}, {"id": 14, "nome": "Solução tecnológica para gestão de recursos sob custódia", "grupo": "promojud", "objetivo": "Implantar soluções para gerir os recursos financeiros sob custódia do TJCE, com foco inicial em precatórios e depósitos judiciais.", "gestao": ["Implantação da nova versão do SAPRE.", "Absorção do sistema BANKJUS.", "Migração dos processos do SAJSG para PJe — Precatórios.", "Integração SAPRE–BANKJUS — em andamento, 83% (01/2025).", "Integração BANKJUS–PJe — em andamento, 86% (01/2025)."], "apos": ["Integração BANKJUS–CAIXA — em andamento, 73% (02/2025)."]}, {"id": 15, "nome": "Otimização e modernização da Área Administrativa", "grupo": "promojud", "objetivo": "Implantar soluções tecnológicas para modernizar a área administrativa, aprimorando a gestão orçamentária, financeira e de custos, gestão patrimonial, gestão de aquisições e administração de recursos humanos.", "gestao": ["Painéis de BI para aprimoramento da gestão administrativa — total de 242 painéis.", "Implantação e evolução de 7 módulos do ADMRH.", "Aquisição de ferramenta low-code para novos sistemas e automação de processos — em andamento, 99% (01/2025).", "Desenvolvimento de 8 robôs para a área administrativa — em andamento (01/2025).", "Implantação do SEI — em andamento, 55% (01/2025)."], "apos": ["Gestão Patrimonial — consultoria para inventário — AFIXCODE — em andamento, 90% (03/2025).", "Gestão das Contratações — consultoria especializada em contratações públicas — INGEP — em andamento, 86% (05/2025).", "Gestão de Custos — consultoria especializada em gestão de despesas e custos — em andamento, 50% (07/2025)."]}, {"id": 16, "nome": "Institucionalização e fortalecimento da cultura de inovação", "grupo": "promojud", "objetivo": "Intensificar a cultura de inovação do PJCE com o Laboratório de Inovação e soluções inovadoras, incluindo simplificação da linguagem e oficinas de ideação e prototipação.", "gestao": ["Contratação de consultores em Design Gráfico e Letras.", "Simplificação de 43 atos de comunicação — Núcleo 4.0, SEJUD 1º grau, SEJUD 2º grau e apenados em progressão de regime.", "Oficinas de ideação para projetos inovadores.", "Prêmios em inovação 2024: Selo Judiciário Inovador; Selo de Linguagem Simples CNJ; Future Law Awards; Prêmio Tomas de Aquino Guimarães — Enajus."], "apos": ["Hackathon de inovação — a iniciar.", "Execução do contrato de consultoria em Design Thinking — WeGov — em andamento, 55% (03/2025).", "Contratação de consultor individual de Design Gráfico — em andamento, 3% (05/2025)."]}, {"id": 17, "nome": "Aprimoramento das políticas e ferramentas de segurança da informação", "grupo": "promojud", "objetivo": "Implantar serviços e ferramentas para garantir a segurança da informação, alinhados às Resoluções do CNJ sobre o tema.", "gestao": ["Centro de Operações de Segurança — SOC — Empresa Network.", "Revisão de 14 processos de trabalho de Segurança da Informação.", "Aquisição de firewall de grande porte e antivírus — AntiMalware.", "Capacitação em Segurança da Informação."], "apos": ["Revisão das Políticas de Segurança da Informação — em andamento, 96% (02/2025).", "Aquisição de Auditoria AD — em andamento, 73% (06/2025)."]}, {"id": 18, "nome": "Clima Organizacional", "grupo": "promojud", "objetivo": "Gerir mudanças institucionais decorrentes da transformação digital no âmbito do Poder Judiciário cearense.", "gestao": ["Consultoria para capacitação das equipes dos projetos em Gestão de Mudanças — Dynamica Consultoria (09/2023).", "Plano Integrado de Gestão de Mudanças Organizacionais — GMO (09/2024).", "Implantação da plataforma de saúde mental.", "Programa Justiça pela Mulher da Justiça — em andamento, 93% (01/2025).", "Programa Vida em Equilíbrio — em andamento, 90% (01/2024).", "Pesquisa de Clima Organizacional — em andamento, 68% (01/2025)."], "apos": ["Execução do Plano Integrado de GMO — durante todo o Promojud.", "Contratação de consultor individual de Endomarketing — suspensa.", "Reestruturação da Pesquisa de Clima — a iniciar."]}, {"id": 19, "nome": "Aperfeiçoamento da Gestão da Arrecadação", "grupo": "promojud", "objetivo": "Aprimorar a gestão da arrecadação de custas judiciais e incrementar receitas do FERMOJU mediante sistemas e ferramentas, incluindo painel de monitoramento dos cartórios, expansão do selo digital e sistema de custas judiciais.", "gestao": ["Sistema de Custas Iniciais, Intermediárias e Finais integrado ao PJe — SGA.", "Aprimoramento das Normas de Gestão e Controle da Arrecadação e Fiscalização — Resolução nº 31/2023.", "Painel de Monitoramento dos Cartórios.", "Painel de controle dos créditos do TJCE encaminhados à PGE — em andamento, 92% (01/2025).", "Expansão do selo digital — Selo 14 / DUT Eletrônico — em andamento, 95% (01/2025)."], "apos": ["Solução tecnológica para Selo 02 — Reconhecimento de Firma — a iniciar.", "Solução tecnológica para Selo 03 — Autenticação — a iniciar."]}, {"id": 20, "nome": "Programa de Fortalecimento de Lideranças Femininas", "grupo": "promojud", "objetivo": "Implementar políticas de incentivo e valorização da atuação das mulheres do Poder Judiciário cearense em cargos de liderança, por meio de eventos e ações de disseminação do tema.", "gestao": ["Aprimoramento do repositório de mulheres juristas e implementação do repositório de mulheres gestoras (09/2023).", "Rede Colaborativa Mulheres Líderes.", "Plano de melhorias para fortalecimento de lideranças femininas.", "Espaço online destinado a conteúdo do programa.", "Consultoria especializada em programas de lideranças femininas — Gerppass.", "Consultoria individual especializada em promoção da equidade de gênero."], "apos": ["Serviços da consultoria especializada — em andamento, 91% (02/2025).", "Plano de implantação das ações apontadas pela consultoria — em andamento, 13% (02/2025)."]}, {"id": 21, "nome": "Plano de Obras", "grupo": "outros", "objetivo": "Implantar o Plano de Obras 2023-2025 do PJCE, entregando 7 fóruns e ESMEC reformados em plenas condições de uso, até janeiro de 2025.", "gestao": ["Entregas concluídas: reforma e ampliação da ESMEC; fóruns de Beberibe, Crato, Marco, Jaguaribe, Araripe, Quixadá e Ipueiras; sistema de áudio e vídeo; reforma da Sede Administrativa; serviços complementares da Sede Judiciária; recuperação estrutural do Fórum de Boa Viagem.", "Entregas em andamento: construção dos fóruns de Icó, Nova Olinda, Cascavel, Aracati, Milagres e Quixeramobim; reformas de Jucás, Jardim, Acopiara, São Benedito e Juazeiro do Norte; complementação do Plenário; requalificação da Praça da Justiça/ESMEC/Creche; projeto de requalificação do FCB; reformas de Pereiro, Campos Sales, Jijoca de Jericoacoara, Itaitinga, Massapê e Ipu."], "apos": ["Em planejamento: Tianguá, Caucaia, Maranguape e Sobral; construção dos fóruns de Iguatu, Independência, Redenção, Tabuleiro do Norte e Maracanaú; reforma do Fórum de Eusébio e novo Fórum de Guaraciaba do Norte.", "Em licitação: reforma e ampliação do Fórum de Barbalha e reforma do Fórum das Turmas Recursais.", "A iniciar: reforma do Fórum de Jaguaruana, reforma dos salões do Júri do FCB e acessibilidade vertical do FCB.", "A apresentação registra também entregas suspensas."]}];
+let currentFilter = 'todos';
+
+function card(p){
+  const groupLabel = p.grupo === 'promojud' ? 'Promojud' : 'Outra iniciativa';
+  return `
+  <article class="project-card ${p.grupo}" data-id="${p.id}" data-group="${p.grupo}" data-search="${(p.nome+' '+p.objetivo).toLowerCase()}">
+    <div class="card-top"><div class="number">${String(p.id).padStart(2,'0')}</div><div class="badge">${groupLabel}</div></div>
+    <div class="project-title">${p.nome}</div>
+    <div class="objective">${p.objetivo}</div>
+    ${p.destaque ? `<div class="highlight">${p.destaque}</div>` : ''}
+    <div class="actions"><button class="detail-btn" onclick="openProject(${p.id})">Ver detalhes →</button></div>
+  </article>`;
+}
+
+function render(){
+  document.getElementById('grid-promojud').innerHTML = projetos.filter(p=>p.grupo==='promojud').map(card).join('');
+  document.getElementById('grid-outros').innerHTML = projetos.filter(p=>p.grupo==='outros').map(card).join('');
+  applyFilter();
+}
+
+function applyFilter(){
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  let visible=0, promVisible=0, outrosVisible=0;
+  document.querySelectorAll('.project-card').forEach(el=>{
+    const groupOk = currentFilter==='todos' || el.dataset.group===currentFilter;
+    const textOk = !q || el.dataset.search.includes(q);
+    const show = groupOk && textOk;
+    el.style.display = show ? '' : 'none';
+    if(show){visible++; if(el.dataset.group==='promojud')promVisible++; else outrosVisible++;}
+  });
+  document.getElementById('sec-promojud').style.display = promVisible ? '' : 'none';
+  document.getElementById('sec-outros').style.display = outrosVisible ? '' : 'none';
+  document.getElementById('empty').style.display = visible ? 'none' : 'block';
+}
+
+document.getElementById('search').addEventListener('input', applyFilter);
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); currentFilter=btn.dataset.filter; applyFilter();
+}));
+
+function fillList(id, items, blockId){
+  const ul=document.getElementById(id);
+  ul.innerHTML=(items||[]).map(x=>`<li>${x}</li>`).join('');
+  document.getElementById(blockId).style.display=(items&&items.length)?'block':'none';
+}
+function openProject(id){
+  const p=projetos.find(x=>x.id===id);
+  document.getElementById('modalNumber').textContent=String(p.id).padStart(2,'0');
+  document.getElementById('modalTitle').textContent=p.nome;
+  document.getElementById('modalGroup').textContent=p.grupo==='promojud'?'Projeto Promojud':'Outra iniciativa estratégica';
+  document.getElementById('modalObjective').textContent=p.objetivo;
+  fillList('modalGestao',p.gestao,'gestaoBlock');
+  fillList('modalApos',p.apos,'aposBlock');
+  document.getElementById('modalHighlight').innerHTML=p.destaque?`<div class="modal-highlight">${p.destaque}</div>`:'';
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal').setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modal').setAttribute('aria-hidden','true');
+}
+document.getElementById('closeModal').onclick=closeModal;
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+render();
+</script>
+</body>
+</html>
