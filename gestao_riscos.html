@@ -386,7 +386,7 @@
       box-shadow: var(--shadow);
     }
 
-    .matrix-card { padding: 20px; }
+    .matrix-card { padding: 20px; overflow-x: auto; }
 
     .matrix-titlebar {
       display: flex;
@@ -414,9 +414,9 @@
       transform: rotate(180deg);
       display: grid;
       place-items: center;
-      color: var(--ink-500);
-      font-size: 11px;
-      font-weight: 800;
+      color: var(--ink-700);
+      font-size: 13px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .08em;
     }
@@ -425,55 +425,120 @@
       grid-column: 2;
       display: grid;
       place-items: center;
-      color: var(--ink-500);
-      font-size: 11px;
-      font-weight: 800;
+      color: var(--ink-700);
+      font-size: 13px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .08em;
     }
 
     .risk-matrix {
       display: grid;
-      grid-template-columns: 72px repeat(3, 1fr);
-      grid-template-rows: 34px repeat(3, minmax(72px, auto));
+      grid-template-columns: 92px repeat(3, minmax(220px, 1fr));
+      grid-template-rows: 42px repeat(3, minmax(150px, auto));
       border: 1px solid var(--line);
       border-radius: 12px;
       overflow: hidden;
       background: #fff;
+      min-width: 840px;
     }
 
     .risk-matrix > div {
       border-right: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 8px;
-      font-size: 11px;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      text-align: left;
+      padding: 10px;
+      font-size: 14px;
     }
+
     .risk-matrix > div:nth-child(4n) { border-right: none; }
     .risk-matrix > div:nth-last-child(-n+4) { border-bottom: none; }
 
     .matrix-header,
     .matrix-side {
       background: #f7f9fb;
-      color: var(--ink-500);
-      font-weight: 800;
+      color: var(--ink-700);
+      font-weight: 900;
+      font-size: 14px;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
     }
 
     .matrix-cell {
       position: relative;
-      font-weight: 800;
-      color: var(--ink-700);
+      color: var(--ink-900);
+      min-height: 150px;
     }
 
-    .matrix-cell.low { background: #edf8f2; }
-    .matrix-cell.medium { background: #fff8df; }
-    .matrix-cell.high { background: #fcebec; }
+    .matrix-cell.low {
+      background: #e6f4ec;
+      border-color: #c7e2d3;
+    }
 
-    .matrix-cell .dash {
-      font-size: 20px;
-      color: rgba(20,33,61,.25);
+    .matrix-cell.medium {
+      background: #fff4cf;
+      border-color: #eadb9f;
+    }
+
+    .matrix-cell.high {
+      background: #f9dddd;
+      border-color: #e9b9b9;
+    }
+
+    .matrix-risks {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      width: 100%;
+    }
+
+    .matrix-risk {
+      display: block;
+      width: 100%;
+      padding: 7px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(20,33,61,.10);
+      color: #17324f;
+      font-size: 12px;
+      line-height: 1.28;
+      font-weight: 700;
+    }
+
+    .matrix-risk strong {
+      display: inline-block;
+      min-width: 29px;
+      color: #0b3f75;
+      font-weight: 900;
+    }
+
+    .matrix-empty {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      color: rgba(20,33,61,.38);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .matrix-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      margin-left: 6px;
+      padding: 0 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(20,33,61,.10);
+      font-size: 11px;
+      font-weight: 900;
     }
 
     .info-card {
@@ -742,7 +807,7 @@
       .filters .search { grid-column: auto; }
       .section-heading { align-items: flex-start; flex-direction: column; }
       .matrix-wrap { grid-template-columns: 28px 1fr; }
-      .risk-matrix { grid-template-columns: 58px repeat(3, 1fr); }
+      .risk-matrix { grid-template-columns: 82px repeat(3, minmax(210px, 1fr)); }
       main { padding-left: 12px; padding-right: 12px; }
     }
 
@@ -783,8 +848,8 @@
       <div class="hero-note">
         <span aria-hidden="true">ⓘ</span>
         <span>
-          A matriz Probabilidade × Impacto permanece em consolidação. A apresentação de origem
-          ainda não contém a classificação de criticidade dos riscos.
+          A apresentação de origem não classifica individualmente Probabilidade e Impacto.
+          A matriz abaixo apresenta uma avaliação preliminar sugerida para apoiar a validação pelas unidades responsáveis.
         </span>
       </div>
       </div>
@@ -879,7 +944,7 @@
         <div class="matrix-card">
           <div class="matrix-titlebar">
             <strong>Probabilidade × Impacto</strong>
-            <span>Criticidade ainda não classificada</span>
+            <span>Avaliação preliminar sugerida</span>
           </div>
 
           <div class="matrix-wrap">
@@ -892,19 +957,19 @@
               <div class="matrix-header">Alto</div>
 
               <div class="matrix-side">Alto</div>
-              <div class="matrix-cell medium"><span class="dash">—</span></div>
-              <div class="matrix-cell high"><span class="dash">—</span></div>
-              <div class="matrix-cell high"><span class="dash">—</span></div>
+              <div class="matrix-cell medium"><div class="matrix-risks" data-prob="Alto" data-impact="Baixo"></div></div>
+              <div class="matrix-cell high"><div class="matrix-risks" data-prob="Alto" data-impact="Médio"></div></div>
+              <div class="matrix-cell high"><div class="matrix-risks" data-prob="Alto" data-impact="Alto"></div></div>
 
               <div class="matrix-side">Médio</div>
-              <div class="matrix-cell low"><span class="dash">—</span></div>
-              <div class="matrix-cell medium"><span class="dash">—</span></div>
-              <div class="matrix-cell high"><span class="dash">—</span></div>
+              <div class="matrix-cell low"><div class="matrix-risks" data-prob="Médio" data-impact="Baixo"></div></div>
+              <div class="matrix-cell medium"><div class="matrix-risks" data-prob="Médio" data-impact="Médio"></div></div>
+              <div class="matrix-cell high"><div class="matrix-risks" data-prob="Médio" data-impact="Alto"></div></div>
 
               <div class="matrix-side">Baixo</div>
-              <div class="matrix-cell low"><span class="dash">—</span></div>
-              <div class="matrix-cell low"><span class="dash">—</span></div>
-              <div class="matrix-cell medium"><span class="dash">—</span></div>
+              <div class="matrix-cell low"><div class="matrix-risks" data-prob="Baixo" data-impact="Baixo"></div></div>
+              <div class="matrix-cell low"><div class="matrix-risks" data-prob="Baixo" data-impact="Médio"></div></div>
+              <div class="matrix-cell medium"><div class="matrix-risks" data-prob="Baixo" data-impact="Alto"></div></div>
             </div>
 
             <div class="axis-x">Impacto</div>
@@ -915,9 +980,10 @@
           <div>
             <h3>Leitura da matriz</h3>
             <p>
-              O plano prevê avaliação de probabilidade e impacto em três níveis. Como os campos
-              da matriz original ainda estão sem quantitativos, esta página não atribui
-              criticidade aos riscos.
+              O plano prevê avaliação de probabilidade e impacto em três níveis. Como a
+              apresentação original não traz a classificação individual de cada risco, a matriz
+              abaixo apresenta uma avaliação preliminar, construída a partir da descrição do risco,
+              de suas consequências potenciais e dos respectivos planos de resposta.
             </p>
 
             <div class="legend" aria-label="Legenda da matriz">
@@ -928,8 +994,9 @@
           </div>
 
           <div class="source-note">
-            <strong>Importante:</strong> “Estratégico” e “Operacional” são apresentados abaixo
-            como natureza/classificação do risco, sem equivalência automática com Baixo, Médio ou Alto.
+            <strong>Importante:</strong> a classificação de Probabilidade e Impacto desta página
+            é uma proposta analítica preliminar e deve ser validada pelas unidades responsáveis.
+            “Estratégico” e “Operacional” permanecem como natureza do risco.
           </div>
         </aside>
       </div>
@@ -972,18 +1039,20 @@
 
         <div class="table-meta">
           <span><strong id="visibleCount">28</strong> riscos exibidos</span>
-          <span>Criticidade: <strong>em avaliação</strong></span>
+          <span>Probabilidade e Impacto: <strong>avaliação preliminar sugerida</strong></span>
         </div>
 
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th style="width:31%">Risco</th>
-                <th style="width:24%">Processo</th>
-                <th style="width:12%">Natureza</th>
-                <th style="width:25%">Governança</th>
-                <th style="width:8%; text-align:right">Detalhes</th>
+                <th style="width:25%">Risco</th>
+                <th style="width:20%">Processo</th>
+                <th style="width:10%">Natureza</th>
+                <th style="width:9%">Prob.</th>
+                <th style="width:9%">Impacto</th>
+                <th style="width:21%">Governança</th>
+                <th style="width:6%; text-align:right">Detalhes</th>
               </tr>
             </thead>
             <tbody id="riskTableBody"></tbody>
@@ -1206,6 +1275,75 @@
       }
     ];
 
+
+    const assessments = [
+      ["R01","Médio","Médio","Adesão à gestão documental"],
+      ["R02","Médio","Alto","Paralisação do BRISK PPM"],
+      ["R03","Médio","Alto","Visibilidade do andamento dos projetos"],
+      ["R04","Alto","Alto","Ausência de gestão estruturada de riscos"],
+      ["R05","Médio","Alto","Solução de portfólio inadequada"],
+      ["R06","Médio","Alto","Aceites de objetos não executados"],
+      ["R07","Médio","Alto","Serviço de projetos não atende ao TJCE"],
+      ["R08","Alto","Médio","Atraso nos indicadores estratégicos"],
+      ["R09","Médio","Médio","Análises críticas superficiais"],
+      ["R10","Alto","Médio","Planos de ação desatualizados"],
+      ["R11","Médio","Médio","Acompanhamento insuficiente das unidades"],
+      ["R12","Médio","Alto","Descontinuidade do Brisk"],
+      ["R13","Médio","Médio","Adequação tardia de informações estratégicas"],
+      ["R14","Médio","Alto","Baixo desempenho de produtividade"],
+      ["R15","Alto","Alto","Baixa priorização do Prêmio CNJ"],
+      ["R16","Médio","Alto","Inconsistências de dados do Prêmio CNJ"],
+      ["R17","Alto","Médio","Indefinição de ações do ciclo CNJ"],
+      ["R18","Médio","Alto","Desvantagem frente a outros tribunais"],
+      ["R19","Médio","Alto","Fragilidade no acompanhamento da Rede"],
+      ["R20","Médio","Médio","Diagnóstico de maturidade ineficaz"],
+      ["R21","Médio","Médio","Domínio técnico insuficiente"],
+      ["R22","Alto","Médio","Fragilidade de comunicação na Rede"],
+      ["R23","Baixo","Médio","Inconsistência no rol classificatório GTR"],
+      ["R24","Médio","Baixo","Falha logística em eventos"],
+      ["R25","Alto","Alto","Sobreposição de atividades de governança"],
+      ["R26","Médio","Alto","Orçamento x execução contratual"],
+      ["R27","Médio","Alto","PAC incompatível com demandas reais"],
+      ["R28","Médio","Alto","Não execução de obrigações de governança"]
+    ];
+
+    risks.forEach((risk, index) => {
+      const [id, probability, impact, shortName] = assessments[index];
+      risk.id = id;
+      risk.probability = probability;
+      risk.impact = impact;
+      risk.shortName = shortName;
+      const severityMap = {
+        "Baixo|Baixo": "Baixa",
+        "Baixo|Médio": "Baixa",
+        "Médio|Baixo": "Baixa",
+        "Baixo|Alto": "Intermediária",
+        "Médio|Médio": "Intermediária",
+        "Alto|Baixo": "Intermediária",
+        "Médio|Alto": "Alta",
+        "Alto|Médio": "Alta",
+        "Alto|Alto": "Alta"
+      };
+      risk.criticality = severityMap[`${probability}|${impact}`];
+    });
+
+    function renderMatrix() {
+      document.querySelectorAll(".matrix-risks").forEach(cell => {
+        const probability = cell.dataset.prob;
+        const impact = cell.dataset.impact;
+        const items = risks.filter(r => r.probability === probability && r.impact === impact);
+
+        if (!items.length) {
+          cell.innerHTML = '<div class="matrix-empty">Nenhum risco classificado</div>';
+          return;
+        }
+
+        cell.innerHTML = items.map(r =>
+          `<div class="matrix-risk" title="${escapeHtml(r.risk)}"><strong>${r.id}</strong>${escapeHtml(r.shortName)}</div>`
+        ).join("");
+      });
+    }
+
     const tbody = document.getElementById("riskTableBody");
     const searchInput = document.getElementById("searchInput");
     const processFilter = document.getElementById("processFilter");
@@ -1251,22 +1389,26 @@
         const badgeClass = item.type === "Estratégico" ? "strategic" : "operational";
         return `
           <tr class="risk-row" data-index="${index}">
-            <td><div class="risk-name">${escapeHtml(item.risk)}</div></td>
+            <td><div class="risk-name"><span style="color:#1c6aa8">${item.id}</span> · ${escapeHtml(item.risk)}</div></td>
             <td class="process-name">${escapeHtml(item.process)}</td>
             <td><span class="badge ${badgeClass}">${escapeHtml(item.type)}</span></td>
+            <td><strong>${escapeHtml(item.probability)}</strong></td>
+            <td><strong>${escapeHtml(item.impact)}</strong></td>
             <td class="owner">${escapeHtml(item.owner)}</td>
             <td><div class="expand" aria-hidden="true">⌄</div></td>
           </tr>
           <tr class="detail-row" data-detail="${index}">
-            <td colspan="5">
+            <td colspan="7">
               <div class="detail-box">
                 <div>
                   <h4>Plano de resposta</h4>
                   <p>${escapeHtml(item.response)}</p>
                 </div>
                 <div>
-                  <h4>Criticidade</h4>
-                  <p><span class="badge pending">Em avaliação</span></p>
+                  <h4>Avaliação preliminar</h4>
+                  <p><strong>Probabilidade:</strong> ${escapeHtml(item.probability)}<br>
+                     <strong>Impacto:</strong> ${escapeHtml(item.impact)}<br>
+                     <strong>Criticidade:</strong> ${escapeHtml(item.criticality)}</p>
                   <h4 style="margin-top:14px">Governança / responsável</h4>
                   <p>${escapeHtml(item.owner)}</p>
                 </div>
@@ -1325,6 +1467,7 @@
     });
 
     populateOwners();
+    renderMatrix();
     render();
   </script>
 </body>
