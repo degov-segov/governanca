@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Painel de Gestão de Riscos da Secretaria de Governança Institucional do TJCE." />
+  <title>SEGOV | Gestão de Riscos</title>
+
+  <style>
+    :root {
+      --navy-950: #071d35;
+      --navy-900: #0b2d4f;
+      --navy-800: #103f6d;
+      --blue-700: #155a92;
+      --blue-600: #1c6aa8;
+      --blue-100: #eaf3fb;
+      --blue-050: #f4f8fc;
+      --gold-500: #d4a52c;
+      --ink-900: #14213d;
+      --ink-700: #43536a;
+      --ink-500: #6d7c8f;
+      --line: #dfe7ef;
+      --surface: #ffffff;
+      --page: #f4f7fa;
+      --strategic-bg: #e9f2fb;
+      --strategic-fg: #104d80;
+      --operational-bg: #eef2f5;
+      --operational-fg: #4a5d70;
+      --shadow: 0 10px 28px rgba(11,45,79,.08);
+      --shadow-hover: 0 16px 40px rgba(11,45,79,.14);
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink-900);
+      background: var(--page);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input, select { font: inherit; }
+
+.topbar {
+      background: #ffffff;
+      border-bottom: 1px solid #dfe7ef;
+      position: relative;
+      z-index: 100;
+    }
+
+    .topbar-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 88px;
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+      color: var(--navy-950);
+    }
+
+    .brand-mark {
+      width: 78px;
+      height: 58px;
+      border-radius: 12px;
+      background: #173f75;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      box-shadow: none;
+      flex: 0 0 auto;
+    }
+
+    .brand-text { min-width: 0; }
+
+    .brand-title {
+      font-size: 22px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      color: #123b70;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin-top: 6px;
+      color: #33527a;
+      font-size: 12px;
+      line-height: 1.35;
+      white-space: normal;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 14px;
+      color: #0e3768;
+      background: #ffffff;
+      border: 1px solid #c8d7e8;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+
+    .back-link:hover {
+      background: #f5f8fc;
+      border-color: #9fb8d3;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: transparent;
+      color: white;
+      padding: 25px 26px 20px;
+    }
+
+    .hero-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 194px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 17px;
+      padding: 31px 38px 30px;
+      background:
+        linear-gradient(90deg, #10396e 0%, #154980 48%, #2d66a0 100%);
+      box-shadow: none;
+    }
+
+    .hero-inner::before,
+    .hero-inner::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      bottom: 0;
+      transform: skewX(-7deg);
+      pointer-events: none;
+    }
+
+    .hero-inner::before {
+      left: 18px;
+      width: 145px;
+      opacity: .38;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(58,109,169,.55) 0 15px,
+          transparent 15px 36px
+        );
+    }
+
+    .hero-inner::after {
+      left: 70px;
+      width: 125px;
+      opacity: .18;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,.35) 0 12px,
+          transparent 12px 27px
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #d9e8f8;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before { display: none; }
+
+    h1 {
+      margin: 8px 0 11px;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+      color: #ffffff;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: 0;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .hero-note {
+      margin-top: 17px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px 10px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+      max-width: 760px;
+    }
+
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .section { margin-bottom: 30px; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -.02em;
+    }
+
+    .section-heading p {
+      margin: 5px 0 0;
+      color: var(--ink-500);
+      font-size: 13px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: -54px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      min-height: 124px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .metric-icon {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--blue-100);
+      color: var(--navy-800);
+    }
+
+    .metric-number {
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+    .metric-label {
+      margin-top: 7px;
+      color: var(--ink-500);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .process-card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      cursor: pointer;
+      text-align: left;
+      transition: .2s ease;
+      min-height: 166px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-card::after {
+      content: "";
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      right: -25px;
+      bottom: -28px;
+      background: var(--blue-100);
+    }
+
+    .process-card:hover,
+    .process-card.active {
+      transform: translateY(-3px);
+      border-color: #a9c9e5;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .process-card.active {
+      outline: 2px solid rgba(28,106,168,.12);
+      background: #fbfdff;
+    }
+
+    .process-card .count {
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--navy-800);
+      line-height: 1;
+    }
+
+    .process-card .name {
+      margin-top: 11px;
+      min-height: 42px;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .process-card .mix {
+      margin-top: 12px;
+      color: var(--ink-500);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .matrix-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, .55fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .matrix-card,
+    .info-card,
+    .risk-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .matrix-card { padding: 20px; }
+
+    .matrix-titlebar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .matrix-titlebar strong { font-size: 14px; }
+    .matrix-titlebar span {
+      color: var(--ink-500);
+      font-size: 12px;
+    }
+
+    .matrix-wrap {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      grid-template-rows: 1fr 30px;
+      gap: 8px;
+    }
+
+    .axis-y {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      display: grid;
+      place-items: center;
+      color: var(--ink-500);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .axis-x {
+      grid-column: 2;
+      display: grid;
+      place-items: center;
+      color: var(--ink-500);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .risk-matrix {
+      display: grid;
+      grid-template-columns: 72px repeat(3, 1fr);
+      grid-template-rows: 34px repeat(3, minmax(72px, auto));
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .risk-matrix > div {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 8px;
+      font-size: 11px;
+    }
+    .risk-matrix > div:nth-child(4n) { border-right: none; }
+    .risk-matrix > div:nth-last-child(-n+4) { border-bottom: none; }
+
+    .matrix-header,
+    .matrix-side {
+      background: #f7f9fb;
+      color: var(--ink-500);
+      font-weight: 800;
+    }
+
+    .matrix-cell {
+      position: relative;
+      font-weight: 800;
+      color: var(--ink-700);
+    }
+
+    .matrix-cell.low { background: #edf8f2; }
+    .matrix-cell.medium { background: #fff8df; }
+    .matrix-cell.high { background: #fcebec; }
+
+    .matrix-cell .dash {
+      font-size: 20px;
+      color: rgba(20,33,61,.25);
+    }
+
+    .info-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--ink-500);
+      font-size: 13px;
+    }
+
+    .legend {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      color: var(--ink-700);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+    .dot.low { background: #6bb58a; }
+    .dot.medium { background: #e7ba3d; }
+    .dot.high { background: #d86b74; }
+
+    .source-note {
+      padding: 11px 12px;
+      background: var(--blue-050);
+      border-radius: 10px;
+      color: var(--ink-500);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .risk-panel { overflow: hidden; }
+
+    .filters {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(155px, .55fr)) auto;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+
+    .control {
+      width: 100%;
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid #d9e2eb;
+      background: white;
+      padding: 0 12px;
+      color: var(--ink-900);
+      outline: none;
+      transition: .2s ease;
+    }
+
+    .control:focus {
+      border-color: #77abd3;
+      box-shadow: 0 0 0 3px rgba(28,106,168,.10);
+    }
+
+    .clear-btn {
+      height: 42px;
+      padding: 0 15px;
+      border-radius: 10px;
+      border: 1px solid #d9e2eb;
+      background: white;
+      color: var(--ink-700);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .clear-btn:hover { background: #f3f6f9; }
+
+    .table-meta {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-500);
+      font-size: 12px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1050px;
+    }
+
+    th {
+      padding: 12px 14px;
+      text-align: left;
+      color: var(--ink-500);
+      background: #f8fafc;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      border-bottom: 1px solid var(--line);
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #edf1f5;
+      vertical-align: top;
+      font-size: 12px;
+    }
+
+    tbody tr.risk-row {
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+
+    tbody tr.risk-row:hover { background: #f8fbfe; }
+
+    .risk-name {
+      min-width: 255px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink-900);
+      line-height: 1.4;
+    }
+
+    .process-name { color: var(--ink-700); min-width: 180px; }
+    .owner { color: var(--ink-700); min-width: 220px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 10px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .badge.strategic {
+      background: var(--strategic-bg);
+      color: var(--strategic-fg);
+    }
+    .badge.operational {
+      background: var(--operational-bg);
+      color: var(--operational-fg);
+    }
+    .badge.pending {
+      background: #f4f4f4;
+      color: #707984;
+      border: 1px dashed #cfd6dc;
+    }
+
+    .expand {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-050);
+      color: var(--navy-800);
+      margin-left: auto;
+      transition: .2s ease;
+      font-weight: 900;
+    }
+
+    .risk-row.open .expand { transform: rotate(180deg); }
+
+    .detail-row { display: none; background: #fbfdff; }
+    .detail-row.open { display: table-row; }
+
+    .detail-box {
+      padding: 2px 0 6px;
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 20px;
+    }
+
+    .detail-box h4 {
+      margin: 0 0 7px;
+      font-size: 11px;
+      color: var(--ink-500);
+      text-transform: uppercase;
+      letter-spacing: .075em;
+    }
+
+    .detail-box p {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--ink-500);
+      display: none;
+    }
+
+    .footer {
+      margin-top: 36px;
+      padding: 24px 28px 34px;
+      color: #758396;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .footer strong { color: var(--ink-700); }
+
+    @media (max-width: 1120px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-card:last-child { grid-column: span 2; }
+      .filters { grid-template-columns: repeat(2, 1fr); }
+      .filters .search { grid-column: span 2; }
+    }
+
+    @media (max-width: 860px) {
+      .matrix-layout { grid-template-columns: 1fr; }
+      .detail-box { grid-template-columns: 1fr; }
+      .topbar-inner { padding: 0 18px; }
+      .hero { padding: 22px 18px 20px; }
+      .hero-inner { padding: 28px 26px; }
+      main { padding: 18px; }
+      .summary-grid { margin-top: -52px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner { min-height: 74px; }
+      .brand-title { font-size: 18px; }
+      .brand-mark { width: 62px; height: 48px; border-radius: 10px; font-size: 16px; }
+      .brand-subtitle { font-size: 10px; }
+      .back-link span { display: none; }
+      .back-link { padding: 9px 11px; }
+      .hero { padding-top: 18px; }
+      .hero-inner { min-height: 180px; padding: 26px 22px; }
+      .hero p { font-size: 14px; }
+      .summary-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .metric-card { padding: 14px; min-height: 105px; gap: 10px; }
+      .metric-icon { width: 38px; height: 38px; border-radius: 10px; }
+      .metric-number { font-size: 24px; }
+      .metric-label { font-size: 10px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-card:last-child { grid-column: auto; }
+      .filters { grid-template-columns: 1fr; }
+      .filters .search { grid-column: auto; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .matrix-wrap { grid-template-columns: 28px 1fr; }
+      .risk-matrix { grid-template-columns: 58px repeat(3, 1fr); }
+      main { padding-left: 12px; padding-right: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">TJ</div>
+        <div class="brand-text">
+          <div class="brand-title">SEGOV</div>
+          <div class="brand-subtitle">Secretaria de Governança Institucional · Diretoria de Estratégia e Governança</div>
+        </div>
+      </div>
+
+      <a class="back-link" href="https://degov-segov.github.io/governanca/" aria-label="Voltar ao Cockpit de Governança">
+        <strong aria-hidden="true">←</strong>
+        <span>Voltar ao Cockpit</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+      <div class="eyebrow">COCKPIT DE GOVERNANÇA · GESTÃO DE RISCOS</div>
+      <h1>Gestão de Riscos</h1>
+      <p>
+        Identificação, tratamento e acompanhamento dos riscos relacionados aos processos de trabalho
+        da Diretoria de Estratégia e Governança, organizados a partir da Cadeia de Valor e da
+        Arquitetura de Processos do TJCE.
+      </p>
+      <div class="hero-note">
+        <span aria-hidden="true">ⓘ</span>
+        <span>
+          A matriz Probabilidade × Impacto permanece em consolidação. A apresentação de origem
+          ainda não contém a classificação de criticidade dos riscos.
+        </span>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section summary-grid" aria-label="Resumo da gestão de riscos">
+      <article class="metric-card">
+        <div class="metric-icon" aria-hidden="true">◈</div>
+        <div>
+          <div class="metric-number">28</div>
+          <div class="metric-label">Riscos mapeados</div>
+        </div>
+      </article>
+
+      <article class="metric-card">
+        <div class="metric-icon" aria-hidden="true">▦</div>
+        <div>
+          <div class="metric-number">5</div>
+          <div class="metric-label">Processos avaliados</div>
+        </div>
+      </article>
+
+      <article class="metric-card">
+        <div class="metric-icon" aria-hidden="true">◆</div>
+        <div>
+          <div class="metric-number">19</div>
+          <div class="metric-label">Riscos estratégicos</div>
+        </div>
+      </article>
+
+      <article class="metric-card">
+        <div class="metric-icon" aria-hidden="true">●</div>
+        <div>
+          <div class="metric-number">9</div>
+          <div class="metric-label">Riscos operacionais</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="processos">
+      <div class="section-heading">
+        <div>
+          <h2>Riscos por processo de trabalho</h2>
+          <p>Selecione um processo para filtrar automaticamente o inventário de riscos.</p>
+        </div>
+      </div>
+
+      <div class="process-grid">
+        <button class="process-card" type="button" data-process="Gerir Projetos Estratégicos">
+          <div class="count">7</div>
+          <div class="name">Gerir Projetos Estratégicos</div>
+          <div class="mix">4 estratégicos · 3 operacionais</div>
+        </button>
+
+        <button class="process-card" type="button" data-process="Monitorar Estratégia Institucional">
+          <div class="count">6</div>
+          <div class="name">Monitorar Estratégia Institucional</div>
+          <div class="mix">6 estratégicos</div>
+        </button>
+
+        <button class="process-card" type="button" data-process="Acompanhar Prêmio CNJ de Qualidade">
+          <div class="count">5</div>
+          <div class="name">Acompanhar Prêmio CNJ de Qualidade</div>
+          <div class="mix">2 estratégicos · 3 operacionais</div>
+        </button>
+
+        <button class="process-card" type="button" data-process="Gerir Governança Colaborativa">
+          <div class="count">7</div>
+          <div class="name">Gerir Governança Colaborativa</div>
+          <div class="mix">4 estratégicos · 3 operacionais</div>
+        </button>
+
+        <button class="process-card" type="button" data-process="Gerir Governança interna da SEGOV">
+          <div class="count">3</div>
+          <div class="name">Gerir Governança interna da SEGOV</div>
+          <div class="mix">3 estratégicos</div>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <h2>Matriz de Avaliação de Riscos</h2>
+          <p>Visão Probabilidade × Impacto prevista no Plano de Gerenciamento de Riscos.</p>
+        </div>
+      </div>
+
+      <div class="matrix-layout">
+        <div class="matrix-card">
+          <div class="matrix-titlebar">
+            <strong>Probabilidade × Impacto</strong>
+            <span>Criticidade ainda não classificada</span>
+          </div>
+
+          <div class="matrix-wrap">
+            <div class="axis-y">Probabilidade</div>
+
+            <div class="risk-matrix" aria-label="Matriz de probabilidade e impacto">
+              <div class="matrix-header"></div>
+              <div class="matrix-header">Baixo</div>
+              <div class="matrix-header">Médio</div>
+              <div class="matrix-header">Alto</div>
+
+              <div class="matrix-side">Alto</div>
+              <div class="matrix-cell medium"><span class="dash">—</span></div>
+              <div class="matrix-cell high"><span class="dash">—</span></div>
+              <div class="matrix-cell high"><span class="dash">—</span></div>
+
+              <div class="matrix-side">Médio</div>
+              <div class="matrix-cell low"><span class="dash">—</span></div>
+              <div class="matrix-cell medium"><span class="dash">—</span></div>
+              <div class="matrix-cell high"><span class="dash">—</span></div>
+
+              <div class="matrix-side">Baixo</div>
+              <div class="matrix-cell low"><span class="dash">—</span></div>
+              <div class="matrix-cell low"><span class="dash">—</span></div>
+              <div class="matrix-cell medium"><span class="dash">—</span></div>
+            </div>
+
+            <div class="axis-x">Impacto</div>
+          </div>
+        </div>
+
+        <aside class="info-card">
+          <div>
+            <h3>Leitura da matriz</h3>
+            <p>
+              O plano prevê avaliação de probabilidade e impacto em três níveis. Como os campos
+              da matriz original ainda estão sem quantitativos, esta página não atribui
+              criticidade aos riscos.
+            </p>
+
+            <div class="legend" aria-label="Legenda da matriz">
+              <div class="legend-row"><span class="dot low"></span> Faixa de menor criticidade</div>
+              <div class="legend-row"><span class="dot medium"></span> Faixa intermediária</div>
+              <div class="legend-row"><span class="dot high"></span> Faixa de maior criticidade</div>
+            </div>
+          </div>
+
+          <div class="source-note">
+            <strong>Importante:</strong> “Estratégico” e “Operacional” são apresentados abaixo
+            como natureza/classificação do risco, sem equivalência automática com Baixo, Médio ou Alto.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="inventario">
+      <div class="section-heading">
+        <div>
+          <h2>Inventário de Riscos</h2>
+          <p>Clique em um risco para visualizar o plano de resposta e a governança responsável.</p>
+        </div>
+      </div>
+
+      <div class="risk-panel">
+        <div class="filters">
+          <input id="searchInput" class="control search" type="search"
+                 placeholder="Buscar risco, resposta ou responsável..." />
+
+          <select id="processFilter" class="control" aria-label="Filtrar por processo">
+            <option value="">Todos os processos</option>
+            <option>Gerir Projetos Estratégicos</option>
+            <option>Monitorar Estratégia Institucional</option>
+            <option>Acompanhar Prêmio CNJ de Qualidade</option>
+            <option>Gerir Governança Colaborativa</option>
+            <option>Gerir Governança interna da SEGOV</option>
+          </select>
+
+          <select id="typeFilter" class="control" aria-label="Filtrar por natureza">
+            <option value="">Todas as naturezas</option>
+            <option value="Estratégico">Estratégico</option>
+            <option value="Operacional">Operacional</option>
+          </select>
+
+          <select id="ownerFilter" class="control" aria-label="Filtrar por responsável">
+            <option value="">Todos os responsáveis</option>
+          </select>
+
+          <button id="clearFilters" class="clear-btn" type="button">Limpar</button>
+        </div>
+
+        <div class="table-meta">
+          <span><strong id="visibleCount">28</strong> riscos exibidos</span>
+          <span>Criticidade: <strong>em avaliação</strong></span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:31%">Risco</th>
+                <th style="width:24%">Processo</th>
+                <th style="width:12%">Natureza</th>
+                <th style="width:25%">Governança</th>
+                <th style="width:8%; text-align:right">Detalhes</th>
+              </tr>
+            </thead>
+            <tbody id="riskTableBody"></tbody>
+          </table>
+
+          <div id="emptyState" class="empty">
+            Nenhum risco corresponde aos filtros selecionados.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>SEGOV — Secretaria de Governança Institucional</strong><br />
+    Diretoria de Estratégia e Governança · Tribunal de Justiça do Estado do Ceará
+  </footer>
+
+  <script>
+    const risks = [
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Falta de adesão ao processo de gestão documental",
+        type: "Operacional",
+        response: "Realizar treinamentos com os(as) assessores(as) de projetos e auditorias periódicas nas pastas dos projetos para verificar conformidade com o processo.",
+        owner: "Coordenadoria de Projetos e Portfólio Consultoria LTDA"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Paralisação do sistema BRISK PPM",
+        type: "Operacional",
+        response: "Estabelecer rotinas de backup e exportação periódica dos dados dos projetos (relatórios, cronogramas); planejar e executar a contratação de um novo sistema para a gestão de portfólios, programas e projetos; e mapear e documentar os processos críticos que dependem do sistema para facilitar ações emergenciais.",
+        owner: "Coordenadoria de Projetos"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Falta de visibilidade real do andamento dos projetos",
+        type: "Estratégico",
+        response: "Monitorar periodicamente a atualização dos cronogramas/relatórios; realizar reuniões de acompanhamento com os(as) assessores(as); e utilizar painéis BI com dados atualizados em tempo real.",
+        owner: "Coordenadoria de Projetos e Portfólio Consultoria LTDA"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Ausência de processo estruturado de gestão de riscos",
+        type: "Estratégico",
+        response: "Implantar um processo padrão de identificação, análise, resposta e monitoramento de riscos dos projetos.",
+        owner: "Coordenadoria de Projetos e Portfólio Consultoria LTDA"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Aquisição de solução de gestão de portfólios, programas e projetos que não atenda às necessidades do TJCE",
+        type: "Estratégico",
+        response: "Realizar levantamento detalhado dos requisitos; incluir especialistas em TI na comissão de planejamento da contratação; estabelecer critérios técnicos e funcionais claros e consultar órgãos que utilizam ferramentas similares.",
+        owner: "Coordenadoria de Projetos; Secretaria de Administração e Infraestrutura; Secretaria de Tecnologia da Informação"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Aceites provisórios e definitivos em objetos parcialmente executados ou não executados (Serviço de gerenciamento de projetos)",
+        type: "Operacional",
+        response: "Estabelecer procedimentos padronizados para verificação da execução dos objetos contratados; exigir relatórios técnicos detalhados antes dos aceites provisórios e definitivos; realizar auditorias internas periódicas.",
+        owner: "Coordenadoria de Projetos"
+      },
+      {
+        process: "Gerir Projetos Estratégicos",
+        risk: "Não atendimento das necessidades do TJCE com relação à contratação do serviço de gerenciamento de projetos",
+        type: "Estratégico",
+        response: "Realizar diagnóstico interno das necessidades específicas do Escritório de Projetos; definir escopo claro e detalhado para o serviço a ser contratado; consultar experiências de outros órgãos públicos; incluir critérios técnicos e de experiência no edital; estabelecer indicadores de desempenho e qualidade do serviço, com metas claras e mensuráveis.",
+        owner: "Coordenadoria de Projetos"
+      },
+
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Atraso no preenchimento das informações dos indicadores estratégicos",
+        type: "Estratégico",
+        response: "1) Solicitar reuniões mensais de análise do indicador estratégico pela equipe do Núcleo de Governança; 2) implementar reuniões de acompanhamento com unidades mais prioritárias, com frequência mínima bimestral; 3) definir que o Gestor das Metas de cada indicador apresente à Presidência, durante a RAE, resultados, análises e expectativas de cumprimento, promovendo cobrança top-down para atualização tempestiva.",
+        owner: "Coordenadoria de Estratégia; Secretária de Governança Institucional"
+      },
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Análises críticas realizadas de forma superficial",
+        type: "Estratégico",
+        response: "Plano de resposta não individualizado no material de origem.",
+        owner: "Governança não individualizada no material de origem."
+      },
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Planos de ação desatualizados ou inexistentes",
+        type: "Estratégico",
+        response: "Criar a obrigatoriedade de que um percentual mínimo de ações dos planos de ação vinculados a indicadores estratégicos seja contemplado nos planos de ação da GAM.",
+        owner: "Secretária de Governança Institucional"
+      },
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Falta de acompanhamento mais próximo das unidades gestoras de indicadores estratégicos",
+        type: "Estratégico",
+        response: "Implementar reuniões de acompanhamento com unidades mais prioritárias, com frequência mínima bimestral.",
+        owner: "Coordenadoria de Estratégia"
+      },
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Descontinuidade do sistema Brisk",
+        type: "Estratégico",
+        response: "Utilização de planilha na nuvem com as informações do monitoramento (backup).",
+        owner: "Coordenadoria de Estratégia"
+      },
+      {
+        process: "Monitorar Estratégia Institucional",
+        risk: "Não adequação tempestiva, por parte da Coordenadoria, de informações estratégicas (normas CNJ, Transparência etc.)",
+        type: "Estratégico",
+        response: "Alinhar com a unidade de transparência da SEGOV um fluxo para que a Coordenadoria receba demandas desse tipo com tempo hábil para realizar os ajustes necessários.",
+        owner: "Coordenadoria de Estratégia"
+      },
+
+      {
+        process: "Acompanhar Prêmio CNJ de Qualidade",
+        risk: "Baixo desempenho nos indicadores de produtividade",
+        type: "Estratégico",
+        response: "Incentivar o alcance dos requisitos pelas unidades judiciárias por meio do +Gestão, bem como outras iniciativas institucionais.",
+        owner: "Secretária de Governança Institucional e Coordenadoria do Prêmio CNJ"
+      },
+      {
+        process: "Acompanhar Prêmio CNJ de Qualidade",
+        risk: "Ausência de priorização do plano de ação dos requisitos do Prêmio CNJ pelas unidades responsáveis",
+        type: "Operacional",
+        response: "1) Solicitar a indicação de um agente responsável pelo Prêmio CNJ na respectiva unidade. 2) Acompanhar periodicamente o plano de ação em conjunto com o agente responsável, promovendo a participação ativa no registro e atualização do andamento das ações.",
+        owner: "Secretária de Governança Institucional; Coordenadoria do Prêmio CNJ"
+      },
+      {
+        process: "Acompanhar Prêmio CNJ de Qualidade",
+        risk: "Não conformidade dos dados com os requisitos do Prêmio CNJ devido a inconsistências (eixo de Dados e TI)",
+        type: "Operacional",
+        response: "Realização de reuniões periódicas com a Diretoria de Dados, com a Diretoria Negocial do PJE e, quando necessário, com a SETIN.",
+        owner: "Coordenadoria do Prêmio CNJ"
+      },
+      {
+        process: "Acompanhar Prêmio CNJ de Qualidade",
+        risk: "Indefinição das ações estratégicas em razão do período prolongado (agosto a dezembro) sem clareza dos requisitos que serão estabelecidos pelo CNJ",
+        type: "Operacional",
+        response: "Definir ações estratégicas que sejam válidas mesmo com requisitos não totalmente claros, baseando-se no ciclo anterior, garantindo avanços mesmo diante da incerteza.",
+        owner: "Coordenadoria do Prêmio CNJ"
+      },
+      {
+        process: "Acompanhar Prêmio CNJ de Qualidade",
+        risk: "Desempenho significativamente superior dos outros tribunais de médio porte, resultando em desvantagens competitivas",
+        type: "Estratégico",
+        response: "Estabelecer contato com tribunais de referência, visando à realização de benchmarking e à identificação de práticas eficazes que favoreçam o alcance dos requisitos.",
+        owner: "Coordenadoria do Prêmio CNJ"
+      },
+
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Fragilidade no acompanhamento e avaliação sistemática das práticas de governança pelas unidades da Rede",
+        type: "Estratégico",
+        response: "Definir indicadores de desempenho e conformidade em governança; implantar painel de acompanhamento das práticas e resultados (Power BI); promover reuniões periódicas de avaliação com consolidação de evidências e boas práticas.",
+        owner: "Diretoria de Estratégia e Governança / Gerência de Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Diagnóstico de maturidade das unidades de governança elaborado ou aplicado de forma ineficaz",
+        type: "Estratégico",
+        response: "Promover a validação técnica da metodologia com a SEGOV; realizar comunicação institucional clara e reuniões de sensibilização com as unidades; estabelecer cronograma formal com responsáveis designados e acompanhamento pela Rede; apresentar e instituir modelo padronizado de plano de ação e indicadores de acompanhamento.",
+        owner: "Gerência de Governança / Coordenadoria de Apoio à Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Conhecimento e domínio técnico insuficientes sobre os instrumentos e metodologias de governança",
+        type: "Estratégico",
+        response: "Estabelecer programa contínuo de capacitação em governança.",
+        owner: "Diretoria de Estratégia e Governança / Gerência de Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Fragilidade na comunicação e na integração entre as unidades que compõem a Rede de Governança Colaborativa",
+        type: "Operacional",
+        response: "Definir indicadores de desempenho e conformidade em governança; implantar painel de acompanhamento das práticas e resultados (Power BI); promover reuniões periódicas de avaliação com consolidação de evidências e boas práticas.",
+        owner: "Diretoria de Estratégia e Governança / Gerência de Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Divulgação do resultado do rol classificatório da GTR com inconsistências",
+        type: "Operacional",
+        response: "Reuniões contínuas com as unidades e monitoramento por meio da integração do BI do rol classificatório com o sistema da Central de Contratos.",
+        owner: "Gerência de Governança / Coordenadoria de Apoio à Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Falha na logística da realização de eventos com as unidades judiciárias",
+        type: "Operacional",
+        response: "Planejamento antecipado da programação com conferência contínua de checklist, definição de cronogramas de entregas das atividades e solicitação de apoio técnico para transmissão dos eventos.",
+        owner: "Gerência de Governança / Coordenadoria de Apoio à Governança"
+      },
+      {
+        process: "Gerir Governança Colaborativa",
+        risk: "Sobreposição de atividades da governança interna da SEGOV e coordenação da Rede de Governança Colaborativa, ocasionando sobrecarga e perda de efetividade",
+        type: "Estratégico",
+        response: "Transformar a estrutura em duas unidades: uma para governança interna, à semelhança das demais unidades que compõem a Rede de Governança, e outra para coordenação da Rede de Governança. Necessita reestruturação administrativa.",
+        owner: "Secretaria de Governança Institucional"
+      },
+
+      {
+        process: "Gerir Governança interna da SEGOV",
+        risk: "Inconsistência entre o orçamento planejado e a execução contratual da SEGOV",
+        type: "Estratégico",
+        response: "Implementação de rotinas de reuniões periódicas com as áreas responsáveis pela gestão e fiscalização contratual; definição de fluxo de comunicação entre as unidades e a Governança; definição de indicadores e o respectivo acompanhamento.",
+        owner: "Secretaria de Governança Institucional"
+      },
+      {
+        process: "Gerir Governança interna da SEGOV",
+        risk: "Incompatibilidade entre o PAC e as demandas reais da Administração",
+        type: "Estratégico",
+        response: "Estabelecer rotinas de revisão periódica do PAC, com envolvimento das unidades demandantes; elaborar checklists de validação técnica e orçamentária dos itens inseridos no plano; monitorar o Painel de acompanhamento do PAC (execução vs. previsão); adotar critérios de priorização formalizados (ex.: formalização do DFD).",
+        owner: "Secretaria de Governança Institucional"
+      },
+      {
+        process: "Gerir Governança interna da SEGOV",
+        risk: "Não execução integral das atividades de governança previstas nos normativos institucionais do TJCE e do CNJ (ex.: Resolução nº 12/2022)",
+        type: "Estratégico",
+        response: "Mapear todas as obrigações normativas de governança, conforme Resoluções do TJCE e CNJ, criando um painel de conformidade; definir responsáveis e prazos formais para execução de cada atividade prevista nos normativos; promover capacitações periódicas sobre os normativos aplicáveis e suas exigências.",
+        owner: "Secretaria de Governança Institucional"
+      }
+    ];
+
+    const tbody = document.getElementById("riskTableBody");
+    const searchInput = document.getElementById("searchInput");
+    const processFilter = document.getElementById("processFilter");
+    const typeFilter = document.getElementById("typeFilter");
+    const ownerFilter = document.getElementById("ownerFilter");
+    const clearFilters = document.getElementById("clearFilters");
+    const visibleCount = document.getElementById("visibleCount");
+    const emptyState = document.getElementById("emptyState");
+    const processCards = [...document.querySelectorAll(".process-card")];
+
+    function normalize(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    }
+
+    function populateOwners() {
+      const owners = [...new Set(risks.map(r => r.owner))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+      owners.forEach(owner => {
+        const option = document.createElement("option");
+        option.value = owner;
+        option.textContent = owner;
+        ownerFilter.appendChild(option);
+      });
+    }
+
+    function render() {
+      const query = normalize(searchInput.value.trim());
+      const process = processFilter.value;
+      const type = typeFilter.value;
+      const owner = ownerFilter.value;
+
+      const filtered = risks.filter(item => {
+        const haystack = normalize([item.risk, item.process, item.type, item.response, item.owner].join(" "));
+        return (!query || haystack.includes(query))
+          && (!process || item.process === process)
+          && (!type || item.type === type)
+          && (!owner || item.owner === owner);
+      });
+
+      tbody.innerHTML = filtered.map((item, index) => {
+        const badgeClass = item.type === "Estratégico" ? "strategic" : "operational";
+        return `
+          <tr class="risk-row" data-index="${index}">
+            <td><div class="risk-name">${escapeHtml(item.risk)}</div></td>
+            <td class="process-name">${escapeHtml(item.process)}</td>
+            <td><span class="badge ${badgeClass}">${escapeHtml(item.type)}</span></td>
+            <td class="owner">${escapeHtml(item.owner)}</td>
+            <td><div class="expand" aria-hidden="true">⌄</div></td>
+          </tr>
+          <tr class="detail-row" data-detail="${index}">
+            <td colspan="5">
+              <div class="detail-box">
+                <div>
+                  <h4>Plano de resposta</h4>
+                  <p>${escapeHtml(item.response)}</p>
+                </div>
+                <div>
+                  <h4>Criticidade</h4>
+                  <p><span class="badge pending">Em avaliação</span></p>
+                  <h4 style="margin-top:14px">Governança / responsável</h4>
+                  <p>${escapeHtml(item.owner)}</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      visibleCount.textContent = filtered.length;
+      emptyState.style.display = filtered.length ? "none" : "block";
+
+      tbody.querySelectorAll(".risk-row").forEach(row => {
+        row.addEventListener("click", () => {
+          const index = row.dataset.index;
+          const detail = tbody.querySelector(`[data-detail="${index}"]`);
+          row.classList.toggle("open");
+          detail.classList.toggle("open");
+        });
+      });
+
+      processCards.forEach(card => {
+        card.classList.toggle("active", !!process && card.dataset.process === process);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    searchInput.addEventListener("input", render);
+    processFilter.addEventListener("change", render);
+    typeFilter.addEventListener("change", render);
+    ownerFilter.addEventListener("change", render);
+
+    clearFilters.addEventListener("click", () => {
+      searchInput.value = "";
+      processFilter.value = "";
+      typeFilter.value = "";
+      ownerFilter.value = "";
+      render();
+    });
+
+    processCards.forEach(card => {
+      card.addEventListener("click", () => {
+        const selected = card.dataset.process;
+        processFilter.value = processFilter.value === selected ? "" : selected;
+        render();
+        document.getElementById("inventario").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    populateOwners();
+    render();
+  </script>
+</body>
+</html>
