@@ -195,7 +195,30 @@
       font-size:12px;
     }
 
-    @media (max-width:1100px){
+    
+    /* Cards ativos */
+    .card.active-card{
+      background:linear-gradient(135deg,#0b2f63 0%,#174f91 100%);
+      border-color:#0b2f63;
+      color:#fff;
+      box-shadow:0 12px 28px rgba(11,47,99,.18);
+    }
+    .card.active-card:hover{
+      transform:translateY(-3px);
+      border-color:#0b2f63;
+      box-shadow:0 18px 34px rgba(11,47,99,.24);
+    }
+    .card.active-card .icon-wrap{
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+    .card.active-card h3,
+    .card.active-card p{
+      color:#fff;
+    }
+
+@media (max-width:1100px){
       .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
       .hero{padding-left:240px}
       .building-watermark{width:190px}
@@ -278,7 +301,7 @@
         <div><h3>Arquitetura de Processos</h3><p>Visão de processos, mapeamentos, redesenhos e iniciativas de melhoria.</p><div class="update-badge">Em atualização</div></div>
       </a>
 
-      <a class="card" href="projetos_estrategicos.html" aria-label="Acessar Projetos Estratégicos">
+      <a class="card active-card" href="projetos_estrategicos.html" aria-label="Acessar Projetos Estratégicos">
         <div class="icon-wrap"><svg viewBox="0 0 48 48"><circle cx="22" cy="26" r="15"/><circle cx="22" cy="26" r="9"/><circle cx="22" cy="26" r="3"/><path d="m27 20 13-13M34 7h6v6"/></svg></div>
         <div><h3>Projetos Estratégicos</h3><p>Portfólio consolidado dos projetos estratégicos e suas principais entregas.</p></div>
       </a>
@@ -288,12 +311,12 @@
         <div><h3>Execução Orçamentária</h3><p>Espaço para acompanhamento da execução orçamentária e financeira.</p><div class="update-badge">Em atualização</div></div>
       </a>
 
-      <a class="card" href="https://luissena35-bit.github.io/acompanhamento_PAC_SEGOV/" aria-label="Acessar PAC">
+      <a class="card active-card" href="https://luissena35-bit.github.io/acompanhamento_PAC_SEGOV/" aria-label="Acessar PAC">
         <div class="icon-wrap"><svg viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="34" rx="2"/><path d="M18 7v34M30 7v34M7 18h34M7 30h34"/></svg></div>
         <div><h3>PAC</h3><p>Acesso ao acompanhamento do Plano Anual de Contratações.</p></div>
       </a>
 
-      <a class="card" href="execucao_contratual.html" aria-label="Acessar Execução Contratual">
+      <a class="card active-card" href="execucao_contratual.html" aria-label="Acessar Execução Contratual">
         <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M11 5h19l8 8v15"/><path d="M30 5v8h8M11 5v38h18"/><path d="M17 21h14M17 27h10M17 33h7"/><path d="m29 39 10-10 4 4-10 10-6 1z"/></svg></div>
         <div><h3>Execução Contratual</h3><p>Acompanhamento de contratos, vigências, entregas e fiscalização.</p></div>
       </a>
@@ -303,9 +326,9 @@
         <div><h3>Gestão de Riscos</h3><p>Registro e acompanhamento dos riscos institucionais e respectivos controles.</p><div class="update-badge">Em atualização</div></div>
       </a>
 
-      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar Indicadores">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M24 5a19 19 0 1 0 19 19H24z"/><path d="M28 5v15h15A19 19 0 0 0 28 5z"/></svg></div>
-        <div><h3>Indicadores</h3><p>Painel para acompanhamento de indicadores estratégicos e de governança.</p><div class="update-badge">Em atualização</div></div>
+      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar Prêmio CNJ">
+        <div class="icon-wrap">🏆</div>
+        <div><h3>Prêmio CNJ</h3><p>Acompanhamento das ações e resultados relacionados ao Prêmio CNJ de Qualidade.</p><div class="update-badge">Em atualização</div></div>
       </a>
 
       <a class="card updating" href="#" onclick="return false;" aria-label="Acessar GAM">
