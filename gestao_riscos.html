@@ -1331,13 +1331,6 @@
         ).join("");
       });
     }
-
-        cell.innerHTML = items.map(r =>
-          `<div class="matrix-risk" title="${escapeHtml(r.risk)}"><strong>${r.id}</strong>${escapeHtml(r.shortName)}</div>`
-        ).join("");
-      });
-    }
-
     const tbody = document.getElementById("riskTableBody");
     const searchInput = document.getElementById("searchInput");
     const processFilter = document.getElementById("processFilter");
