@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Execução Contratual | SEGOV/TJCE</title>
+<style>
+  :root{
+    --navy:#0b2f63;
+    --navy2:#123f7e;
+    --blue:#1f66b3;
+    --light:#f3f6fb;
+    --card:#ffffff;
+    --text:#10213d;
+    --muted:#66758a;
+    --line:#dfe7f1;
+    --green:#1f9d68;
+    --amber:#d89000;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:var(--light);
+    color:var(--text);
+    min-height:100vh;
+  }
+  a{text-decoration:none;color:inherit}
+  .topbar{
+    background:#fff;
+    border-bottom:1px solid #e4eaf2;
+  }
+  .topbar-inner{
+    max-width:1380px;
+    margin:0 auto;
+    padding:18px 30px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .brand-mark{
+    width:78px;height:58px;
+    border-radius:12px;
+    background:linear-gradient(145deg,#0c2d5e,#174d8d);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;
+    letter-spacing:.04em;
+    flex:0 0 auto;
+  }
+  .brand-copy{line-height:1.25}
+  .brand-copy strong{font-size:22px;color:var(--navy);display:block}
+  .brand-copy span{font-size:12px;color:#4f627a;display:block}
+  .top-spacer{flex:1}
+  .back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid #c9d5e5;
+    color:var(--navy);
+    background:#fff;
+    padding:10px 14px;
+    border-radius:9px;
+    font-weight:700;
+    font-size:13px;
+    transition:.18s ease;
+  }
+  .back-btn:hover{background:#eef4fb;transform:translateY(-1px)}
+
+  .wrap{
+    max-width:1380px;
+    margin:0 auto;
+    padding:24px 30px 46px;
+  }
+  .hero{
+    background:linear-gradient(115deg,#082d61 0%,#0e407f 58%,#164f91 100%);
+    border-radius:18px;
+    min-height:190px;
+    color:#fff;
+    padding:34px 38px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 14px 30px rgba(21,56,100,.12);
+  }
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:auto auto -65px -35px;
+    width:360px;height:220px;
+    opacity:.09;
+    background:
+      linear-gradient(90deg,transparent 0 8%,#fff 8% 12%,transparent 12% 22%,#fff 22% 26%,transparent 26% 36%,#fff 36% 40%,transparent 40% 50%,#fff 50% 54%,transparent 54% 100%);
+    transform:skewX(-7deg);
+    border-top:26px solid #fff;
+  }
+  .hero:after{
+    content:"";
+    position:absolute;
+    right:-80px; top:-120px;
+    width:620px;height:420px;
+    background:radial-gradient(circle,rgba(255,255,255,.12) 0,rgba(255,255,255,0) 68%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:900px}
+  .eyebrow{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:rgba(255,255,255,.68);
+    margin-bottom:8px;
+  }
+  .hero h1{font-size:36px;line-height:1.12;margin-bottom:10px}
+  .hero p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.84);max-width:780px}
+
+  .summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin:20px 0 22px;
+  }
+  .summary-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    box-shadow:0 6px 18px rgba(29,54,88,.05);
+  }
+  .summary-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#7c8898;
+    margin-bottom:6px;
+  }
+  .summary-value{
+    font-size:24px;
+    color:var(--navy);
+    font-weight:800;
+  }
+  .summary-sub{font-size:12px;color:#7a8796;margin-top:4px}
+
+  .section{
+    margin-top:20px;
+  }
+  .section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:12px;
+  }
+  .section-title{
+    font-size:18px;
+    font-weight:800;
+    color:var(--navy);
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .section-title:before{
+    content:"";
+    width:5px;height:19px;
+    border-radius:4px;
+    background:var(--blue);
+  }
+  .section-count{
+    font-size:12px;
+    color:#738297;
+    background:#eaf0f7;
+    border-radius:999px;
+    padding:5px 9px;
+    font-weight:700;
+  }
+
+  .contracts-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px;
+  }
+  .contract-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:15px;
+    padding:18px 20px;
+    position:relative;
+    box-shadow:0 6px 16px rgba(31,58,91,.05);
+    transition:.18s ease;
+  }
+  .contract-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(31,58,91,.08);
+  }
+  .contract-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:10px;
+  }
+  .contract-code{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-size:14px;
+    font-weight:800;
+    color:var(--navy);
+  }
+  .status{
+    white-space:nowrap;
+    font-size:11px;
+    font-weight:700;
+    border-radius:999px;
+    padding:5px 8px;
+    background:#e8f7f0;
+    color:#14754e;
+  }
+  .company{
+    font-size:15px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .object{
+    color:#5f6f83;
+    font-size:13px;
+    line-height:1.45;
+    min-height:38px;
+  }
+  .metrics{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid #edf1f6;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+  }
+  .metric span{
+    display:block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#8a96a6;
+    margin-bottom:4px;
+  }
+  .metric strong{
+    display:block;
+    font-size:13px;
+    color:#1d2e48;
+    line-height:1.3;
+  }
+  .metric strong.money{color:var(--navy)}
+  .note{
+    margin-top:10px;
+    font-size:11px;
+    color:#8a96a6;
+  }
+
+  .footer{
+    margin-top:28px;
+    text-align:center;
+    font-size:12px;
+    color:#8793a3;
+    padding-top:18px;
+    border-top:1px solid #dce4ee;
+  }
+
+  @media(max-width:1050px){
+    .summary{grid-template-columns:repeat(2,1fr)}
+    .contracts-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:700px){
+    .topbar-inner,.wrap{padding-left:16px;padding-right:16px}
+    .topbar-inner{flex-wrap:wrap}
+    .top-spacer{display:none}
+    .back-btn{width:100%;justify-content:center}
+    .hero{padding:28px 24px}
+    .hero h1{font-size:28px}
+    .summary{grid-template-columns:1fr}
+    .metrics{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-mark">TJCE</div>
+    <div class="brand-copy">
+      <strong>SEGOV</strong>
+      <span>Secretaria de Governança Institucional</span>
+      <span>Diretoria de Estratégia e Governança</span>
+    </div>
+    <div class="top-spacer"></div>
+    <a class="back-btn" href="https://degov-segov.github.io/governanca/">
+      ← Voltar ao Cockpit
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Cockpit de Governança · SEGOV/TJCE</div>
+      <h1>Execução Contratual</h1>
+      <p>Visão consolidada dos contratos acompanhados pela Secretaria de Governança Institucional, com destaque para vigência, valor mensal e valor global de cada ajuste.</p>
+    </div>
+  </section>
+
+  <section class="summary">
+    <div class="summary-card">
+      <div class="summary-label">Contratos monitorados</div>
+      <div class="summary-value">8</div>
+      <div class="summary-sub">Distribuídos em 3 categorias</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Dedicação exclusiva</div>
+      <div class="summary-value">2</div>
+      <div class="summary-sub">Contratos DEMO</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Prestação de serviços</div>
+      <div class="summary-value">2</div>
+      <div class="summary-sub">Serviços especializados</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Consultores individuais</div>
+      <div class="summary-value">4</div>
+      <div class="summary-sub">Contratos de apoio especializado</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-title">Contratos com Dedicação Exclusiva de Mão de Obra</div>
+      <div class="section-count">2 contratos</div>
+    </div>
+
+    <div class="contracts-grid">
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-25/2022</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">MVR Serviços</div>
+        <div class="object">Profissionais Estatísticos</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>04/05/2027</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal</span>
+            <strong class="money">R$ 385.937,50</strong>
+          </div>
+          <div class="metric">
+            <span>Valor anual</span>
+            <strong class="money">R$ 4.631.250,00</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-32/2025</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">SERVAL Serviços</div>
+        <div class="object">Atendentes, Intérpretes de Libras e demais profissionais vinculados ao objeto contratual.</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>04/09/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 3.197.736,91</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 35.175.106,01</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 11 meses de vigência.</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-title">Contratos de Prestação de Serviços</div>
+      <div class="section-count">2 contratos</div>
+    </div>
+
+    <div class="contracts-grid">
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-40/2021</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Portifólio Serviços</div>
+        <div class="object">Serviços de Gerenciamento de Projetos</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>22/11/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 193.917,50</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 2.327.010,04</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+      </article>
+
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-30/2024</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Módulo Serviços</div>
+        <div class="object">Serviço de Implantação da LGPD</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>24/07/2027</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal</span>
+            <strong class="money">R$ 16.000,00</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 192.000,00</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-title">Consultores Individuais</div>
+      <div class="section-count">4 contratos</div>
+    </div>
+
+    <div class="contracts-grid">
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-44/2025</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Fellipe Camara</div>
+        <div class="object">Design Gráfico — Comunicação Visual e Simplificação de Linguagem</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>24/10/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 2.916,67</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 35.000,00</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+      </article>
+
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-91/2023</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Rafael da Silva</div>
+        <div class="object">Design Gráfico — Comunicação Visual e Simplificação de Linguagem</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>29/11/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 3.597,38</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 43.168,50</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+      </article>
+
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-92/2023</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Iago Capistrano</div>
+        <div class="object">Design Gráfico — Comunicação Visual e Simplificação de Linguagem</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>29/11/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 3.597,38</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 43.168,50</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+      </article>
+
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-93/2023</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Luciana do Vale</div>
+        <div class="object">Design Gráfico</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Vigência até</span>
+            <strong>29/11/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal médio</span>
+            <strong class="money">R$ 3.112,97</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 37.355,65</strong>
+          </div>
+        </div>
+        <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+      </article>
+    </div>
+  </section>
+
+  <div class="footer">
+    SEGOV — Secretaria de Governança Institucional | Diretoria de Estratégia e Governança
+  </div>
+</main>
+
+</body>
+</html>
