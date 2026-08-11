@@ -16,6 +16,12 @@
     --line:#dfe7f1;
     --green:#1f9d68;
     --amber:#d89000;
+    --dedicacao:#1557a3;
+    --dedicacao-soft:#eaf2fb;
+    --servicos:#0f8a78;
+    --servicos-soft:#e8f7f3;
+    --consultores:#7a4bb3;
+    --consultores-soft:#f1ebf8;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
@@ -252,6 +258,62 @@
     color:#8a96a6;
   }
 
+
+  .section.dedicacao .section-title:before{background:var(--dedicacao)}
+  .section.servicos .section-title:before{background:var(--servicos)}
+  .section.consultores .section-title:before{background:var(--consultores)}
+
+  .section.dedicacao .section-count{background:var(--dedicacao-soft);color:var(--dedicacao)}
+  .section.servicos .section-count{background:var(--servicos-soft);color:var(--servicos)}
+  .section.consultores .section-count{background:var(--consultores-soft);color:var(--consultores)}
+
+  .section.dedicacao .contract-card{border-top:4px solid var(--dedicacao)}
+  .section.servicos .contract-card{border-top:4px solid var(--servicos)}
+  .section.consultores .contract-card{border-top:4px solid var(--consultores)}
+
+  .section.dedicacao .contract-code,
+  .section.dedicacao .metric strong.money{color:var(--dedicacao)}
+  .section.servicos .contract-code,
+  .section.servicos .metric strong.money{color:var(--servicos)}
+  .section.consultores .contract-code,
+  .section.consultores .metric strong.money{color:var(--consultores)}
+
+  .contract-actions{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid #edf1f6;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .financial-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 12px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:700;
+    border:1px solid transparent;
+    transition:.18s ease;
+    cursor:pointer;
+  }
+  .section.dedicacao .financial-btn{
+    color:var(--dedicacao);
+    background:var(--dedicacao-soft);
+    border-color:#cfe0f4;
+  }
+  .section.servicos .financial-btn{
+    color:var(--servicos);
+    background:var(--servicos-soft);
+    border-color:#ccece5;
+  }
+  .section.consultores .financial-btn{
+    color:var(--consultores);
+    background:var(--consultores-soft);
+    border-color:#dfd1ef;
+  }
+  .financial-btn:hover{transform:translateY(-1px);filter:brightness(.98)}
+
   .footer{
     margin-top:28px;
     text-align:center;
@@ -326,7 +388,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section dedicacao">
     <div class="section-head">
       <div class="section-title">Contratos com Dedicação Exclusiva de Mão de Obra</div>
       <div class="section-count">2 contratos</div>
@@ -354,6 +416,12 @@
             <strong class="money">R$ 4.631.250,00</strong>
           </div>
         </div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -378,11 +446,17 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 11 meses de vigência.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section servicos">
     <div class="section-head">
       <div class="section-title">Contratos de Prestação de Serviços</div>
       <div class="section-count">2 contratos</div>
@@ -411,6 +485,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -434,11 +514,17 @@
             <strong class="money">R$ 192.000,00</strong>
           </div>
         </div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section consultores">
     <div class="section-head">
       <div class="section-title">Consultores Individuais</div>
       <div class="section-count">4 contratos</div>
@@ -467,6 +553,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -491,6 +583,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -515,6 +613,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -539,6 +643,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
     </div>
   </section>
