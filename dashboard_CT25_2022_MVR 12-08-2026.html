@@ -3,421 +3,576 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard – CT 25/2022 – M V R Serviços | TJCE</title>
+  <title>Dashboard – Contrato 025/2022 · M V R Serviços</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --blue-dark: #003366;
-      --blue-mid: #185fa5;
-      --blue-light: #e6f1fb;
-      --blue-border: #b5d4f4;
-      --teal: #1d9e75;
-      --teal-light: #e1f5ee;
-      --teal-border: #9fe1cb;
-      --teal-dark: #085041;
-      --teal-label: #0f6e56;
-      --amber: #ba7517;
-      --amber-light: #faeeda;
-      --amber-border: #fac775;
-      --amber-dark: #633806;
-      --amber-label: #854f0b;
-      --red: #a32d2d;
-      --red-light: #fcebeb;
-      --red-dark: #791f1f;
-      --green-text: #3b6d11;
-      --green-light: #eaf3de;
-      --gray-text: #5f6e80;
-      --gray-mid: #888780;
-      --border: #dde1e7;
-      --bg: #f4f6f9;
-      --card: #ffffff;
-      --text: #1a1e26;
-      --text-sec: #6b7280;
-      --mono: 'Courier New', monospace;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --radius: 10px;
-      --radius-sm: 6px;
-      --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 0 0 0.5px rgba(0,0,0,0.05);
+      --navy:    #002d5a;
+      --navy2:   #003a74;
+      --gold:    #c8a84b;
+      --teal:    #1d9e75;
+      --teal-l:  #e1f5ee;
+      --teal-b:  #9fe1cb;
+      --blue:    #1a6fba;
+      --blue-l:  #e6f1fb;
+      --blue-b:  #b5d4f4;
+      --amber:   #ba7517;
+      --amber-l: #faeeda;
+      --amber-b: #fac775;
+      --red:     #a32d2d;
+      --red-l:   #fcebeb;
+      --red-d:   #791f1f;
+      --g-text:  #3b6d11;
+      --g-l:     #eaf3de;
+      --gray:    #6b7280;
+      --border:  #dde3ea;
+      --bg:      #f0f3f7;
+      --card:    #ffffff;
+      --text:    #1a1e26;
+      --text2:   #6b7280;
+      --mono:    'Courier New', monospace;
+      --sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --r:       10px;
+      --r2:      6px;
+      --sh:      0 1px 6px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
     }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      padding: 24px 20px 48px;
-      min-height: 100vh;
+    /* ── HEADER ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      border-bottom: 3px solid var(--gold);
     }
+    .header-inner {
+      max-width: 1140px; margin: 0 auto; padding: 20px 24px 18px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .logo-box {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--r2); padding: 8px 14px;
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .logo-text strong { font-size: 16px; color: #fff; display: block; letter-spacing: 0.04em; }
+    .logo-text span   { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+    .header-body { flex: 1; }
+    .header-body h1 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+    .header-body p  { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .header-meta { text-align: right; flex-shrink: 0; }
+    .header-meta .tag {
+      display: inline-block; background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
+      font-size: 10px; color: rgba(255,255,255,0.7); padding: 2px 8px;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+    }
+    .header-meta .updated { font-size: 11px; color: rgba(255,255,255,0.5); display: block; }
 
-    .container { max-width: 1100px; margin: 0 auto; }
+    /* ── BANNER ── */
+    .update-banner {
+      background: #fffbea; border-left: 4px solid var(--gold);
+      max-width: 1140px; margin: 18px auto 0; border-radius: 0 var(--r2) var(--r2) 0;
+      padding: 10px 16px; font-size: 12px; color: #5a4200;
+    }
+    .update-banner strong { font-weight: 700; }
 
-    /* HEADER */
-    .header-bar {
-      background: var(--blue-dark);
-      border-radius: var(--radius);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,51,102,0.3);
-    }
-    .tjce-badge {
-      background: #fff;
-      border-radius: var(--radius-sm);
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .tjce-text { line-height: 1.2; }
-    .tjce-text strong { font-size: 14px; color: var(--blue-dark); display: block; }
-    .tjce-text span { font-size: 10px; color: var(--gray-text); }
-    .header-info { flex: 1; }
-    .header-info h1 { font-size: 17px; font-weight: 500; color: #fff; }
-    .header-info p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-    .header-date { font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+    /* ── CONTAINER ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 20px 20px 48px; }
 
-    /* MÉTRICAS */
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
+    /* ── AUTH BAR ── */
+    .auth-bar {
+      background: var(--card); border: 0.5px solid var(--border); border-radius: var(--r);
+      padding: 10px 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+      margin-bottom: 18px; font-size: 11px; color: var(--text2); box-shadow: var(--sh);
     }
-    .metric-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      box-shadow: var(--shadow);
-    }
-    .metric-card.blue  { background: var(--blue-light);  border: 0.5px solid var(--blue-border); }
-    .metric-card.teal  { background: var(--teal-light);  border: 0.5px solid var(--teal-border); }
-    .metric-card.amber { background: var(--amber-light); border: 0.5px solid var(--amber-border); }
-    .metric-label {
-      font-size: 10px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--text-sec); margin-bottom: 6px;
-    }
-    .metric-card.blue  .metric-label { color: var(--blue-mid); }
-    .metric-card.teal  .metric-label { color: var(--teal-label); }
-    .metric-card.amber .metric-label { color: var(--amber-label); }
-    .metric-value { font-size: 17px; font-weight: 600; color: var(--text); }
-    .metric-card.blue  .metric-value { color: #0c447c; }
-    .metric-card.teal  .metric-value { color: var(--teal-dark); }
-    .metric-card.amber .metric-value { color: var(--amber-dark); }
-    .metric-note { font-size: 10px; font-style: italic; color: var(--blue-mid); margin-top: 4px; line-height: 1.4; }
+    .auth-bar span strong { color: var(--text); font-weight: 600; }
+    .auth-sep { color: var(--border); }
 
-    /* CARDS */
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
+    /* ── KPI GRID ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-bottom: 18px; }
+    .kpi {
+      background: var(--card); border-radius: var(--r); padding: 14px 16px;
+      box-shadow: var(--sh); border-top: 3px solid var(--border);
     }
-    .card-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-    .card-title {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.07em; color: var(--text-sec);
-    }
-    .dotacao-code {
-      font-family: var(--mono); font-size: 12px; font-weight: 600;
-      color: #0c447c; background: var(--blue-light); padding: 3px 10px; border-radius: 4px;
-    }
+    .kpi.k-blue  { border-top-color: var(--blue); }
+    .kpi.k-teal  { border-top-color: var(--teal); }
+    .kpi.k-amber { border-top-color: var(--amber); }
+    .kpi.k-navy  { border-top-color: var(--navy); }
+    .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 6px; }
+    .kpi-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.1; }
+    .kpi.k-blue  .kpi-value { color: var(--blue); }
+    .kpi.k-teal  .kpi-value { color: var(--teal); }
+    .kpi.k-amber .kpi-value { color: var(--amber); }
+    .kpi.k-navy  .kpi-value { color: var(--navy); }
+    .kpi-sub { font-size: 10px; color: var(--text2); margin-top: 4px; font-style: italic; }
 
-    /* TABELAS */
+    /* ── POSIÇÃO ATUAL ── */
+    .pos-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; margin-bottom: 18px; }
+    .pos-card { background: var(--card); border-radius: var(--r); padding: 12px 14px; box-shadow: var(--sh); }
+    .pos-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); margin-bottom: 5px; }
+    .pos-value { font-size: 15px; font-weight: 700; color: var(--text); }
+    .pos-value.green { color: var(--teal); }
+    .pos-value.amber { color: var(--amber); }
+    .pos-value.gray  { color: var(--text2); }
+    .pos-sub { font-size: 10px; color: var(--text2); margin-top: 3px; }
+
+    /* ── TERMÔMETRO ── */
+    .thermo-card {
+      background: var(--card); border-radius: var(--r); padding: 18px 20px;
+      box-shadow: var(--sh); margin-bottom: 18px;
+    }
+    .thermo-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text2); margin-bottom: 16px; }
+    .thermo-row { margin-bottom: 16px; }
+    .thermo-row:last-child { margin-bottom: 0; }
+    .thermo-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .thermo-meta .tlabel { font-size: 12px; color: var(--text2); }
+    .thermo-meta .tpct   { font-size: 17px; font-weight: 700; }
+    .bar-bg   { background: #e9ecef; border-radius: 6px; height: 10px; overflow: hidden; }
+    .bar-fill { height: 10px; border-radius: 6px; }
+    .bar-fill.c-navy  { background: var(--navy); }
+    .bar-fill.c-teal  { background: var(--teal); }
+    .bar-fill.c-amber { background: var(--amber); }
+    .thermo-legend { display: flex; gap: 18px; margin-top: 7px; flex-wrap: wrap; }
+    .tleg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text2); }
+    .tleg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* ── SEÇÕES DE TABELA (modelo SERVAL) ── */
+    .tbl-section { background: var(--card); border-radius: var(--r); box-shadow: var(--sh); margin-bottom: 18px; overflow: hidden; }
+    .tbl-section-header {
+      background: #1a3a5c;                  /* azul escuro igual ao SERVAL */
+      padding: 12px 20px;
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    }
+    .tbl-section-header h2 { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+    .tbl-section-header .sub { font-size: 11px; color: rgba(255,255,255,0.6); }
+    .tbl-inner { padding: 0 0 4px; }
+
+    /* ── TABELAS ── */
     table { width: 100%; border-collapse: collapse; font-size: 12px; }
     thead th {
-      font-size: 10px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.05em; color: var(--text-sec);
-      padding: 7px 10px; border-bottom: 1px solid var(--border);
-      text-align: left; background: var(--bg);
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--text2); padding: 8px 14px; border-bottom: 1.5px solid var(--border);
+      text-align: left; background: #f7f9fb;
     }
     thead th.r { text-align: right; }
-    tbody td {
-      padding: 9px 10px; border-bottom: 0.5px solid var(--border);
-      color: var(--text); vertical-align: top;
-    }
+    tbody td { padding: 10px 14px; border-bottom: 0.5px solid var(--border); vertical-align: middle; color: var(--text); }
     tbody td.r { text-align: right; }
     tbody tr:last-child td { border-bottom: none; }
-    tbody tr.zero td { color: var(--text-sec); }
+    tbody tr.zero td { color: var(--text2); }
+    tbody tr.anulacao { background: #fff5f5; }
     tbody tr.total-row td {
-      border-top: 1.5px solid #c0c7d0; border-bottom: none;
-      font-weight: 600; padding-top: 11px; background: var(--bg);
+      border-top: 2px solid #c0c7d0; border-bottom: none;
+      font-weight: 700; padding-top: 11px; background: #f7f9fb;
     }
 
-    /* BADGES */
-    .badge {
-      display: inline-block; font-size: 10px; padding: 2px 7px;
-      border-radius: 4px; font-weight: 500; white-space: nowrap;
+    /* badges */
+    .b { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
+    .b-blue  { background: var(--blue-l); color: #0c447c; }
+    .b-green { background: var(--g-l);   color: var(--g-text); font-family: var(--mono); }
+    .b-red   { background: var(--red-l); color: var(--red-d);  font-family: var(--mono); }
+    .b-gray  { background: #f0f1f3; color: var(--text2); font-family: var(--mono); font-size: 10px; }
+    .anulado-pill { background: var(--red-l); color: var(--red-d); font-size: 10px; padding: 1px 6px; border-radius: 3px; display: inline-block; margin-top: 3px; }
+    .status-pago { color: var(--teal); font-weight: 700; font-size: 11px; }
+    .saldo-pos  { color: var(--teal);  font-weight: 700; }
+    .saldo-zero { color: var(--text2); }
+
+    /* ── GRÁFICOS ── */
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    .chart-card { background: var(--card); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--sh); }
+    .chart-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 14px; }
+    .chart-wrap { position: relative; height: 220px; }
+
+    /* ── RODAPÉ ── */
+    .page-footer { text-align: center; font-size: 11px; color: var(--text2); margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--border); }
+
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .pos-grid  { grid-template-columns: repeat(3,1fr); }
+      .charts-grid { grid-template-columns: 1fr; }
     }
-    .badge.blue   { background: var(--blue-light);  color: #0c447c; }
-    .badge.green  { background: var(--green-light); color: var(--green-text); font-family: var(--mono); }
-    .badge.red    { background: var(--red-light);   color: var(--red-dark);   font-family: var(--mono); }
-    .badge.gray   { background: #f0f1f3; color: var(--text-sec); font-family: var(--mono); font-size: 10px; }
-    .anulado-pill {
-      background: var(--red-light); color: var(--red-dark);
-      font-size: 10px; padding: 1px 6px; border-radius: 3px; display: inline-block; margin-top: 2px;
-    }
-
-    .ne-stack { display: flex; flex-direction: column; gap: 3px; }
-    .pag-list { line-height: 2; font-size: 11px; color: var(--text-sec); }
-    .pag-list .val { color: var(--text); font-weight: 500; }
-    .saldo-pos  { color: var(--teal);     font-weight: 600; }
-    .saldo-zero { color: var(--gray-mid); }
-    .status-pago { color: var(--teal); font-weight: 600; font-size: 11px; }
-
-    /* PROGRESS */
-    .progress-wrap { margin-top: 16px; padding-top: 14px; border-top: 0.5px solid var(--border); }
-    .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
-    .progress-meta .label { font-size: 12px; color: var(--text-sec); }
-    .progress-meta .pct   { font-size: 20px; font-weight: 700; color: var(--amber); }
-    .progress-bg   { background: #e9ecef; border-radius: 6px; height: 9px; overflow: hidden; }
-    .progress-fill { height: 9px; border-radius: 6px; background: var(--teal); }
-    .progress-sub  { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--text-sec); }
-
-    /* TABLE FOOTER */
-    .table-footer {
-      display: flex; justify-content: flex-end; align-items: center;
-      padding-top: 12px; border-top: 0.5px solid var(--border); margin-top: 4px; gap: 8px;
-    }
-    .table-footer .label { font-size: 13px; color: var(--text-sec); }
-    .table-footer .value { font-size: 13px; font-weight: 600; color: var(--teal); }
-
-    /* UPDATED */
-    .updated-at { text-align: right; font-size: 11px; color: var(--text-sec); margin-bottom: 14px; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .metrics-row { grid-template-columns: repeat(2, 1fr); }
-      body { padding: 12px 12px 40px; }
-    }
-    @media (max-width: 480px) {
-      .metrics-row { grid-template-columns: 1fr; }
-      .header-bar { flex-wrap: wrap; }
+    @media (max-width: 600px) {
+      .header-inner { flex-wrap: wrap; }
+      .kpi-grid, .pos-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media print {
-      body { background: #fff; padding: 0; }
-      .card, .metric-card { box-shadow: none; border: 0.5px solid #ccc; }
+      body { background: #fff; }
+      .page-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tbl-section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- CABEÇALHO -->
-  <div class="header-bar">
-    <div class="tjce-badge">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="30" height="30" rx="5" fill="#003366"/>
-        <text x="15" y="21" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Georgia,serif">TJ</text>
-        <rect x="4" y="24" width="22" height="2" fill="#c8a84b"/>
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-inner">
+    <div class="logo-box">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="5" fill="rgba(255,255,255,0.15)"/>
+        <text x="16" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Georgia,serif">TJ</text>
+        <rect x="4" y="26" width="24" height="2" fill="#c8a84b"/>
       </svg>
-      <div class="tjce-text">
+      <div class="logo-text">
         <strong>TJCE</strong>
         <span>Poder Judiciário do Ceará</span>
       </div>
     </div>
-    <div class="header-info">
+    <div class="header-body">
       <h1>Dashboard de Execução Contratual</h1>
-      <p>CT 25/2022 – M V R Serviços | SEGOV / ECP</p>
+      <p>Contrato nº 025/2022 | Exercício 2026 | SEGOV / Escritório Corporativo de Projetos</p>
     </div>
-    <span class="header-date">Ref.: jan–mai/2026</span>
-  </div>
-
-  <div class="updated-at">Atualizado em: 30/06/2026</div>
-
-  <!-- MÉTRICAS -->
-  <div class="metrics-row">
-    <div class="metric-card blue">
-      <p class="metric-label">Valor Planejado 2026</p>
-      <p class="metric-value">R$ 4.631.250,00</p>
-      <p class="metric-note">Já considera o reajuste anual para 2026</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Total Previsto – Contrapartida</p>
-      <p class="metric-value">R$ 2.118.000,00</p>
-    </div>
-    <div class="metric-card teal">
-      <p class="metric-label">Total Previsto – Fermoju</p>
-      <p class="metric-value">R$ 2.513.250,00</p>
-    </div>
-    <div class="metric-card amber">
-      <p class="metric-label">Saldo disponível – Contrapartida</p>
-      <p class="metric-value">R$ 424.642,67</p>
+    <div class="header-meta">
+      <span class="tag">CT-025/2022 · M V R Serviços</span>
+      <span class="updated">Atualizado em 30/06/2026</span>
     </div>
   </div>
+</header>
 
-  <!-- EXECUÇÃO -->
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Dotação</span>
-      <span class="dotacao-code">04100191.02.126.192.10716.15</span>
+<!-- BANNER -->
+<div class="update-banner">
+  <strong>Junho/2026:</strong> Pagamento referente ao mês de Maio/2026 efetivado em 30/06/2026
+  (Proc. 8516227-29.2026.8.06.0000 — R$ 363.650,57). Todos os pagamentos de jan–mai/2026 concluídos.
+</div>
+
+<div class="container">
+
+  <!-- AUTH BAR -->
+  <div class="auth-bar">
+    <span><strong>Dotação:</strong> 04100191.02.126.192.10716.15</span>
+    <span class="auth-sep">|</span>
+    <span><strong>Valor Planejado 2026:</strong> R$ 4.631.250,00 <em style="font-weight:400;">(com reajuste anual)</em></span>
+    <span class="auth-sep">|</span>
+    <span><strong>Contrapartida:</strong> R$ 2.118.000,00</span>
+    <span class="auth-sep">|</span>
+    <span><strong>Fermoju:</strong> R$ 2.513.250,00</span>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi k-blue">
+      <p class="kpi-label">Total Previsto – Contrapartida</p>
+      <p class="kpi-value">R$ 2.118.000,00</p>
+      <p class="kpi-sub">Teto de empenho Contrapartida 2026</p>
     </div>
-    <p class="card-title" style="margin-bottom:12px;">Execução</p>
-    <table>
-      <colgroup>
-        <col style="width:8%"><col style="width:13%"><col style="width:13%"><col style="width:14%">
-        <col style="width:30%"><col style="width:11%"><col style="width:11%">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>Mês</th><th class="r">Previsão</th><th class="r">Empenhado</th>
-          <th>NE</th><th class="r">Pagamentos vinculados</th>
-          <th class="r">Total pago</th><th class="r">Saldo NE</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="zero">
-          <td>Janeiro</td><td class="r">R$ 0,00</td><td class="r">—</td>
-          <td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td>
-        </tr>
-        <tr>
-          <td>Fevereiro</td>
-          <td class="r">R$ 1.108.705,50</td>
-          <td class="r">R$ 1.108.705,50</td>
-          <td>
-            <div class="ne-stack">
-              <span class="badge green">NE000277</span>
-              <span class="badge red">NE000609 ✗</span>
-            </div>
-          </td>
-          <td class="r">
-            <div class="pag-list">
-              Jan/26 <span class="val">R$ 274.702,02</span><br>
-              Fev/26 <span class="val">R$ 315.837,82</span><br>
-              Mar/26 <span class="val">R$ 363.680,49</span>
-            </div>
-          </td>
-          <td class="r" style="font-weight:600;">R$ 954.220,33</td>
-          <td class="r">
-            <span class="saldo-zero">R$ 0,00</span><br>
-            <span class="anulado-pill">anulado</span>
-          </td>
-        </tr>
-        <tr>
-          <td>Março</td>
-          <td class="r">R$ 369.568,50</td>
-          <td class="r">R$ 369.568,50</td>
-          <td><span class="badge green">NE000501</span></td>
-          <td class="r"><div class="pag-list">Abr/26 <span class="val">R$ 365.650,44</span></div></td>
-          <td class="r" style="font-weight:600;">R$ 365.650,44</td>
-          <td class="r"><span class="saldo-pos">R$ 3.918,06</span></td>
-        </tr>
-        <tr>
-          <td>Abril</td>
-          <td class="r">R$ 369.568,50</td>
-          <td class="r">R$ 369.568,50</td>
-          <td><span class="badge green">NE000587</span></td>
-          <td class="r"><div class="pag-list">Mai/26 <span class="val">R$ 363.650,57</span></div></td>
-          <td class="r" style="font-weight:600;">R$ 363.650,57</td>
-          <td class="r"><span class="saldo-pos">R$ 5.917,93</span></td>
-        </tr>
-        <tr>
-          <td>Maio</td>
-          <td class="r">R$ 451.413,50</td>
-          <td class="r" style="color:var(--red);font-weight:600;">– R$ 154.485,17</td>
-          <td><span class="badge red">NE000609</span></td>
-          <td class="r" style="color:var(--text-sec);font-size:11px;">Anulação da NE000277</td>
-          <td class="r">—</td><td class="r">—</td>
-        </tr>
-        <tr class="zero"><td>Junho</td><td class="r">R$ 385.937,50</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Julho</td><td class="r">R$ 385.937,50</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Agosto</td><td class="r">R$ 0,00</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Setembro</td><td class="r">R$ 0,00</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Outubro</td><td class="r">R$ 0,00</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Novembro</td><td class="r">R$ 0,00</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="zero"><td>Dezembro</td><td class="r">R$ 0,00</td><td class="r">R$ 0,00</td><td>—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td></tr>
-        <tr class="total-row">
-          <td>Total</td>
-          <td class="r">R$ 3.071.131,00</td>
-          <td class="r" style="color:var(--teal);">R$ 1.693.357,33</td>
-          <td>—</td><td class="r">—</td>
-          <td class="r" style="color:var(--teal);">R$ 1.683.521,34</td>
-          <td class="r"><span class="saldo-pos">R$ 9.836,00</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="kpi k-teal">
+      <p class="kpi-label">Total Previsto – Fermoju</p>
+      <p class="kpi-value">R$ 2.513.250,00</p>
+      <p class="kpi-sub">Teto de empenho Fermoju 2026</p>
+    </div>
+    <div class="kpi k-navy">
+      <p class="kpi-label">Empenhado vs. Previsto Contrapartida</p>
+      <p class="kpi-value">79,95%</p>
+      <p class="kpi-sub">R$ 1.693.357,33 de R$ 2.118.000,00</p>
+    </div>
+    <div class="kpi k-amber">
+      <p class="kpi-label">Saldo disponível – Contrapartida</p>
+      <p class="kpi-value">R$ 424.642,67</p>
+      <p class="kpi-sub">20,05% do teto disponível</p>
+    </div>
+  </div>
 
-    <div class="progress-wrap">
-      <div class="progress-meta">
-        <span class="label">Percentual empenhado sobre o total previsto na dotação</span>
-        <span class="pct">55,1%</span>
+  <!-- POSIÇÃO ATUAL -->
+  <div class="pos-grid">
+    <div class="pos-card">
+      <p class="pos-label">Total Empenhado</p>
+      <p class="pos-value green">R$ 1.693.357,33</p>
+      <p class="pos-sub">Líquido (incl. anulação de R$ 154.485,17)</p>
+    </div>
+    <div class="pos-card">
+      <p class="pos-label">Total Pago</p>
+      <p class="pos-value green">R$ 1.683.521,34</p>
+      <p class="pos-sub">5 pagamentos efetivados</p>
+    </div>
+    <div class="pos-card">
+      <p class="pos-label">Em Medição</p>
+      <p class="pos-value gray">Todos pagos</p>
+      <p class="pos-sub">Maio/2026 pago em 30/06/2026</p>
+    </div>
+    <div class="pos-card">
+      <p class="pos-label">% Executado</p>
+      <p class="pos-value amber">99,42%</p>
+      <p class="pos-sub">Pago / Empenhado</p>
+    </div>
+    <div class="pos-card">
+      <p class="pos-label">Saldo s/ Empenhos</p>
+      <p class="pos-value amber">R$ 9.836,00</p>
+      <p class="pos-sub">Empenhado − Pago</p>
+    </div>
+  </div>
+
+  <!-- TERMÔMETRO -->
+  <div class="thermo-card">
+    <p class="thermo-title">Termômetro de Execução</p>
+    <div class="thermo-row">
+      <div class="thermo-meta">
+        <span class="tlabel">Empenhos × Teto Contrapartida (R$ 2.118.000,00)</span>
+        <span class="tpct" style="color:var(--navy);">79,95%</span>
       </div>
-      <div class="progress-bg">
-        <div class="progress-fill" style="width:55.1%;"></div>
+      <div class="bar-bg"><div class="bar-fill c-navy" style="width:79.95%;"></div></div>
+      <div class="thermo-legend">
+        <span class="tleg"><span class="tleg-dot" style="background:var(--navy);"></span>Empenhado — R$ 1.693.357,33</span>
+        <span class="tleg"><span class="tleg-dot" style="background:#e0e4ea;"></span>Saldo teto — R$ 424.642,67</span>
       </div>
-      <div class="progress-sub">
-        <span>Empenhado: R$ 1.693.357,33</span>
-        <span>Previsto: R$ 3.071.131,00</span>
+    </div>
+    <div class="thermo-row">
+      <div class="thermo-meta">
+        <span class="tlabel">Pagamentos × Total empenhado</span>
+        <span class="tpct" style="color:var(--teal);">99,42%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill c-teal" style="width:99.42%;"></div></div>
+      <div class="thermo-legend">
+        <span class="tleg"><span class="tleg-dot" style="background:var(--teal);"></span>Pago — R$ 1.683.521,34</span>
+        <span class="tleg"><span class="tleg-dot" style="background:#e0e4ea;"></span>Saldo s/ empenho — R$ 9.836,00</span>
+      </div>
+    </div>
+    <div class="thermo-row">
+      <div class="thermo-meta">
+        <span class="tlabel">Empenhos × Valor Planejado 2026 (R$ 4.631.250,00)</span>
+        <span class="tpct" style="color:var(--amber);">36,56%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill c-amber" style="width:36.56%;"></div></div>
+      <div class="thermo-legend">
+        <span class="tleg"><span class="tleg-dot" style="background:var(--amber);"></span>Empenhado — R$ 1.693.357,33</span>
+        <span class="tleg"><span class="tleg-dot" style="background:#e0e4ea;"></span>Saldo planejado — R$ 2.937.892,67</span>
       </div>
     </div>
   </div>
 
-  <!-- PAGAMENTOS -->
-  <div class="card">
-    <p class="card-title" style="margin-bottom:14px;">Pagamentos realizados – CT 25/2022</p>
-    <table>
-      <colgroup>
-        <col style="width:16%"><col style="width:36%"><col style="width:20%">
-        <col style="width:14%"><col style="width:14%">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>Ref. Pagto</th><th>Processo</th><th class="r">Valor (R$)</th>
-          <th>Data Pgto</th><th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="badge blue">Janeiro/2026</span></td>
-          <td><span class="badge gray">8503555-65.2026.8.06.0000</span></td>
-          <td class="r" style="font-weight:600;">R$ 274.702,02</td>
-          <td>11/03/2026</td>
-          <td><span class="status-pago">✔ Pago</span></td>
-        </tr>
-        <tr>
-          <td><span class="badge blue">Fevereiro/2026</span></td>
-          <td><span class="badge gray">8505706-10.2026.8.06.0000</span></td>
-          <td class="r" style="font-weight:600;">R$ 315.837,82</td>
-          <td>16/04/2026</td>
-          <td><span class="status-pago">✔ Pago</span></td>
-        </tr>
-        <tr>
-          <td><span class="badge blue">Março/2026</span></td>
-          <td><span class="badge gray">8508887-17.2026.8.06.0000</span></td>
-          <td class="r" style="font-weight:600;">R$ 363.680,49</td>
-          <td>16/04/2026</td>
-          <td><span class="status-pago">✔ Pago</span></td>
-        </tr>
-        <tr>
-          <td><span class="badge blue">Abril/2026</span></td>
-          <td><span class="badge gray">8512547-46.2026.8.06.0000</span></td>
-          <td class="r" style="font-weight:600;">R$ 365.650,44</td>
-          <td>01/06/2026</td>
-          <td><span class="status-pago">✔ Pago</span></td>
-        </tr>
-        <tr>
-          <td><span class="badge blue">Maio/2026</span></td>
-          <td><span class="badge gray">8516227-29.2026.8.06.0000</span></td>
-          <td class="r" style="font-weight:600;">R$ 363.650,57</td>
-          <td>30/06/2026</td>
-          <td><span class="status-pago">✔ Pago</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="table-footer">
-      <span class="label">Total pago:</span>
-      <span class="value">R$ 1.683.521,34</span>
+  <!-- ══ EMPENHOS 2026 ══ -->
+  <div class="tbl-section">
+    <div class="tbl-section-header">
+      <h2>Empenhos 2026</h2>
+      <span class="sub">Teto Contrapartida: R$ 2.118.000,00</span>
+    </div>
+    <div class="tbl-inner">
+      <table>
+        <colgroup>
+          <col style="width:5%"><col style="width:18%"><col style="width:22%">
+          <col style="width:22%"><col style="width:33%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Mês</th>
+            <th class="r">Valor (R$)</th>
+            <th class="r">Acumulado (R$)</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="zero">
+            <td>—</td>
+            <td>Janeiro/2026</td>
+            <td class="r" style="color:var(--text2);">—</td>
+            <td class="r" style="color:var(--text2);">—</td>
+            <td style="color:var(--text2); font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; color:var(--navy);">1</td>
+            <td>Fevereiro/2026</td>
+            <td class="r" style="font-weight:600;">R$ 1.108.705,50</td>
+            <td class="r">R$ 1.108.705,50</td>
+            <td style="font-size:11px; color:var(--text2);">NE000277</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; color:var(--navy);">2</td>
+            <td>Março/2026</td>
+            <td class="r" style="font-weight:600;">R$ 369.568,50</td>
+            <td class="r">R$ 1.478.274,00</td>
+            <td style="font-size:11px; color:var(--text2);">NE000501</td>
+          </tr>
+          <tr class="anulacao">
+            <td style="color:var(--red); font-weight:700;">—</td>
+            <td>Maio/2026</td>
+            <td class="r" style="color:var(--red); font-weight:700;">− R$ 154.485,17</td>
+            <td class="r">R$ 1.323.788,83</td>
+            <td style="font-size:11px; color:var(--red-d);">Anulação parcial do empenho de Fevereiro/2026 (NE000609)</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; color:var(--navy);">3</td>
+            <td>Abril/2026</td>
+            <td class="r" style="font-weight:600;">R$ 369.568,50</td>
+            <td class="r">R$ 1.693.357,33</td>
+            <td style="font-size:11px; color:var(--text2);">NE000587</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Junho/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho realizado</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Julho/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho realizado</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Agosto/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Setembro/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Outubro/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Novembro/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr class="zero">
+            <td>—</td><td>Dezembro/2026</td>
+            <td class="r">—</td><td class="r">—</td>
+            <td style="font-size:11px;">Sem empenho previsto</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">TOTAL EMPENHADO (LÍQUIDO)</td>
+            <td class="r" style="color:var(--teal);">R$ 1.693.357,33</td>
+            <td class="r" style="color:var(--teal);">R$ 1.693.357,33</td>
+            <td style="font-size:11px; color:var(--text2);">Teto Contrapartida: R$ 2.118.000,00</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <p style="text-align:center;font-size:11px;color:var(--text-sec);margin-top:8px;">
-    TJCE – Secretaria de Governança Institucional (SEGOV) / Escritório Corporativo de Projetos (ECP)
-    &nbsp;·&nbsp; Atualizado em 30/06/2026
+  <!-- ══ PAGAMENTOS 2026 ══ -->
+  <div class="tbl-section">
+    <div class="tbl-section-header">
+      <h2>Pagamentos 2026</h2>
+      <span class="sub">Total pago: R$ 1.683.521,34 | 5 pagamentos efetivados</span>
+    </div>
+    <div class="tbl-inner">
+      <table>
+        <colgroup>
+          <col style="width:13%"><col style="width:28%"><col style="width:15%">
+          <col style="width:11%"><col style="width:9%"><col style="width:24%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Referência</th>
+            <th>Processo</th>
+            <th class="r">Valor (R$)</th>
+            <th>Data Pgto</th>
+            <th>Situação</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="b b-blue">Janeiro/2026</span></td>
+            <td><span class="b b-gray">8503555-65.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;">R$ 274.702,02</td>
+            <td>11/03/2026</td>
+            <td><span class="status-pago">✔ Pago</span></td>
+            <td style="font-size:11px; color:var(--text2);">Pagamento referente à prestação dos serviços de Janeiro/2026</td>
+          </tr>
+          <tr>
+            <td><span class="b b-blue">Fevereiro/2026</span></td>
+            <td><span class="b b-gray">8505706-10.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;">R$ 315.837,82</td>
+            <td>16/04/2026</td>
+            <td><span class="status-pago">✔ Pago</span></td>
+            <td style="font-size:11px; color:var(--text2);">Pagamento referente à prestação dos serviços de Fevereiro/2026</td>
+          </tr>
+          <tr>
+            <td><span class="b b-blue">Março/2026</span></td>
+            <td><span class="b b-gray">8508887-17.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;">R$ 363.680,49</td>
+            <td>16/04/2026</td>
+            <td><span class="status-pago">✔ Pago</span></td>
+            <td style="font-size:11px; color:var(--text2);">Pagamento referente à prestação dos serviços de Março/2026</td>
+          </tr>
+          <tr>
+            <td><span class="b b-blue">Abril/2026</span></td>
+            <td><span class="b b-gray">8512547-46.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;">R$ 365.650,44</td>
+            <td>01/06/2026</td>
+            <td><span class="status-pago">✔ Pago</span></td>
+            <td style="font-size:11px; color:var(--text2);">Pagamento referente à prestação dos serviços de Abril/2026</td>
+          </tr>
+          <tr>
+            <td><span class="b b-blue">Maio/2026</span></td>
+            <td><span class="b b-gray">8516227-29.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;">R$ 363.650,57</td>
+            <td>30/06/2026</td>
+            <td><span class="status-pago">✔ Pago</span></td>
+            <td style="font-size:11px; color:var(--text2);">Pagamento referente à prestação dos serviços de Maio/2026</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">TOTAL PAGO</td>
+            <td class="r" style="color:var(--teal);">R$ 1.683.521,34</td>
+            <td colspan="3" style="font-size:11px; color:var(--text2); font-weight:400;">
+              5 pagamentos efetivados | Saldo s/ empenhos: R$ 9.836,00
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GRÁFICOS -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <p class="chart-title">Empenhos × Pagamentos por Mês</p>
+      <div class="chart-wrap"><canvas id="gEmpPag"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">Composição da Execução</p>
+      <div class="chart-wrap"><canvas id="gCompo"></canvas></div>
+    </div>
+  </div>
+
+  <p class="page-footer">
+    Tribunal de Justiça do Estado do Ceará | SEGOV / Escritório Corporativo de Projetos |
+    Contrato 025/2022 – M V R Serviços | Atualizado em 30/06/2026
   </p>
 
-</div>
+</div><!-- /container -->
+
+<script>
+  const gc = 'rgba(0,0,0,0.06)', lc = '#6b7280';
+
+  new Chart(document.getElementById('gEmpPag'), {
+    type: 'bar',
+    data: {
+      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul'],
+      datasets: [
+        { label:'Empenhado', data:[0,1108705.50,369568.50,369568.50,-154485.17,0,0], backgroundColor:'#002d5a', borderRadius:4 },
+        { label:'Pago',      data:[274702.02,315837.82,363680.49,365650.44,363650.57,0,0], backgroundColor:'#1d9e75', borderRadius:4 }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{ position:'bottom', labels:{ font:{size:11}, color:lc, boxWidth:12 } },
+        tooltip:{ callbacks:{ label: c => c.dataset.label+': R$ '+Math.abs(c.raw).toLocaleString('pt-BR',{minimumFractionDigits:2}) } }
+      },
+      scales:{
+        x:{ grid:{color:gc}, ticks:{color:lc,font:{size:11}} },
+        y:{ grid:{color:gc}, ticks:{color:lc,font:{size:10}, callback: v=>'R$ '+(v/1000).toFixed(0)+'k'} }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('gCompo'), {
+    type:'doughnut',
+    data:{
+      labels:['Pago (5 pgtos)','Saldo s/ empenho','Saldo teto Contrapartida'],
+      datasets:[{ data:[1683521.34,9836.00,424642.67], backgroundColor:['#1d9e75','#ba7517','#e0e4ea'], borderWidth:2, borderColor:'#fff' }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false, cutout:'62%',
+      plugins:{
+        legend:{ position:'bottom', labels:{ font:{size:11}, color:lc, boxWidth:12 } },
+        tooltip:{ callbacks:{ label: c=>c.label+': R$ '+c.raw.toLocaleString('pt-BR',{minimumFractionDigits:2}) } }
+      }
+    }
+  });
+</script>
 </body>
 </html>
