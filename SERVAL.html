@@ -409,50 +409,103 @@ table.t tr.tfoot-r td:first-child{text-align:left}
     <h2>Empenhos 2026</h2>
     <span class="sub">Limite autorizado: R$ 25.581.895,28</span>
   </div>
+  <style>
+    .t td.saldo-ok { color:var(--green); font-weight:600; }
+    .t td.saldo-zero { color:var(--g400); font-weight:500; }
+    .t td.saldo-warn { color:var(--amber); font-weight:600; }
+    .t .pag-vinc { font-size:10.5px; color:var(--g600); line-height:1.7; }
+    .t .pag-vinc span { display:block; }
+    .t tr.emp-anulacao td { background:#fdf3e1; }
+    .t tr.emp-anulacao td:first-child { border-left:3px solid var(--amber); }
+    .t tr.emp-header td { background:var(--navy-bg); font-weight:600; }
+  </style>
   <table class="t">
     <thead><tr>
-      <th class="cl" style="width:50px">#</th>
-      <th class="cl">Mês</th>
-      <th>Valor (R$)</th>
-      <th>Acumulado (R$)</th>
+      <th class="cl" style="width:36px">#</th>
+      <th class="cl">Competência</th>
+      <th>Valor empenhado</th>
+      <th class="cl">Pagamentos vinculados</th>
+      <th>Total pago vinculado</th>
+      <th>Saldo do empenho</th>
       <th class="cl">Observação</th>
     </tr></thead>
-    <tbody><tr>
-      <td style="text-align:center;font-weight:600;color:var(--navy)">1</td>
-      <td>Fevereiro/2026</td>
-      <td style="">R$ 9.593.210,73</td>
+    <tbody>
+
+    <!-- ── EMPENHO 1 ── Jan/Fev/Mar ─────────────────────────────────────── -->
+    <tr>
+      <td style="text-align:center;font-weight:700;color:var(--navy)">1</td>
+      <td><strong>Fevereiro/2026</strong><br><span style="font-size:10px;color:var(--g400)">Cobre Jan · Fev · Mar/2026</span></td>
       <td>R$ 9.593.210,73</td>
-      <td></td>
-    </tr><tr>
-      <td style="text-align:center;font-weight:600;color:var(--navy)">2</td>
-      <td>Abril/2026</td>
-      <td style="">R$ 6.395.473,82</td>
-      <td>R$ 15.988.684,55</td>
-      <td></td>
-    </tr><tr>
-      <td style="text-align:center;color:var(--red);font-weight:600">—</td>
-      <td>Maio/2026</td>
-      <td style="color:var(--red);font-weight:600">− R$ 1.485.696,56</td>
-      <td>R$ 14.502.987,99</td>
-      <td><span style="font-size:10.5px;color:var(--amber)">Anulação parcial do empenho de Fevereiro/2026</span></td>
-    </tr><tr>
-      <td style="text-align:center;font-weight:600;color:var(--navy)">3</td>
-      <td>Maio/2026</td>
-      <td style="">R$ 3.197.736,91</td>
-      <td>R$ 17.700.724,90</td>
-      <td></td>
-    </tr><tr>
-      <td style="text-align:center;font-weight:600;color:var(--navy)">4</td>
-      <td>Junho/2026</td>
-      <td style="">R$ 3.197.736,91</td>
+      <td class="pag-vinc">
+        <span>✔ Faturamento Jan — R$ 2.437.433,04</span>
+        <span>✔ Faturamento Fev — R$ 2.825.229,22</span>
+        <span>✔ Faturamento Mar — R$ 2.838.747,18</span>
+        <span>✔ Diárias Jan–Mar — R$ 6.104,73</span>
+      </td>
+      <td>R$ 8.107.514,17</td>
+      <td class="saldo-zero">R$ 0,00<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo anulado</span></td>
+      <td><span style="font-size:10.5px;color:var(--g600)">Empenho quitado.<br>Saldo residual anulado em Mai/2026.</span></td>
+    </tr>
+
+    <!-- anulação -->
+    <tr class="emp-anulacao">
+      <td style="text-align:center;font-weight:700;color:var(--amber)">—</td>
+      <td><strong style="color:var(--amber)">Anulação — Maio/2026</strong></td>
+      <td style="color:var(--red);font-weight:700">− R$ 1.485.696,56</td>
+      <td class="pag-vinc" style="color:var(--amber)">Anulação parcial do Empenho 1</td>
+      <td style="color:var(--g400)">—</td>
+      <td style="color:var(--g400)">—</td>
+      <td><span style="font-size:10.5px;color:var(--amber)">Saldo residual devolvido ao orçamento</span></td>
+    </tr>
+
+    <!-- ── EMPENHO 2 ── Abr/Mai ──────────────────────────────────────────── -->
+    <tr>
+      <td style="text-align:center;font-weight:700;color:var(--navy)">2</td>
+      <td><strong>Abril/2026</strong><br><span style="font-size:10px;color:var(--g400)">Cobre Abr · Mai/2026</span></td>
+      <td>R$ 6.395.473,82</td>
+      <td class="pag-vinc">
+        <span>✔ Faturamento Abr — R$ 2.871.571,63</span>
+        <span>✔ Faturamento Mai — R$ 2.879.667,38</span>
+        <span>✔ Diárias Abr–Jun — R$ 4.458,50</span>
+      </td>
+      <td>R$ 5.755.697,51</td>
+      <td class="saldo-warn">R$ 639.776,31</td>
+      <td><span style="font-size:10.5px;color:var(--g600)">Saldo disponível para<br>futuros pagamentos.</span></td>
+    </tr>
+
+    <!-- ── EMPENHO 3 ── Jun ───────────────────────────────────────────────── -->
+    <tr>
+      <td style="text-align:center;font-weight:700;color:var(--navy)">3</td>
+      <td><strong>Maio/2026</strong><br><span style="font-size:10px;color:var(--g400)">Cobre Jun/2026</span></td>
+      <td>R$ 3.197.736,91</td>
+      <td class="pag-vinc">
+        <span>✔ Faturamento Jun — R$ 2.863.071,24</span>
+      </td>
+      <td>R$ 2.863.071,24</td>
+      <td class="saldo-warn">R$ 334.665,67</td>
+      <td><span style="font-size:10.5px;color:var(--g600)">Saldo disponível para<br>futuros pagamentos.</span></td>
+    </tr>
+
+    <!-- ── EMPENHO 4 ── reserva ──────────────────────────────────────────── -->
+    <tr>
+      <td style="text-align:center;font-weight:700;color:var(--navy)">4</td>
+      <td><strong>Junho/2026</strong><br><span style="font-size:10px;color:var(--g400)">Reserva / Jul em diante</span></td>
+      <td>R$ 3.197.736,91</td>
+      <td class="pag-vinc" style="color:var(--g400);font-style:italic">Nenhum pagamento vinculado até o momento</td>
+      <td style="color:var(--g400)">R$ 0,00</td>
+      <td class="saldo-ok">R$ 3.197.736,91</td>
+      <td><span style="font-size:10.5px;color:var(--g600)">Integralmente disponível.</span></td>
+    </tr>
+
+    <tr class="tfoot-r">
+      <td colspan="2" style="text-align:left">TOTAL EMPENHADO (LÍQUIDO)</td>
       <td>R$ 20.898.461,81</td>
-      <td></td>
-    </tr><tr class="tfoot-r">
-  <td colspan="2" style="text-align:left">TOTAL EMPENHADO (LÍQUIDO)</td>
-  <td>R$ 20.898.461,81</td>
-  <td></td>
-  <td style="font-size:10.5px;color:var(--g600)">Limite: R$ 25.581.895,28</td>
-</tr></tbody>
+      <td style="text-align:left;font-size:10.5px">7 pagamentos efetivados</td>
+      <td>R$ 16.726.282,92</td>
+      <td>R$ 4.172.178,89</td>
+      <td style="font-size:10px;color:var(--g600)">Limite: R$ 25.581.895,28</td>
+    </tr>
+    </tbody>
   </table>
 </div>
 
