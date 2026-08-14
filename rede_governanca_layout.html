@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rede de Governança Colaborativa · TJCE — Modelo de Layout</title>
+<style>
+:root{
+  --navy:#0B2A4A;
+  --navy-2:#123A63;
+  --navy-3:#1D4E80;
+  --gold:#C9A227;
+  --gold-soft:#F0E2B0;
+  --paper:#F6F7F9;
+  --line:#DDE3EA;
+  --ink:#1C2733;
+  --ink-soft:#4A5A6B;
+  --white:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Segoe UI",Calibri,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+/* ---------- Cabeçalho ---------- */
+header.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 62%,var(--navy-3) 100%);
+  color:#fff;
+  padding:46px 0 40px;
+  border-bottom:6px solid var(--gold);
+}
+.eyebrow{
+  font-size:14px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-soft);font-weight:700;margin:0 0 14px;
+}
+h1{
+  font-size:52px;line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.01em;
+}
+h1 small{display:block;font-size:22px;font-weight:500;color:#CFE0F0;letter-spacing:0;margin-top:10px;}
+.hero p.lead{font-size:20px;max-width:78ch;color:#E4EDF6;margin:0 0 24px;}
+.badges{display:flex;flex-wrap:wrap;gap:10px;}
+.badge{
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);
+  padding:8px 14px;border-radius:4px;font-size:15px;font-weight:600;
+}
+.badge.gold{background:var(--gold);border-color:var(--gold);color:#2A2100;}
+
+/* ---------- Seções ---------- */
+section{padding:52px 0 8px;}
+.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:28px;}
+.sec-num{
+  font-size:15px;font-weight:800;letter-spacing:.16em;color:var(--gold);
+  background:var(--navy);padding:6px 12px;border-radius:3px;white-space:nowrap;
+}
+h2{font-size:32px;margin:0;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+.sec-head .norm{margin-left:auto;font-size:15px;color:var(--ink-soft);font-weight:600;white-space:nowrap;}
+h3{font-size:21px;margin:0 0 8px;color:var(--navy-2);font-weight:700;}
+p{margin:0 0 14px;}
+
+/* ---------- Cards ---------- */
+.grid{display:grid;gap:18px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:22px 24px;border-top:4px solid var(--navy-3);
+}
+.card.gold{border-top-color:var(--gold);}
+.card ul{margin:8px 0 0;padding-left:20px;}
+.card li{margin-bottom:6px;}
+.tag{
+  display:inline-block;font-size:13px;font-weight:800;letter-spacing:.1em;
+  color:var(--navy);background:var(--gold-soft);padding:4px 9px;border-radius:3px;margin-bottom:10px;
+}
+
+/* ---------- Frentes de atuação ---------- */
+.frente{
+  background:var(--white);border:1px solid var(--line);border-left:6px solid var(--navy-3);
+  border-radius:5px;padding:20px 22px;display:flex;gap:18px;align-items:flex-start;
+}
+.frente .n{
+  font-size:30px;font-weight:800;color:var(--gold);line-height:1;min-width:52px;
+  border-right:1px solid var(--line);padding-right:14px;
+}
+.frente .art{display:block;font-size:12px;font-weight:700;color:var(--ink-soft);letter-spacing:.08em;margin-top:6px;}
+.frente h3{font-size:19px;}
+.frente p{font-size:16px;color:var(--ink-soft);margin:0;}
+
+/* ---------- Diagrama ---------- */
+.diagram{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:24px;}
+.diagram svg{width:100%;height:auto;display:block;}
+
+/* ---------- Tabela de unidades ---------- */
+table{width:100%;border-collapse:collapse;background:var(--white);font-size:16px;}
+th{
+  background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+tr:nth-child(even) td{background:#FAFBFC;}
+td.unit{font-weight:700;color:var(--navy);white-space:nowrap;}
+td.role{font-size:14px;color:var(--ink-soft);}
+.mail{color:var(--navy-3);text-decoration:none;border-bottom:1px dotted var(--navy-3);}
+
+/* ---------- Linha do tempo ---------- */
+.timeline{position:relative;padding-left:34px;margin-top:6px;}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;background:var(--gold);}
+.tl-item{position:relative;margin-bottom:20px;}
+.tl-item::before{
+  content:"";position:absolute;left:-32px;top:5px;width:15px;height:15px;border-radius:50%;
+  background:var(--white);border:4px solid var(--navy);
+}
+.tl-date{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:.06em;}
+.tl-title{font-size:19px;font-weight:700;color:var(--navy);}
+.tl-item.next::before{border-color:var(--gold);background:var(--gold-soft);}
+
+/* ---------- Links / repositórios ---------- */
+a.linkcard{
+  display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
+  padding:18px 20px;text-decoration:none;color:inherit;border-left:6px solid var(--gold);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+a.linkcard:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(11,42,74,.12);}
+a.linkcard .lk-t{font-size:18px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;}
+a.linkcard .lk-d{font-size:15px;color:var(--ink-soft);}
+a.linkcard .lk-u{font-size:13px;color:var(--navy-3);word-break:break-all;display:block;margin-top:8px;}
+
+/* ---------- Destaque ---------- */
+.callout{
+  background:var(--navy);color:#fff;border-radius:6px;padding:26px 28px;border-left:6px solid var(--gold);
+}
+.callout h3{color:var(--gold-soft);}
+.callout p{color:#DCE7F1;margin-bottom:0;}
+.stat{display:flex;gap:34px;flex-wrap:wrap;margin-top:16px;}
+.stat div span{display:block;font-size:38px;font-weight:800;color:var(--gold);line-height:1;}
+.stat div small{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#CFE0F0;}
+
+footer{
+  margin-top:56px;background:var(--navy);color:#BFD2E4;padding:26px 0;font-size:15px;
+  border-top:6px solid var(--gold);
+}
+footer strong{color:#fff;}
+
+@media (max-width:900px){
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  h1{font-size:36px;}
+  h2{font-size:26px;}
+  .sec-head{flex-wrap:wrap;}
+  .sec-head .norm{margin-left:0;width:100%;}
+}
+@media print{
+  body{background:#fff;font-size:12pt;}
+  section{page-break-inside:avoid;}
+  a.linkcard{border:1px solid #ccc;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Tribunal de Justiça do Estado do Ceará · Secretaria de Governança Institucional</p>
+    <h1>Rede de Governança Colaborativa
+      <small>Instância de integração, articulação e cooperação técnica entre as unidades setoriais de governança do Poder Judiciário do Ceará</small>
+    </h1>
+    <p class="lead">Criada e disciplinada pela Resolução do Órgão Especial nº 01/2026 (Capítulo III, arts. 65 a 77), a Rede conecta a estratégia institucional definida pela alta administração à execução cotidiana em cada secretaria, núcleo e coordenadoria.</p>
+    <div class="badges">
+      <span class="badge gold">Coordenação: Segov</span>
+      <span class="badge">14 unidades setoriais</span>
+      <span class="badge">8 frentes de atuação</span>
+      <span class="badge">Reuniões periódicas · calendário anual</span>
+    </div>
+  </div>
+</header>
+
+<!-- 1. O QUE É -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>O que é a Rede</h2>
+      <span class="norm">Arts. 65 a 67</span>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag">Composição</span>
+        <h3>Quem forma a Rede</h3>
+        <p>É composta pelas unidades setoriais de governança das secretarias, núcleos e coordenadorias, sob coordenação da Secretaria de Governança Institucional (Segov).</p>
+      </div>
+      <div class="card">
+        <span class="tag">Natureza</span>
+        <h3>Para que existe</h3>
+        <p>Funciona como instância interna de apoio à governança: integra, articula e presta cooperação técnica entre as unidades, evitando decisões isoladas e retrabalho.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Diretrizes</span>
+        <h3>Por que se orienta</h3>
+        <p>Segue as diretrizes do TJCE e do CNJ: foco em resultados, participação e comunicação, sustentabilidade, aprendizado organizacional, inovação, eficiência e economicidade.</p>
+      </div>
+    </div>
+
+    <div style="height:22px"></div>
+
+    <div class="diagram">
+      <h3 style="margin-bottom:16px">Posicionamento da Rede no Sistema de Governança</h3>
+      <svg viewBox="0 0 1080 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama da atuação da Rede de Governança">
+        <defs>
+          <marker id="arw" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#123A63"/>
+          </marker>
+          <marker id="arwg" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#C9A227"/>
+          </marker>
+        </defs>
+
+        <!-- Nível estratégico -->
+        <rect x="290" y="14" width="500" height="66" rx="5" fill="#0B2A4A"/>
+        <text x="540" y="42" text-anchor="middle" fill="#F0E2B0" font-size="15" font-weight="700" letter-spacing="2">NÍVEL ESTRATÉGICO</text>
+        <text x="540" y="65" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="600">Órgão Especial · Presidência · Coex Estratégico · Comitê Estratégico</text>
+
+        <line x1="540" y1="80" x2="540" y2="112" stroke="#123A63" stroke-width="3" marker-end="url(#arw)"/>
+
+        <!-- Segov -->
+        <rect x="330" y="114" width="420" height="76" rx="5" fill="#FFFFFF" stroke="#C9A227" stroke-width="4"/>
+        <text x="540" y="142" text-anchor="middle" fill="#0B2A4A" font-size="19" font-weight="800">SEGOV — Coordenação da Rede</text>
+        <text x="540" y="168" text-anchor="middle" fill="#4A5A6B" font-size="15">Metodologias · diretrizes · monitoramento · capacitação (art. 68)</text>
+
+        <line x1="540" y1="190" x2="540" y2="222" stroke="#C9A227" stroke-width="3" marker-end="url(#arwg)"/>
+        <line x1="120" y1="240" x2="960" y2="240" stroke="#C9A227" stroke-width="3"/>
+        <line x1="120" y1="240" x2="120" y2="266" stroke="#C9A227" stroke-width="3" marker-end="url(#arwg)"/>
+        <line x1="400" y1="240" x2="400" y2="266" stroke="#C9A227" stroke-width="3" marker-end="url(#arwg)"/>
+        <line x1="680" y1="240" x2="680" y2="266" stroke="#C9A227" stroke-width="3" marker-end="url(#arwg)"/>
+        <line x1="960" y1="240" x2="960" y2="266" stroke="#C9A227" stroke-width="3" marker-end="url(#arwg)"/>
+
+        <!-- Unidades setoriais -->
+        <rect x="30" y="270" width="180" height="70" rx="5" fill="#1D4E80"/>
+        <text x="120" y="298" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Secretarias-meio</text>
+        <text x="120" y="320" text-anchor="middle" fill="#CFE0F0" font-size="14">SGP · SETIN · SEADI · SEFIN</text>
+
+        <rect x="310" y="270" width="180" height="70" rx="5" fill="#1D4E80"/>
+        <text x="400" y="298" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Área judiciária</text>
+        <text x="400" y="320" text-anchor="middle" fill="#CFE0F0" font-size="14">SECGJUD · Sejud 1º e 2º · PJe</text>
+
+        <rect x="590" y="270" width="180" height="70" rx="5" fill="#1D4E80"/>
+        <text x="680" y="298" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Órgãos correlatos</text>
+        <text x="680" y="320" text-anchor="middle" fill="#CFE0F0" font-size="14">CGJ · CONJUR · ASSPREC</text>
+
+        <rect x="870" y="270" width="180" height="70" rx="5" fill="#1D4E80"/>
+        <text x="960" y="298" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">Unidades regionais</text>
+        <text x="960" y="320" text-anchor="middle" fill="#CFE0F0" font-size="14">FCB · ESMEC · Crajubar</text>
+
+        <!-- Entregas -->
+        <rect x="150" y="368" width="780" height="52" rx="5" fill="#F0E2B0" stroke="#C9A227"/>
+        <text x="540" y="400" text-anchor="middle" fill="#0B2A4A" font-size="16" font-weight="700">Entregas: orçamento · PAC e contratos · projetos · processos · metas · dados · transparência</text>
+      </svg>
+      <p style="font-size:14px;color:var(--ink-soft);margin:14px 0 0">A Rede opera em via dupla: distribui diretrizes e metodologias da alta administração às unidades e devolve à Segov informações, riscos e oportunidades identificados na execução.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. COMO ATUA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Como a Rede atua</h2>
+      <span class="norm">Arts. 69 a 77</span>
+    </div>
+
+    <div class="callout" style="margin-bottom:24px">
+      <h3>Base comum a todas as unidades <span style="font-size:14px;font-weight:600;opacity:.8">— art. 69</span></h3>
+      <p>Prestar informações e subsídios técnicos à Segov; colaborar na implementação de metodologias e instrumentos de governança; disseminar diretrizes e boas práticas na própria área; promover articulação e troca de experiências entre unidades; relatar dificuldades, riscos e oportunidades; participar dos encontros e treinamentos da Rede; articular necessidades de capacitação junto à SGP; e manter plano de comunicação interna da unidade.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="frente">
+        <div class="n">01<span class="art">ART. 70</span></div>
+        <div>
+          <h3>Gestão orçamentária e financeira</h3>
+          <p>Elaborar e atualizar previsões de despesa para POA, POG e POE; participar das reuniões técnicas com Sefin e Segov; acompanhar a execução, identificar desvios e propor ajustes; emitir relatórios gerenciais e subsidiar o monitoramento do PPA.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">02<span class="art">ART. 71</span></div>
+        <div>
+          <h3>Plano Anual de Contratações (PAC)</h3>
+          <p>Coordenar a elaboração e a atualização do PAC junto às áreas demandantes; analisar e validar demandas; priorizar e consolidar por relevância estratégica, economicidade e risco; acompanhar a execução e integrar o PAC aos demais instrumentos de planejamento.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">03<span class="art">ART. 72</span></div>
+        <div>
+          <h3>Governança e monitoramento contratual</h3>
+          <p>Acompanhar a execução técnica, administrativa e financeira dos contratos; analisar indicadores de desempenho; avaliar aditivos, reajustes e prorrogações; manter atualizada a designação de gestores e fiscais junto à Central de Contratos.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">04<span class="art">ART. 73</span></div>
+        <div>
+          <h3>Projetos setoriais e estratégicos</h3>
+          <p>Monitorar o portfólio das unidades vinculadas; identificar riscos, gargalos e interdependências; verificar aderência aos instrumentos de planejamento; consolidar e reportar desempenho em relatórios e painéis de acompanhamento.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">05<span class="art">ART. 74</span></div>
+        <div>
+          <h3>Processos de trabalho</h3>
+          <p>Manter atualizada a arquitetura e a documentação dos processos; apoiar gestores na definição de indicadores e metas; conduzir a discussão de resultados nas Reuniões de Gestão do Dia a Dia e de Análise Crítica; desenvolver iniciativas de mapeamento, redesenho e automação.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">06<span class="art">ART. 75</span></div>
+        <div>
+          <h3>Metas e planos de ação</h3>
+          <p>Consolidar metas e planos de ação e encaminhá-los à COGES no prazo; coordenar o Plano Setorial; monitorar o desempenho das unidades vinculadas; e assegurar o cumprimento dos requisitos do Prêmio CNJ de Qualidade sob responsabilidade da unidade.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">07<span class="art">ART. 76</span></div>
+        <div>
+          <h3>Dados, estatística e informações gerenciais</h3>
+          <p>Produzir levantamentos, séries históricas e indicadores; elaborar estudos e análises; desenvolver e manter painéis com atualização automatizada e rastreabilidade; estabelecer rotinas de validação e saneamento, observadas a LGPD e as normas de segurança da informação.</p>
+        </div>
+      </div>
+
+      <div class="frente">
+        <div class="n">08<span class="art">ART. 77</span></div>
+        <div>
+          <h3>Comunicações institucionais e informações</h3>
+          <p>Receber e responder demandas de CIAT, Ouvidoria, CNJ e órgãos de controle com tempestividade; disponibilizar informações para o Portal da Transparência; assegurar coerência entre as manifestações das unidades e as diretrizes do Tribunal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PAPEL DA SEGOV -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>O papel da Segov como coordenadora</h2>
+      <span class="norm">Art. 68</span>
+    </div>
+    <div class="grid g4">
+      <div class="card gold">
+        <h3>Normatizar</h3>
+        <p>Propor medidas, mecanismos e práticas organizacionais e consolidar diretrizes para as rotinas das unidades setoriais.</p>
+      </div>
+      <div class="card gold">
+        <h3>Metodologizar</h3>
+        <p>Elaborar, implantar e divulgar as metodologias de orçamento, portfólio, projetos, estratégia, processos e dados/estatística.</p>
+      </div>
+      <div class="card gold">
+        <h3>Articular</h3>
+        <p>Promover reuniões, encontros e workshops e fazer a interlocução da Rede com comitês, comissões, fóruns e grupos de trabalho.</p>
+      </div>
+      <div class="card gold">
+        <h3>Monitorar</h3>
+        <p>Incentivar e monitorar boas práticas, zelar pelo alinhamento estratégico e definir diretrizes de alocação de orçamento e pessoal nos projetos estratégicos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. COMPOSIÇÃO -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Unidades e representantes</h2>
+      <span class="norm">Lista de contatos · atualização vigente</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th style="width:18%">Unidade</th><th style="width:38%">Representantes</th><th>Função na unidade setorial</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="unit">SEGOV<br><span style="font-weight:500;font-size:13px;color:var(--gold)">Coordenação</span></td>
+          <td>Renata Silveira Meneses<br>Luis Valdemiro de Sena<br>Michelle Cochrane Feitosa Mendes</td>
+          <td class="role">Diretora de Estratégia e Governança · Gerente de Governança · Coordenadora de Apoio à Governança</td>
+        </tr>
+        <tr><td class="unit">SGP</td><td>Ana Paula Cambraia Rocha Pimentel<br>Eric Rennan Tabosa dos Reis<br>Ana Beatriz da Silva Freitas</td><td class="role">Gerência de Governança · Coordenadoria de Governança · Coord. de Gestão de Contratos e Orçamento</td></tr>
+        <tr><td class="unit">SETIN</td><td>Vanessa de Sousa Frutuoso<br>Camila Alencar de Freitas Carvalho<br>Caroline Morais Maia Fiuza</td><td class="role">Gerência de Governança e Arquitetura Corporativa · Coord. de Governança de TIC · Coord. de Contratos e Aquisições de TIC</td></tr>
+        <tr><td class="unit">SEADI</td><td>Jofre Freire<br>Bárbara de Queiroz da Silva<br>Nattasha Nogueira Araújo</td><td class="role">Gerência de Governança e Controle Interno · Coord. de Governança · Coord. de Orçamento e Apoio à Fiscalização de Contratos</td></tr>
+        <tr><td class="unit">SECGJUD</td><td>Christiane Myrta de Oliveira Medeiros<br>Ruthyelle Santos Lima N. Gouveia<br>Rafael Cavalcante Nunes</td><td class="role">Coordenadoria de Governança da Secretaria-Geral Judiciária</td></tr>
+        <tr><td class="unit">Sejud 1º Grau</td><td>Clara Pinheiro Navarro</td><td class="role">Núcleo de Governança</td></tr>
+        <tr><td class="unit">ASSPREC</td><td>Shirley Aguiar Girão</td><td class="role">Núcleo de Governança e Controle Interno de Precatórios</td></tr>
+        <tr><td class="unit">PJe</td><td>Euzébio Felizardo Bento</td><td class="role">Núcleo de Governança da Secretaria Negocial do PJe</td></tr>
+        <tr><td class="unit">Sejud 2º Grau</td><td>Tiago Nunes Carvalho<br>Francinilton Arruda da Silva</td><td class="role">Coordenadoria de Governança · Apoio estatístico</td></tr>
+        <tr><td class="unit">CGJ</td><td>Jaiana Pereira do Nascimento<br>Francisco Ivanilson Costa dos Santos</td><td class="role">Núcleo de Governança da Corregedoria-Geral · Apoio estatístico</td></tr>
+        <tr><td class="unit">FCB</td><td>Elber Gonçalves Ferreira Junior<br>Kaio Anderson Rufino Moreira<br>Graça Nadia Costa Monteiro<br>Quileabe Batista de Oliveira</td><td class="role">Núcleo de Governança da Comarca da Capital · Apoio técnico e estatístico</td></tr>
+        <tr><td class="unit">ESMEC</td><td>Victor Alves Dias<br>Jucélia Bento de Castro<br>Valdelicia Vieira da Silva</td><td class="role">Diretoria Administrativa · Núcleo de Governança · Apoio estatístico</td></tr>
+        <tr><td class="unit">SEFIN</td><td>Francisco Joviniano Mendes Junior<br>Júlio Cezar Nunes Vieira</td><td class="role">Gerência de Governança e Controle · Coordenadoria de Governança</td></tr>
+        <tr><td class="unit">CONJUR</td><td>Maria do Espírito Santo Lima Maia<br>Thais Helena Cavalcante Lima</td><td class="role">Núcleo de Governança da Consultoria Jurídica</td></tr>
+        <tr><td class="unit">Sejud Crajubar</td><td>André Mendes Bezerra Batista<br>Kayo Cesar Moreira Luna Cruz</td><td class="role">Secretaria Judiciária Regional de 1º Grau do Cariri · Núcleo de Governança</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:15px;color:var(--ink-soft);margin-top:14px">E-mails, telefones e atualizações permanentes na planilha oficial — ver seção 06. Unidades com núcleo ainda não formalizado (ex.: Assistência Militar) participam como convidadas até a formalização.</p>
+  </div>
+</section>
+
+<!-- 5. ROTINA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Rotina de funcionamento</h2>
+      <span class="norm">Art. 67 · reuniões periódicas</span>
+    </div>
+
+    <div class="grid g2">
+      <div>
+        <h3 style="margin-bottom:14px">Encontros realizados em 2026</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">06 · ABR · 2026</div>
+            <div class="tl-title">Nova Rede de Governança</div>
+            <p style="font-size:15px;color:var(--ink-soft);margin:2px 0 0">Apresentação do novo desenho da Rede à luz da Resolução nº 01/2026.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">20 · ABR · 2026</div>
+            <div class="tl-title">Treinamento — Arquitetura de Processos</div>
+            <p style="font-size:15px;color:var(--ink-soft);margin:2px 0 0">Capacitação das unidades para manutenção da arquitetura e documentação dos processos.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">28 · MAI · 2026</div>
+            <div class="tl-title">Fluxo de priorização de painéis e novo ciclo de avaliação de desempenho</div>
+            <p style="font-size:15px;color:var(--ink-soft);margin:2px 0 0">Critérios para demanda de painéis e alinhamento do ciclo de desempenho.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">08 · JUL · 2026</div>
+            <div class="tl-title">Novo Planejamento Estratégico do TJCE</div>
+            <p style="font-size:15px;color:var(--ink-soft);margin:2px 0 0">Diretrizes do ciclo 2027–2032 e participação das unidades no diagnóstico.</p>
+          </div>
+          <div class="tl-item next">
+            <div class="tl-date">PRÓXIMOS ENCONTROS</div>
+            <div class="tl-title">Calendário anual — em definição</div>
+            <p style="font-size:15px;color:var(--ink-soft);margin:2px 0 0">Divulgado pela Segov, sem prejuízo de convocações extraordinárias para temas urgentes ou estratégicos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:14px">Ciclo de trabalho da Rede</h3>
+        <div class="card" style="margin-bottom:14px">
+          <span class="tag">1 · Alinhar</span>
+          <p style="margin:0">A Segov apresenta diretrizes, metodologias e prazos institucionais nos encontros da Rede.</p>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <span class="tag">2 · Executar</span>
+          <p style="margin:0">Cada unidade setorial aplica a metodologia em orçamento, PAC, contratos, projetos, processos, metas e dados.</p>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <span class="tag">3 · Reportar</span>
+          <p style="margin:0">As unidades consolidam resultados e enviam informações, relatórios e painéis à Segov e às instâncias competentes.</p>
+        </div>
+        <div class="card">
+          <span class="tag">4 · Avaliar</span>
+          <p style="margin:0">O diagnóstico da Rede mede maturidade e desempenho, orientando capacitações e ajustes do ciclo seguinte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. REPOSITÓRIOS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2>Onde encontrar</h2>
+      <span class="norm">Acompanhamento e comunicação da Rede</span>
+    </div>
+
+    <div class="grid g2">
+      <a class="linkcard" href="https://tjce365.sharepoint.com/:u:/r/sites/RededeGovernanca/SitePages/EventPlanHome.aspx?d=w9f0de8fa6a2e471694a27fd52cc6811c&csf=1&web=1&e=RJZpmp">
+        <span class="lk-t">Site da Rede de Governança</span>
+        <span class="lk-d">Página inicial com avisos, materiais dos encontros e documentos compartilhados.</span>
+        <span class="lk-u">tjce365.sharepoint.com/sites/RededeGovernanca</span>
+      </a>
+      <a class="linkcard" href="https://tjce365.sharepoint.com/:f:/r/sites/RededeGovernanca/Documentos%20Compartilhados/Normativos?d=we48bcf195f154c07b94c4c082e5ad126&csf=1&web=1&e=9SGCQj">
+        <span class="lk-t">Normativos</span>
+        <span class="lk-d">Resoluções, portarias e atos que fundamentam a atuação da Rede.</span>
+        <span class="lk-u">Documentos Compartilhados › Normativos</span>
+      </a>
+      <a class="linkcard" href="https://tjce365.sharepoint.com/:x:/r/sites/CMESTatual/_layouts/15/Doc.aspx?sourcedoc=%7BDB8BD6F7-1FFC-4C62-9D04-AA812A8496FF%7D&file=Contatos%20de%20unidades%20de%20Governan%C3%A7a%20Setoriais.xlsx&action=default&mobileredirect=true">
+        <span class="lk-t">Lista de contatos e lotação</span>
+        <span class="lk-d">Nomes, unidades, cargos, e-mails e telefones dos participantes da Rede.</span>
+        <span class="lk-u">Contatos de unidades de Governança Setoriais.xlsx</span>
+      </a>
+      <a class="linkcard" href="https://tjce365.sharepoint.com/:p:/r/sites/CMESTatual/_layouts/15/Doc.aspx?sourcedoc=%7BA07DB96B-28F9-47D9-AE4C-364795777DAB%7D&file=Rede%20de%20governan%C3%A7a%20-%20Resultados%20Gerais.pptx&action=edit&mobileredirect=true">
+        <span class="lk-t">Diagnóstico da Rede — resultados gerais 2025</span>
+        <span class="lk-d">Apresentação consolidada do desempenho das unidades setoriais.</span>
+        <span class="lk-u">Rede de governança - Resultados Gerais.pptx</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. GTR -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2>GTR — Agentes de Contratação</h2>
+      <span class="norm">Rol classificatório · Portaria nº 26/2025</span>
+    </div>
+
+    <div class="callout" style="margin-bottom:22px">
+      <h3>Por que este tema está na Rede</h3>
+      <p>A gratificação dos agentes de contratação está diretamente vinculada às frentes de PAC e de gestão contratual (arts. 71 e 72). As unidades setoriais respondem pela indicação, pelo acompanhamento dos critérios e pela observância do calendário de publicação do rol classificatório.</p>
+      <div class="stat">
+        <div><span>26/2025</span><small>Portaria de critérios</small></div>
+        <div><span>NOV/26</span><small>Próxima publicação do rol</small></div>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <a class="linkcard" href="https://www.tjce.jus.br/atos_normativos/portaria-no-26-2025/">
+        <span class="lk-t">Portaria nº 26/2025</span>
+        <span class="lk-d">Critérios de concessão e manutenção da GTR dos agentes de contratação.</span>
+        <span class="lk-u">tjce.jus.br/atos_normativos</span>
+      </a>
+      <a class="linkcard" href="https://tjce365.sharepoint.com/:f:/r/sites/RededeGovernanca/Documentos%20Compartilhados/GTR%20-%20Agentes%20de%20Contrata%C3%A7%C3%A3o?d=wbbe1c52d2b524b3ab522ff0f46e489bb&csf=1&web=1&e=TNuNi6">
+        <span class="lk-t">Portarias do rol classificatório</span>
+        <span class="lk-d">Publicações periódicas do rol, disponíveis na página da Rede.</span>
+        <span class="lk-u">Rede de Governança — página inicial</span>
+      </a>
+      <a class="linkcard" href="https://tjce365.sharepoint.com/sites/RededeGovernanca/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FRededeGovernanca%2FDocumentos%20Compartilhados%2FGTR%20%2D%20Agentes%20de%20Contrata%C3%A7%C3%A3o%2FOf%C3%ADcio%20Circular%2046%2E2026%2DSegov%20calend%C3%A1rio%20GTRs%20nov%2E26%2Epdf&parent=%2Fsites%2FRededeGovernanca%2FDocumentos%20Compartilhados%2FGTR%20%2D%20Agentes%20de%20Contrata%C3%A7%C3%A3o">
+        <span class="lk-t">Ofício Circular nº 46/2026-Segov</span>
+        <span class="lk-d">Calendário de publicação do rol classificatório de novembro de 2026.</span>
+        <span class="lk-u">Documentos Compartilhados › GTR — Agentes de Contratação</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Rede de Governança Colaborativa do Poder Judiciário do Estado do Ceará</strong><br>
+    Coordenação: Secretaria de Governança Institucional (Segov) · Fundamento: Resolução do Órgão Especial nº 01/2026, publicada no DJe Administrativo, edição 3722, de 19 de fevereiro de 2026.
+  </div>
+</footer>
+
+</body>
+</html>
