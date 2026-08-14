@@ -3,183 +3,357 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rede de Governança Colaborativa · TJCE — Modelo de Layout</title>
+<title>Rede de Governança | Cockpit de Governança</title>
 <style>
 :root{
-  --navy:#0B2A4A;
-  --navy-2:#123A63;
-  --navy-3:#1D4E80;
-  --gold:#C9A227;
-  --gold-soft:#F0E2B0;
-  --paper:#F6F7F9;
-  --line:#DDE3EA;
-  --ink:#1C2733;
-  --ink-soft:#4A5A6B;
-  --white:#FFFFFF;
+  --azul:#0b4f86;
+  --azul-escuro:#083a63;
+  --azul-claro:#eaf3fb;
+  --azul-medio:#1c6aa8;
+  --dourado:#d4a72c;
+  --fundo:#f4f7fb;
+  --branco:#ffffff;
+  --texto:#203040;
+  --texto-suave:#607080;
+  --linha:#dce5ee;
+  --verde:#2e8b57;
+  --sombra:0 10px 28px rgba(11,79,134,.10);
 }
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"Segoe UI",Calibri,"Helvetica Neue",Arial,sans-serif;
-  font-size:17px;
+  background:var(--fundo);
+  color:var(--texto);
+  font-family:"Segoe UI",Arial,Helvetica,sans-serif;
   line-height:1.55;
 }
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
-
-/* ---------- Cabeçalho ---------- */
-header.hero{
-  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 62%,var(--navy-3) 100%);
+.topbar{
+  background:linear-gradient(135deg,var(--azul-escuro),var(--azul));
   color:#fff;
-  padding:46px 0 40px;
-  border-bottom:6px solid var(--gold);
+  border-bottom:5px solid var(--dourado);
 }
-.eyebrow{
-  font-size:14px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold-soft);font-weight:700;margin:0 0 14px;
+.topbar-inner{
+  max-width:1240px;
+  margin:0 auto;
+  padding:18px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-h1{
-  font-size:52px;line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.01em;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0;
 }
-h1 small{display:block;font-size:22px;font-weight:500;color:#CFE0F0;letter-spacing:0;margin-top:10px;}
-.hero p.lead{font-size:20px;max-width:78ch;color:#E4EDF6;margin:0 0 24px;}
-.badges{display:flex;flex-wrap:wrap;gap:10px;}
-.badge{
-  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);
-  padding:8px 14px;border-radius:4px;font-size:15px;font-weight:600;
+.logo-box{
+  width:58px;
+  height:58px;
+  border-radius:12px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  display:grid;
+  place-items:center;
+  font-weight:800;
+  letter-spacing:.04em;
 }
-.badge.gold{background:var(--gold);border-color:var(--gold);color:#2A2100;}
-
-/* ---------- Seções ---------- */
-section{padding:52px 0 8px;}
-.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:28px;}
+.brand-text strong{
+  display:block;
+  font-size:18px;
+}
+.brand-text span{
+  display:block;
+  color:#d8e8f5;
+  font-size:13px;
+}
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.35);
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  transition:.2s ease;
+  white-space:nowrap;
+}
+.back-btn:hover{
+  background:#fff;
+  color:var(--azul-escuro);
+}
+.hero{
+  max-width:1240px;
+  margin:0 auto;
+  padding:40px 28px 24px;
+}
+.hero-card{
+  background:linear-gradient(135deg,#ffffff,#eef5fb);
+  border:1px solid var(--linha);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:var(--sombra);
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  right:-95px;
+  top:-120px;
+  background:rgba(28,106,168,.08);
+}
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:12px;
+  font-weight:800;
+  color:var(--azul-medio);
+  margin-bottom:8px;
+}
+.hero h1{
+  margin:0;
+  color:var(--azul-escuro);
+  font-size:clamp(30px,4vw,48px);
+  line-height:1.08;
+}
+.hero .subtitle{
+  margin:14px 0 0;
+  color:var(--texto-suave);
+  font-size:18px;
+  max-width:900px;
+}
+.quick-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:22px;
+}
+.quick-stats span{
+  background:#fff;
+  border:1px solid var(--linha);
+  color:var(--azul-escuro);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:13px;
+  font-weight:700;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+section{padding:28px 0 8px}
+.sec-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  border-bottom:1px solid var(--linha);
+  padding-bottom:12px;
+  margin-bottom:22px;
+}
 .sec-num{
-  font-size:15px;font-weight:800;letter-spacing:.16em;color:var(--gold);
-  background:var(--navy);padding:6px 12px;border-radius:3px;white-space:nowrap;
+  min-width:42px;
+  text-align:center;
+  padding:6px 8px;
+  border-radius:10px;
+  background:var(--azul);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
 }
-h2{font-size:32px;margin:0;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
-.sec-head .norm{margin-left:auto;font-size:15px;color:var(--ink-soft);font-weight:600;white-space:nowrap;}
-h3{font-size:21px;margin:0 0 8px;color:var(--navy-2);font-weight:700;}
-p{margin:0 0 14px;}
-
-/* ---------- Cards ---------- */
-.grid{display:grid;gap:18px;}
-.g2{grid-template-columns:repeat(2,1fr);}
-.g3{grid-template-columns:repeat(3,1fr);}
-.g4{grid-template-columns:repeat(4,1fr);}
-.card{
-  background:var(--white);border:1px solid var(--line);border-radius:6px;
-  padding:22px 24px;border-top:4px solid var(--navy-3);
+h2{
+  margin:0;
+  font-size:28px;
+  color:var(--azul-escuro);
 }
-.card.gold{border-top-color:var(--gold);}
-.card ul{margin:8px 0 0;padding-left:20px;}
-.card li{margin-bottom:6px;}
+.sec-head .norm{
+  margin-left:auto;
+  font-size:13px;
+  color:var(--texto-suave);
+  font-weight:600;
+}
+h3{color:var(--azul-escuro);margin-top:0}
+p{margin-top:0}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card,.diagram,.callout,a.linkcard{
+  background:var(--branco);
+  border:1px solid var(--linha);
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(9,58,99,.06);
+}
+.card{padding:20px}
+.card.gold{border-top:4px solid var(--dourado)}
 .tag{
-  display:inline-block;font-size:13px;font-weight:800;letter-spacing:.1em;
-  color:var(--navy);background:var(--gold-soft);padding:4px 9px;border-radius:3px;margin-bottom:10px;
+  display:inline-block;
+  background:var(--azul-claro);
+  color:var(--azul-escuro);
+  border:1px solid #cfe1f2;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:10px;
 }
-
-/* ---------- Frentes de atuação ---------- */
 .frente{
-  background:var(--white);border:1px solid var(--line);border-left:6px solid var(--navy-3);
-  border-radius:5px;padding:20px 22px;display:flex;gap:18px;align-items:flex-start;
+  background:#fff;
+  border:1px solid var(--linha);
+  border-left:5px solid var(--azul-medio);
+  border-radius:14px;
+  padding:18px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 6px 18px rgba(9,58,99,.05);
 }
 .frente .n{
-  font-size:30px;font-weight:800;color:var(--gold);line-height:1;min-width:52px;
-  border-right:1px solid var(--line);padding-right:14px;
+  min-width:56px;
+  color:var(--dourado);
+  font-size:26px;
+  font-weight:900;
+  line-height:1;
 }
-.frente .art{display:block;font-size:12px;font-weight:700;color:var(--ink-soft);letter-spacing:.08em;margin-top:6px;}
-.frente h3{font-size:19px;}
-.frente p{font-size:16px;color:var(--ink-soft);margin:0;}
-
-/* ---------- Diagrama ---------- */
-.diagram{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:24px;}
-.diagram svg{width:100%;height:auto;display:block;}
-
-/* ---------- Tabela de unidades ---------- */
-table{width:100%;border-collapse:collapse;background:var(--white);font-size:16px;}
-th{
-  background:var(--navy);color:#fff;text-align:left;padding:12px 14px;font-size:14px;
-  letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+.frente .art{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  color:var(--texto-suave);
+  letter-spacing:.08em;
 }
-td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
-tr:nth-child(even) td{background:#FAFBFC;}
-td.unit{font-weight:700;color:var(--navy);white-space:nowrap;}
-td.role{font-size:14px;color:var(--ink-soft);}
-.mail{color:var(--navy-3);text-decoration:none;border-bottom:1px dotted var(--navy-3);}
-
-/* ---------- Linha do tempo ---------- */
-.timeline{position:relative;padding-left:34px;margin-top:6px;}
-.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;background:var(--gold);}
-.tl-item{position:relative;margin-bottom:20px;}
-.tl-item::before{
-  content:"";position:absolute;left:-32px;top:5px;width:15px;height:15px;border-radius:50%;
-  background:var(--white);border:4px solid var(--navy);
-}
-.tl-date{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:.06em;}
-.tl-title{font-size:19px;font-weight:700;color:var(--navy);}
-.tl-item.next::before{border-color:var(--gold);background:var(--gold-soft);}
-
-/* ---------- Links / repositórios ---------- */
-a.linkcard{
-  display:block;background:var(--white);border:1px solid var(--line);border-radius:6px;
-  padding:18px 20px;text-decoration:none;color:inherit;border-left:6px solid var(--gold);
-  transition:transform .12s ease, box-shadow .12s ease;
-}
-a.linkcard:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(11,42,74,.12);}
-a.linkcard .lk-t{font-size:18px;font-weight:700;color:var(--navy);display:block;margin-bottom:4px;}
-a.linkcard .lk-d{font-size:15px;color:var(--ink-soft);}
-a.linkcard .lk-u{font-size:13px;color:var(--navy-3);word-break:break-all;display:block;margin-top:8px;}
-
-/* ---------- Destaque ---------- */
+.diagram{padding:20px;overflow:auto}
+.diagram svg{width:100%;height:auto;display:block}
 .callout{
-  background:var(--navy);color:#fff;border-radius:6px;padding:26px 28px;border-left:6px solid var(--gold);
+  background:linear-gradient(135deg,var(--azul-escuro),var(--azul));
+  color:#fff;
+  padding:22px;
+  border-left:5px solid var(--dourado);
 }
-.callout h3{color:var(--gold-soft);}
-.callout p{color:#DCE7F1;margin-bottom:0;}
-.stat{display:flex;gap:34px;flex-wrap:wrap;margin-top:16px;}
-.stat div span{display:block;font-size:38px;font-weight:800;color:var(--gold);line-height:1;}
-.stat div small{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#CFE0F0;}
-
-footer{
-  margin-top:56px;background:var(--navy);color:#BFD2E4;padding:26px 0;font-size:15px;
-  border-top:6px solid var(--gold);
+.callout h3{color:#fff}
+.callout p{color:#e6f0f8}
+.stat{display:flex;gap:26px;flex-wrap:wrap;margin-top:14px}
+.stat span{display:block;color:#ffd66b;font-size:28px;font-weight:900}
+.stat small{color:#d6e6f4}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(9,58,99,.05);
 }
-footer strong{color:#fff;}
-
-@media (max-width:900px){
-  .g2,.g3,.g4{grid-template-columns:1fr;}
-  h1{font-size:36px;}
-  h2{font-size:26px;}
-  .sec-head{flex-wrap:wrap;}
-  .sec-head .norm{margin-left:0;width:100%;}
+th{
+  background:var(--azul);
+  color:#fff;
+  text-align:left;
+  padding:12px 14px;
+  font-size:13px;
 }
-@media print{
-  body{background:#fff;font-size:12pt;}
-  section{page-break-inside:avoid;}
-  a.linkcard{border:1px solid #ccc;}
+td{
+  padding:12px 14px;
+  border-bottom:1px solid var(--linha);
+  vertical-align:top;
+}
+tr:nth-child(even) td{background:#f9fbfd}
+td.unit{font-weight:800;color:var(--azul-escuro)}
+td.role{color:var(--texto-suave);font-size:14px}
+.timeline{position:relative;padding-left:30px}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:4px;
+  bottom:4px;
+  width:3px;
+  background:var(--dourado);
+}
+.tl-item{position:relative;margin-bottom:18px}
+.tl-item::before{
+  content:"";
+  position:absolute;
+  left:-28px;
+  top:5px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#fff;
+  border:4px solid var(--azul);
+}
+.tl-date{font-size:13px;font-weight:800;color:var(--dourado)}
+.tl-title{font-weight:800;color:var(--azul-escuro)}
+a.linkcard{
+  display:block;
+  padding:18px;
+  text-decoration:none;
+  color:inherit;
+  border-left:5px solid var(--dourado);
+  transition:.2s ease;
+}
+a.linkcard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(9,58,99,.12);
+}
+.lk-t{display:block;font-weight:800;color:var(--azul-escuro);font-size:17px}
+.lk-d{display:block;color:var(--texto-suave);font-size:14px;margin-top:4px}
+.lk-u{display:block;color:var(--azul-medio);font-size:12px;margin-top:8px;word-break:break-word}
+.footer{
+  margin-top:40px;
+  background:var(--azul-escuro);
+  color:#c9dcea;
+  border-top:5px solid var(--dourado);
+}
+.footer .wrap{padding-top:22px;padding-bottom:22px}
+.footer strong{color:#fff}
+@media(max-width:980px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .topbar-inner{align-items:flex-start}
+  .sec-head{flex-wrap:wrap}
+  .sec-head .norm{margin-left:56px}
+}
+@media(max-width:700px){
+  .topbar-inner{padding:16px 18px;flex-direction:column}
+  .hero,.wrap{padding-left:18px;padding-right:18px}
+  .hero-card{padding:22px}
+  .sec-head .norm{margin-left:0;width:100%}
+  table{display:block;overflow-x:auto;white-space:nowrap}
 }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Tribunal de Justiça do Estado do Ceará · Secretaria de Governança Institucional</p>
-    <h1>Rede de Governança Colaborativa
-      <small>Instância de integração, articulação e cooperação técnica entre as unidades setoriais de governança do Poder Judiciário do Ceará</small>
-    </h1>
-    <p class="lead">Criada e disciplinada pela Resolução do Órgão Especial nº 01/2026 (Capítulo III, arts. 65 a 77), a Rede conecta a estratégia institucional definida pela alta administração à execução cotidiana em cada secretaria, núcleo e coordenadoria.</p>
-    <div class="badges">
-      <span class="badge gold">Coordenação: Segov</span>
-      <span class="badge">14 unidades setoriais</span>
-      <span class="badge">8 frentes de atuação</span>
-      <span class="badge">Reuniões periódicas · calendário anual</span>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo-box">TJCE</div>
+      <div class="brand-text">
+        <strong>Secretaria de Governança Institucional</strong>
+        <span>Diretoria de Estratégia e Governança · Cockpit de Governança</span>
+      </div>
+    </div>
+    <a class="back-btn" href="index.html">← Voltar ao Cockpit</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-card">
+    <div class="kicker">Rede de Governança</div>
+    <h1>Rede de Governança Colaborativa</h1>
+    <p class="subtitle">Instância de integração, articulação e cooperação técnica entre as unidades setoriais de governança do Poder Judiciário do Ceará.</p>
+    <div class="quick-stats">
+      <span>Coordenação: SEGOV</span>
+      <span>14 unidades setoriais</span>
+      <span>8 frentes de atuação</span>
+      <span>Reuniões periódicas</span>
     </div>
   </div>
-</header>
+</div>
+
+
+
+
 
 <!-- 1. O QUE É -->
 <section>
@@ -553,12 +727,16 @@ footer strong{color:#fff;}
   </div>
 </section>
 
-<footer>
+
+
+
+
+<div class="footer">
   <div class="wrap">
     <strong>Rede de Governança Colaborativa do Poder Judiciário do Estado do Ceará</strong><br>
-    Coordenação: Secretaria de Governança Institucional (Segov) · Fundamento: Resolução do Órgão Especial nº 01/2026, publicada no DJe Administrativo, edição 3722, de 19 de fevereiro de 2026.
+    Coordenação: Secretaria de Governança Institucional (SEGOV).
   </div>
-</footer>
+</div>
 
 </body>
 </html>
