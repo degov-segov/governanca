@@ -135,7 +135,9 @@ body{
   gap:10px;
   margin-top:22px;
 }
-.quick-stats span{
+.quick-stats a{
+  display:inline-flex;
+  align-items:center;
   background:#fff;
   border:1px solid var(--linha);
   color:var(--azul-escuro);
@@ -143,9 +145,20 @@ body{
   padding:8px 12px;
   font-size:13px;
   font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+}
+.quick-stats a:hover,
+.quick-stats a:focus{
+  background:var(--azul);
+  color:#fff;
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(11,79,134,.16);
+  outline:none;
 }
 .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
-section{padding:28px 0 8px}
+section{padding:28px 0 8px;scroll-margin-top:24px}
 .sec-head{
   display:flex;
   align-items:center;
@@ -343,10 +356,10 @@ a.linkcard:hover{
     <h1>Rede de Governança Colaborativa</h1>
     <p class="subtitle">Instância de integração, articulação e cooperação técnica entre as unidades setoriais de governança do Poder Judiciário do Ceará.</p>
     <div class="quick-stats">
-      <span>Coordenação: SEGOV</span>
-      <span>14 unidades setoriais</span>
-      <span>8 frentes de atuação</span>
-      <span>Reuniões periódicas</span>
+      <a href="#coordenacao-segov">Coordenação: SEGOV</a>
+      <a href="#unidades-setoriais">14 unidades setoriais</a>
+      <a href="#frentes-atuacao">8 frentes de atuação</a>
+      <a href="#reunioes-periodicas">Reuniões periódicas</a>
     </div>
   </div>
 </div>
@@ -442,7 +455,7 @@ a.linkcard:hover{
 </section>
 
 <!-- 2. COMO ATUA -->
-<section>
+<section id="frentes-atuacao">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">02</span>
@@ -524,7 +537,7 @@ a.linkcard:hover{
 </section>
 
 <!-- 3. PAPEL DA SEGOV -->
-<section>
+<section id="coordenacao-segov">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">03</span>
@@ -553,7 +566,7 @@ a.linkcard:hover{
 </section>
 
 <!-- 4. COMPOSIÇÃO -->
-<section>
+<section id="unidades-setoriais">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">04</span>
@@ -592,7 +605,7 @@ a.linkcard:hover{
 </section>
 
 <!-- 5. ROTINA -->
-<section>
+<section id="reunioes-periodicas">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">05</span>
