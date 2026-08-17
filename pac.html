@@ -1,7 +1,518 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEGOV | PAC</title><link rel="stylesheet" href="estilo.css"></head>
-<body><div class="app"><aside class="sidebar">
-      <div class="sidebar-header"><div class="brandmark">TJCE</div><div class="sidebar-title"><strong>SEGOV</strong><span>Secretaria de Governança Institucional<br>Diretoria de Estratégia e Governança</span></div></div>
-      <button class="toggle" onclick="toggleSidebar()">☰ Recolher</button><nav class="nav"><a href="index.html"><span class="ico">⌂</span><span>Início</span></a><a href="rede.html"><span class="ico">◎</span><span>Rede de Governança</span></a><a href="processos.html"><span class="ico">☑</span><span>Arquitetura de Processos</span></a><a href="projetos.html"><span class="ico">🎯</span><span>Projetos Estratégicos</span></a><a href="orcamento.html"><span class="ico">↗</span><span>Execução Orçamentária</span></a><a href="pac.html" class="active"><span class="ico">▦</span><span>PAC</span></a><a href="contratos.html"><span class="ico">📝</span><span>Execução Contratual</span></a><a href="riscos.html"><span class="ico">🛡</span><span>Gestão de Riscos</span></a><a href="indicadores.html"><span class="ico">◔</span><span>Indicadores</span></a><a href="gam.html"><span class="ico">▣</span><span>GAM</span></a></nav>
-    </aside><main class="main"><header class="topbar"><div class="breadcrumb">SEGOV <span>›</span> PAC</div></header><section class="content"><section class="hero"><div><h1>PAC</h1><p>Acompanhamento do Plano Anual de Contratações.</p></div></section><div class="panel"><h2>Plano Anual de Contratações</h2>
-<p>O dashboard do PAC atualmente está publicado em endereço externo. Use o botão abaixo para acessá-lo. Esta página intermediária mantém a navegação do novo Cockpit e o botão de retorno.</p>
-<p style="margin-top:16px"><a class="back-inline" href="https://luissena35-bit.github.io/acompanhamento_PAC_SEGOV/" target="_blank" rel="noopener">Abrir dashboard do PAC ↗</a></p></div><div class="footer">SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</div></section></main></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAC SEGOV — Controle e Acompanhamento | SEGOV/TJCE</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #F0F2F7; color: #1a1a2e; min-height: 100vh; }
+
+  .header { background: #0C2D5E; color: #fff; padding: 0; }
+  .header-inner { max-width: 1200px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; gap: 20px; }
+  .header-logo { height: 72px; width: auto; flex-shrink: 0; }
+  .header-divider { width: 1px; height: 56px; background: rgba(255,255,255,0.25); flex-shrink: 0; }
+  .header-text { flex: 1; }
+  .header-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+  .header-title { font-size: 20px; font-weight: 600; line-height: 1.2; }
+  .header-subtitle { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+  .header-meta { display: flex; gap: 18px; margin-top: 10px; flex-wrap: wrap; }
+  .header-meta span { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+  .main { max-width: 1200px; margin: 0 auto; padding: 28px 32px 48px; }
+
+  /* ATUALIZAÇÕES RECENTES */
+  .updates-card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 24px; border-left: 4px solid #eda100; }
+  .updates-title { font-size: 13px; font-weight: 700; color: #0C2D5E; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .updates-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .update-item { border-radius: 8px; padding: 14px 16px; font-size: 12px; }
+  .update-novo { background: #E6F1FB; border-left: 3px solid #2a78d6; }
+  .update-ajuste { background: #FFF8E6; border-left: 3px solid #eda100; }
+  .update-cancel { background: #FDECEA; border-left: 3px solid #d63b2a; }
+  .update-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .update-tag.novo { color: #2a78d6; }
+  .update-tag.ajuste { color: #eda100; }
+  .update-tag.cancel { color: #d63b2a; }
+  .update-rdp { font-family: 'Courier New', monospace; font-weight: 700; font-size: 11px; color: #333; margin-bottom: 4px; }
+  .update-desc { color: #444; line-height: 1.5; }
+  .update-val { font-weight: 700; color: #0C2D5E; margin-top: 4px; }
+
+  /* KPIs */
+  .kpi-section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid #e8eaf0; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 10px; }
+  .kpi { background: #fff; border-radius: 10px; padding: 16px 18px; border-top: 3px solid #ccc; }
+  .kpi.accent { border-top-color: #0C2D5E; }
+  .kpi.blue { border-top-color: #2a78d6; }
+  .kpi.green { border-top-color: #1baf7a; }
+  .kpi.amber { border-top-color: #eda100; }
+  .kpi.red { border-top-color: #d63b2a; }
+  .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: #888; margin-bottom: 5px; }
+  .kpi-value { font-size: 20px; font-weight: 700; color: #1a1a2e; line-height: 1.1; }
+  .kpi-sub { font-size: 11px; color: #666; margin-top: 3px; }
+
+  /* CARDS E TABELAS */
+  .section-label { font-size: 15px; font-weight: 700; color: #0C2D5E; margin: 28px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #0C2D5E; display: flex; align-items: center; gap: 8px; }
+  .table-card { background: #fff; border-radius: 12px; padding: 22px 24px; margin-bottom: 24px; }
+  .table-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+  .table-title { font-size: 13px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+  .table-title::before { content: ''; display: inline-block; width: 3px; height: 14px; background: #0C2D5E; border-radius: 2px; }
+  .pill-legend { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+  .pill-nova { background: #E6F1FB; color: #0C447C; }
+  .pill-aditivo { background: #EAF3DE; color: #27500A; }
+  .pill-ok { background: #E6FAF2; color: #0F6E56; }
+  .pill-cancel { background: #FDECEA; color: #7C0C0C; }
+  .pill-nc { background: #F5F0FF; color: #4A0C7C; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 10px; border-bottom: 2px solid #eee; text-align: left; white-space: nowrap; }
+  tbody td { padding: 9px 10px; border-bottom: 1px solid #f5f5f5; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafbff; }
+  .rdp-code { font-family: 'Courier New', monospace; font-size: 11px; color: #555; font-weight: 600; }
+  .val-cell { font-weight: 600; text-align: right; white-space: nowrap; }
+  .vig-cell { font-size: 11px; color: #888; white-space: nowrap; }
+  .total-row td { background: #f8f9ff !important; font-weight: 600; border-top: 2px solid #e8eaf0; }
+  .grand-total td { background: #EEF2FA !important; font-weight: 700; border-top: 2px solid #0C2D5E; color: #0C2D5E; }
+  tr.canceled td { opacity: 0.5; text-decoration: line-through; }
+
+  .footer { text-align: center; font-size: 12px; color: #aaa; padding: 20px 0 8px; border-top: 1px solid #e0e0e0; margin-top: 8px; }
+
+  @media (max-width: 1024px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } .updates-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .main { padding: 16px; } .kpi-grid { grid-template-columns: 1fr 1fr; } .updates-grid { grid-template-columns: 1fr; } .header-inner { padding: 14px 16px; } .header-logo { height: 52px; } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <img class="header-logo" src="data:image/png;base64,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" alt="Logo TJCE">
+    <div class="header-divider"></div>
+    <div class="header-text">
+      <div class="header-eyebrow">PAC-SEGOV-2026-5 · PAC-SEGOV-2027-13 &nbsp;·&nbsp; Exercícios 2026 e 2027</div>
+      <div class="header-title">Controle e Acompanhamento do PAC — SEGOV</div>
+      <div class="header-subtitle">Gerência de Governança &nbsp;·&nbsp; Secretaria de Governança Institucional — SEGOV/TJCE</div>
+      <div class="header-meta">
+        <span>&#128197; Exercícios 2026 e 2027</span>
+        <span>&#127970; SEGOV / ECP</span>
+        <span>&#128260; Atualizado: ago/2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ATUALIZAÇÕES RECENTES -->
+  <div class="updates-card">
+    <div class="updates-title">&#128204; Atualizações Recentes — RDPs 2026</div>
+    <div class="updates-grid">
+
+      <div class="update-item update-novo">
+        <div class="update-tag novo">&#10003; RDP Novo</div>
+        <div class="update-rdp">RDP-SEGOV-2026-599</div>
+        <div class="update-desc">Contratação de solução artístico-cultural — criação de obra literária em cordel alusiva aos 30 anos do Telejustiça no Ceará ("Conexões que Transformam").</div>
+        <div class="update-val">R$ 9.230,00</div>
+      </div>
+
+      <div class="update-item update-ajuste">
+        <div class="update-tag ajuste">&#9998; Ajustados</div>
+        <div class="update-rdp">RDP-SEGOV-2026-246</div>
+        <div class="update-desc">Gerenciamento de projetos — escopo ampliado para incluir gestão de processos (BPM). Valor revisado de R$ 2.263.547,51.</div>
+        <div class="update-val">Novo valor: R$ 6.178.813,44</div>
+        <div style="margin-top:8px; padding-top:8px; border-top:1px solid #e0c060;">
+        <div class="update-rdp">RDP-SEGOV-2026-237</div>
+        <div class="update-desc">Serviços de recepção/atendimento/PJe/Libras — valor ajustado após ETP.</div>
+        <div class="update-val">Novo valor: R$ 197.666.262,72</div>
+        </div>
+      </div>
+
+      <div class="update-item update-cancel">
+        <div class="update-tag cancel">&#10005; Cancelados</div>
+        <div class="update-rdp">RDP-SEGOV-2026-492</div>
+        <div class="update-desc">Programa para Gerenciamento de Projetos — R$ 50.000,00</div>
+        <div style="margin-top:6px;">
+        <div class="update-rdp">RDP-SEGOV-2026-248</div>
+        <div class="update-desc">Gestão de Processos - BPM — R$ 2.600.000,00 (incorporado ao RDP-246)</div>
+        </div>
+        <div style="margin-top:6px;">
+        <div class="update-rdp">RDP-SEGOV-2026-244</div>
+        <div class="update-desc">Convertido em aditivo (CT-025/2022). Valor reduzido para R$ 4.631.250,00 com vigência até 04/05/2027.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KPIs CONSOLIDADOS -->
+  <div class="kpi-section-title">&#9632; Resumo Consolidado — 2026 + 2027</div>
+  <div class="kpi-grid" style="grid-template-columns: repeat(5,1fr); margin-bottom:24px;">
+    <div class="kpi accent">
+      <div class="kpi-label">Total Geral</div>
+      <div class="kpi-value">R$ 220,8 M</div>
+      <div class="kpi-sub">Soma 2026 + 2027</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">RDPs 2026 ativos</div>
+      <div class="kpi-value">12 RDPs</div>
+      <div class="kpi-sub">PAC-SEGOV-2026-5</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">RDPs 2027</div>
+      <div class="kpi-value">9 RDPs</div>
+      <div class="kpi-sub">PAC-SEGOV-2027-13</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-label">Novos (2026)</div>
+      <div class="kpi-value">1 RDP</div>
+      <div class="kpi-sub">RDP-2026-599</div>
+    </div>
+    <div class="kpi red">
+      <div class="kpi-label">Cancelados (2026)</div>
+      <div class="kpi-value">3 RDPs</div>
+      <div class="kpi-sub">246, 248, 492</div>
+    </div>
+  </div>
+
+  <!-- TABELA RDPs 2026 -->
+  <div class="section-label">&#9632; RDPs 2026 — PAC-SEGOV-2026-5</div>
+  <div class="table-card">
+    <div class="table-header">
+      <div class="table-title">Relação de RDPs — Exercício 2026</div>
+      <div class="pill-legend">
+        <span class="pill pill-nova">Nova contratação</span>
+        <span class="pill pill-aditivo">Aditivo contratual</span>
+        <span class="pill pill-nc" style="background:#F5F0FF;color:#4A0C7C;">Não contratual</span>
+        <span class="pill pill-cancel">Cancelado</span>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>RDP</th>
+            <th>Título da demanda</th>
+            <th>Tipo</th>
+            <th>Contrato</th>
+            <th style="text-align:right;">Valor previsto</th>
+            <th>Vigência</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td class="rdp-code">2026-237</td>
+            <td>Serviços de recepção, atendimento ao público, PJe e Libras <em style="font-size:11px;color:#eda100;">(valor ajustado)</em></td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 197.666.262,72</td>
+            <td class="vig-cell">ago/26 – ago/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>2</td><td class="rdp-code">2026-239</td>
+            <td>Consultor Individual — Redação: produção de gêneros textuais diversos</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-092/2023</td>
+            <td class="val-cell">R$ 43.168,50</td>
+            <td class="vig-cell">nov/26 – nov/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>3</td><td class="rdp-code">2026-240</td>
+            <td>Consultor Individual — Criação: estratégias visuais para produção de conteúdo</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-093/2023</td>
+            <td class="val-cell">R$ 37.355,65</td>
+            <td class="vig-cell">nov/26 – nov/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>4</td><td class="rdp-code">2026-241</td>
+            <td>Capacitações nas temáticas em Fiscalização e Gestão de Contratos</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 100.000,00</td>
+            <td class="vig-cell">mar/26 – mar/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>5</td><td class="rdp-code">2026-242</td>
+            <td>Contratação de empresa especializada (serviços especializados)</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 100.000,00</td>
+            <td class="vig-cell">mar/26 – mar/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>6</td><td class="rdp-code">2026-243</td>
+            <td>Solução tecnológica para o gerenciamento de processos</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 249.999,99</td>
+            <td class="vig-cell">ago/26 – ago/29</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>7</td><td class="rdp-code">2026-244</td>
+            <td>Serviço de Profissionais Estatísticos (CT-025/2022) <em style="font-size:11px;color:#eda100;">(convertido em aditivo)</em></td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-025/2022</td>
+            <td class="val-cell">R$ 4.631.250,00</td>
+            <td class="vig-cell">abr/26 – mai/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>8</td><td class="rdp-code">2026-245</td>
+            <td>Ferramenta de Software — LGPD</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-030/2024</td>
+            <td class="val-cell">R$ 192.000,00</td>
+            <td class="vig-cell">jul/26 – jul/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>9</td><td class="rdp-code">2026-246</td>
+            <td>Gerenciamento de projetos e gestão de processos <em style="font-size:11px;color:#eda100;">(valor ajustado)</em></td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 6.178.813,44</td>
+            <td class="vig-cell">2026 – 2029</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>10</td><td class="rdp-code">2026-247</td>
+            <td>Consultor Individual — Elaborar e aprimorar materiais gráficos e visuais</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-044/2025</td>
+            <td class="val-cell">R$ 35.518,54</td>
+            <td class="vig-cell">out/26 – out/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>11</td><td class="rdp-code">2026-316</td>
+            <td>Pesquisa de Satisfação</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 233.601,06</td>
+            <td class="vig-cell">jul/26 – dez/26</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>12</td><td class="rdp-code">2026-331</td>
+            <td>Comemorações: 5º ciclo do Programa de Relacionamento</td>
+            <td><span class="pill pill-nc" style="background:#F5F0FF;color:#4A0C7C;">Não contratual</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 39.531,38</td>
+            <td class="vig-cell">mar/26 – jun/26</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>13</td><td class="rdp-code">2026-372</td>
+            <td>Solução para enfrentar diversos desafios organizacionais</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 90.000,00</td>
+            <td class="vig-cell">mai/26 – set/26</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>14</td><td class="rdp-code">2026-238</td>
+            <td>Consultor Individual — Redação: produção de gêneros textuais diversos</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-091/2023</td>
+            <td class="val-cell">R$ 43.168,50</td>
+            <td class="vig-cell">nov/26 – nov/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>15</td><td class="rdp-code">2026-545</td>
+            <td>Inclusão de despesa no PAC — Aditivo de valor (CT-032/2025)</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-032/2025</td>
+            <td class="val-cell">R$ 1.713.728,17</td>
+            <td class="vig-cell">jan/26 – ago/26</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>16</td><td class="rdp-code">2026-589</td>
+            <td>Prorrogação contratual — Inclusão de aditivo de prazo (CT-032/2025)</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-032/2025</td>
+            <td class="val-cell">R$ 0,00</td>
+            <td class="vig-cell">ago/26 – set/26</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>17</td><td class="rdp-code">2026-599</td>
+            <td>Obra literária em cordel — "Conexões que Transformam: 30 anos do Telejustiça" <em style="font-size:11px;color:#2a78d6;">(novo)</em></td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 9.230,00</td>
+            <td class="vig-cell">2026</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr class="canceled">
+            <td>—</td><td class="rdp-code">2026-248</td>
+            <td>Gestão de Processos - BPM (incorporado ao RDP-246)</td>
+            <td><span class="pill pill-cancel">Cancelado</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 2.600.000,00</td>
+            <td class="vig-cell">—</td>
+            <td><span class="pill pill-cancel">Cancelado</span></td>
+          </tr>
+          <tr class="canceled">
+            <td>—</td><td class="rdp-code">2026-492</td>
+            <td>Programa para Gerenciamento de Projetos</td>
+            <td><span class="pill pill-cancel">Cancelado</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 50.000,00</td>
+            <td class="vig-cell">—</td>
+            <td><span class="pill pill-cancel">Cancelado</span></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="5" style="text-align:right; color:#555; font-size:12px;">Subtotal — ativos (17 RDPs)</td>
+            <td class="val-cell" style="color:#0C2D5E;">R$ 211.363.627,95</td>
+            <td colspan="2"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TABELA RDPs 2027 -->
+  <div class="section-label">&#9632; RDPs 2027 — PAC-SEGOV-2027-13</div>
+  <div class="table-card">
+    <div class="table-header">
+      <div class="table-title">Relação de RDPs — Exercício 2027</div>
+      <div class="pill-legend">
+        <span class="pill pill-nova">Nova contratação</span>
+        <span class="pill pill-aditivo">Aditivo contratual</span>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>RDP</th>
+            <th>Título da demanda</th>
+            <th>Tipo</th>
+            <th>Contrato</th>
+            <th style="text-align:right;">Valor previsto</th>
+            <th>Vigência</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td class="rdp-code">2027-441</td>
+            <td>Ferramenta de Software — LGPD</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-030/2024</td>
+            <td class="val-cell">R$ 192.000,00</td>
+            <td class="vig-cell">jul/24 – jul/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>2</td><td class="rdp-code">2027-442</td>
+            <td>Consultor Individual — Produção de gêneros textuais diversos</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-091/2023</td>
+            <td class="val-cell">R$ 43.168,50</td>
+            <td class="vig-cell">nov/27 – nov/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>3</td><td class="rdp-code">2027-443</td>
+            <td>Consultor Individual — Redação: gêneros textuais diversos</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-092/2023</td>
+            <td class="val-cell">R$ 43.168,50</td>
+            <td class="vig-cell">nov/27 – nov/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>4</td><td class="rdp-code">2027-445</td>
+            <td>Consultor Individual — Criação: estratégias visuais para produção de conteúdo</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-093/2023</td>
+            <td class="val-cell">R$ 37.355,65</td>
+            <td class="vig-cell">nov/27 – nov/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>5</td><td class="rdp-code">2027-447</td>
+            <td>Consultor Individual — Elaborar e aprimorar materiais gráficos e visuais</td>
+            <td><span class="pill pill-aditivo">Aditivo</span></td>
+            <td class="rdp-code">CT-044/2025</td>
+            <td class="val-cell">R$ 37.355,65</td>
+            <td class="vig-cell">out/27 – out/28</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>6</td><td class="rdp-code">2027-448</td>
+            <td>Serviço de Profissionais Estatísticos</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 9.262.500,00</td>
+            <td class="vig-cell">mai/27 – mai/29</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>7</td><td class="rdp-code">2027-449</td>
+            <td>Gerenciamento de projetos</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 4.527.095,02</td>
+            <td class="vig-cell">nov/27 – nov/29</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>8</td><td class="rdp-code">2027-450</td>
+            <td>Pesquisa de Satisfação</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 233.601,06</td>
+            <td class="vig-cell">jul/27 – dez/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr>
+            <td>9</td><td class="rdp-code">2027-454</td>
+            <td>Capacitações em Fiscalização e Gestão de Contratos</td>
+            <td><span class="pill pill-nova">Nova</span></td>
+            <td class="rdp-code">—</td>
+            <td class="val-cell">R$ 100.000,00</td>
+            <td class="vig-cell">mar/27 – dez/27</td>
+            <td><span class="pill pill-ok">Aprovado</span></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="5" style="text-align:right; color:#555; font-size:12px;">Subtotal — aditivos (5 RDPs)</td>
+            <td class="val-cell" style="color:#1baf7a;">R$ 353.048,30</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="5" style="text-align:right; color:#555; font-size:12px;">Subtotal — novas contratações (4 RDPs)</td>
+            <td class="val-cell" style="color:#2a78d6;">R$ 14.123.196,08</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr class="grand-total">
+            <td colspan="5" style="text-align:right; font-size:13px;">Total 2027 (9 RDPs)</td>
+            <td class="val-cell" style="font-size:14px;">R$ 14.476.244,38</td>
+            <td colspan="2"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Gerência de Governança — SEGOV / Escritório Corporativo de Projetos — ECP &nbsp;·&nbsp; Tribunal de Justiça do Estado do Ceará — TJCE &nbsp;·&nbsp; Dados: Sistema Savia/PAC &nbsp;·&nbsp; Atualizado em ago/2026
+  </footer>
+
+</main>
+</body>
+</html>
