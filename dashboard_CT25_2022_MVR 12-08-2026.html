@@ -8,158 +8,141 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy:    #002d5a;
-      --navy2:   #003a74;
-      --gold:    #c8a84b;
-      --teal:    #1d9e75;
-      --teal-l:  #e1f5ee;
-      --teal-b:  #9fe1cb;
-      --blue:    #1a6fba;
-      --blue-l:  #e6f1fb;
-      --blue-b:  #b5d4f4;
-      --amber:   #ba7517;
-      --amber-l: #faeeda;
-      --amber-b: #fac775;
-      --red:     #a32d2d;
-      --red-l:   #fcebeb;
-      --red-d:   #791f1f;
-      --g-text:  #3b6d11;
-      --g-l:     #eaf3de;
-      --purple:  #5b3fa0;
-      --purple-l:#ede8f9;
-      --gray:    #6b7280;
-      --border:  #dde3ea;
-      --bg:      #f0f3f7;
-      --card:    #ffffff;
-      --text:    #1a1e26;
-      --text2:   #6b7280;
-      --mono:    'Courier New', monospace;
-      --sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --r:       10px; --r2: 6px;
-      --sh:      0 1px 6px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+      --navy:#002d5a; --navy2:#003a74; --gold:#c8a84b;
+      --teal:#1d9e75; --teal-l:#e1f5ee; --teal-b:#9fe1cb;
+      --blue:#1a6fba; --blue-l:#e6f1fb; --blue-b:#b5d4f4;
+      --amber:#ba7517; --amber-l:#faeeda; --amber-b:#fac775;
+      --red:#a32d2d; --red-l:#fcebeb; --red-d:#791f1f;
+      --g-text:#3b6d11; --g-l:#eaf3de;
+      --purple:#5b3fa0; --purple-l:#ede8f9;
+      --border:#dde3ea; --bg:#f0f3f7; --card:#ffffff;
+      --text:#1a1e26; --text2:#6b7280;
+      --mono:'Courier New',monospace;
+      --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      --r:10px; --r2:6px;
+      --sh:0 1px 6px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);
     }
-    body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--text); min-height:100vh; }
 
-    /* HEADER */
-    .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%); border-bottom: 3px solid var(--gold); }
-    .header-inner { max-width: 1200px; margin: 0 auto; padding: 20px 24px 18px; display: flex; align-items: center; gap: 18px; }
-    .logo-box { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--r2); padding: 8px 14px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .logo-text strong { font-size: 16px; color: #fff; display: block; letter-spacing: 0.04em; }
-    .logo-text span   { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
-    .header-body { flex: 1; }
-    .header-body h1 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 3px; }
-    .header-body p  { font-size: 12px; color: rgba(255,255,255,0.65); }
-    .header-meta { text-align: right; flex-shrink: 0; }
-    .header-meta .tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; font-size: 10px; color: rgba(255,255,255,0.7); padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
-    .header-meta .updated { font-size: 11px; color: rgba(255,255,255,0.5); display: block; }
+    .page-header { background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%); border-bottom:3px solid var(--gold); }
+    .header-inner { max-width:1200px; margin:0 auto; padding:20px 24px 18px; display:flex; align-items:center; gap:18px; }
+    .logo-box { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:var(--r2); padding:8px 14px; display:flex; align-items:center; gap:10px; flex-shrink:0; }
+    .logo-text strong { font-size:16px; color:#fff; display:block; letter-spacing:0.04em; }
+    .logo-text span { font-size:9px; color:rgba(255,255,255,0.6); letter-spacing:0.08em; text-transform:uppercase; }
+    .header-body { flex:1; }
+    .header-body h1 { font-size:18px; font-weight:600; color:#fff; margin-bottom:3px; }
+    .header-body p { font-size:12px; color:rgba(255,255,255,0.65); }
+    .header-meta { text-align:right; flex-shrink:0; }
+    .header-meta .tag { display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:4px; font-size:10px; color:rgba(255,255,255,0.7); padding:2px 8px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+    .header-meta .updated { font-size:11px; color:rgba(255,255,255,0.5); display:block; }
 
-    /* BANNER */
-    .update-banner { background: #fffbea; border-left: 4px solid var(--gold); max-width: 1200px; margin: 18px auto 0; border-radius: 0 var(--r2) var(--r2) 0; padding: 10px 16px; font-size: 12px; color: #5a4200; }
-    .update-banner strong { font-weight: 700; }
+    .update-banner { background:#fffbea; border-left:4px solid var(--gold); max-width:1200px; margin:18px auto 0; border-radius:0 var(--r2) var(--r2) 0; padding:10px 16px; font-size:12px; color:#5a4200; }
+    .update-banner strong { font-weight:700; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px 20px 48px; }
+    .container { max-width:1200px; margin:0 auto; padding:20px 20px 48px; }
 
-    /* AUTH BAR */
-    .auth-bar { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--r); padding: 10px 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; font-size: 11px; color: var(--text2); box-shadow: var(--sh); }
-    .auth-bar span strong { color: var(--text); font-weight: 600; }
-    .auth-sep { color: var(--border); }
+    .auth-bar { background:var(--card); border:0.5px solid var(--border); border-radius:var(--r); padding:10px 16px; display:flex; gap:20px; flex-wrap:wrap; align-items:center; margin-bottom:18px; font-size:11px; color:var(--text2); box-shadow:var(--sh); }
+    .auth-bar span strong { color:var(--text); font-weight:600; }
+    .auth-sep { color:var(--border); }
 
-    /* KPI GRID */
-    .kpi-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-bottom: 18px; }
-    .kpi { background: var(--card); border-radius: var(--r); padding: 14px 16px; box-shadow: var(--sh); border-top: 3px solid var(--border); }
-    .kpi.k-blue   { border-top-color: var(--blue); }
-    .kpi.k-teal   { border-top-color: var(--teal); }
-    .kpi.k-amber  { border-top-color: var(--amber); }
-    .kpi.k-navy   { border-top-color: var(--navy); }
-    .kpi.k-purple { border-top-color: var(--purple); }
-    .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 6px; }
-    .kpi-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.1; }
-    .kpi.k-blue   .kpi-value { color: var(--blue); }
-    .kpi.k-teal   .kpi-value { color: var(--teal); }
-    .kpi.k-amber  .kpi-value { color: var(--amber); }
-    .kpi.k-navy   .kpi-value { color: var(--navy); }
-    .kpi.k-purple .kpi-value { color: var(--purple); }
-    .kpi-sub { font-size: 10px; color: var(--text2); margin-top: 4px; font-style: italic; }
+    .kpi-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:18px; }
+    .kpi { background:var(--card); border-radius:var(--r); padding:14px 16px; box-shadow:var(--sh); border-top:3px solid var(--border); }
+    .kpi.k-blue   { border-top-color:var(--blue); }
+    .kpi.k-teal   { border-top-color:var(--teal); }
+    .kpi.k-amber  { border-top-color:var(--amber); }
+    .kpi.k-navy   { border-top-color:var(--navy); }
+    .kpi.k-purple { border-top-color:var(--purple); }
+    .kpi-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text2); margin-bottom:6px; }
+    .kpi-value { font-size:18px; font-weight:700; line-height:1.1; }
+    .kpi.k-blue   .kpi-value { color:var(--blue); }
+    .kpi.k-teal   .kpi-value { color:var(--teal); }
+    .kpi.k-amber  .kpi-value { color:var(--amber); }
+    .kpi.k-navy   .kpi-value { color:var(--navy); }
+    .kpi.k-purple .kpi-value { color:var(--purple); }
+    .kpi-sub { font-size:10px; color:var(--text2); margin-top:4px; font-style:italic; }
 
-    /* POSIÇÃO */
-    .pos-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; margin-bottom: 18px; }
-    .pos-card { background: var(--card); border-radius: var(--r); padding: 12px 14px; box-shadow: var(--sh); }
-    .pos-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); margin-bottom: 5px; }
-    .pos-value { font-size: 15px; font-weight: 700; }
-    .pos-value.green  { color: var(--teal); }
-    .pos-value.amber  { color: var(--amber); }
-    .pos-value.navy   { color: var(--navy); }
-    .pos-value.purple { color: var(--purple); }
-    .pos-value.gray   { color: var(--text2); }
-    .pos-sub { font-size: 10px; color: var(--text2); margin-top: 3px; }
+    .pos-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin-bottom:18px; }
+    .pos-card { background:var(--card); border-radius:var(--r); padding:12px 14px; box-shadow:var(--sh); }
+    .pos-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text2); margin-bottom:5px; }
+    .pos-value { font-size:15px; font-weight:700; }
+    .pos-value.green  { color:var(--teal); }
+    .pos-value.amber  { color:var(--amber); }
+    .pos-value.navy   { color:var(--navy); }
+    .pos-value.purple { color:var(--purple); }
+    .pos-sub { font-size:10px; color:var(--text2); margin-top:3px; }
 
-    /* TERMÔMETRO */
-    .thermo-card { background: var(--card); border-radius: var(--r); padding: 18px 20px; box-shadow: var(--sh); margin-bottom: 18px; }
-    .thermo-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text2); margin-bottom: 16px; }
-    .thermo-row { margin-bottom: 16px; }
-    .thermo-row:last-child { margin-bottom: 0; }
-    .thermo-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .thermo-meta .tlabel { font-size: 12px; color: var(--text2); }
-    .thermo-meta .tpct   { font-size: 17px; font-weight: 700; }
-    .bar-bg   { background: #e9ecef; border-radius: 6px; height: 10px; overflow: hidden; }
-    .bar-fill { height: 10px; border-radius: 6px; }
-    .bar-fill.c-navy   { background: var(--navy); }
-    .bar-fill.c-teal   { background: var(--teal); }
-    .bar-fill.c-amber  { background: var(--amber); }
-    .bar-fill.c-purple { background: var(--purple); }
-    .thermo-legend { display: flex; gap: 18px; margin-top: 7px; flex-wrap: wrap; }
-    .tleg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text2); }
-    .tleg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .thermo-card { background:var(--card); border-radius:var(--r); padding:18px 20px; box-shadow:var(--sh); margin-bottom:18px; }
+    .thermo-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--text2); margin-bottom:16px; }
+    .thermo-row { margin-bottom:16px; }
+    .thermo-row:last-child { margin-bottom:0; }
+    .thermo-meta { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+    .thermo-meta .tlabel { font-size:12px; color:var(--text2); }
+    .thermo-meta .tpct { font-size:17px; font-weight:700; }
+    .bar-bg { background:#e9ecef; border-radius:6px; height:10px; overflow:hidden; }
+    .bar-fill { height:10px; border-radius:6px; }
+    .bar-fill.c-navy   { background:var(--navy); }
+    .bar-fill.c-teal   { background:var(--teal); }
+    .bar-fill.c-amber  { background:var(--amber); }
+    .bar-fill.c-purple { background:var(--purple); }
+    .thermo-legend { display:flex; gap:18px; margin-top:7px; flex-wrap:wrap; }
+    .tleg { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text2); }
+    .tleg-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
 
-    /* SEÇÕES TABELA */
-    .tbl-section { background: var(--card); border-radius: var(--r); box-shadow: var(--sh); margin-bottom: 18px; overflow: hidden; }
-    .tbl-section-header { background: #1a3a5c; padding: 12px 20px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-    .tbl-section-header.purple-hd { background: #3d2a6e; }
-    .tbl-section-header h2 { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
-    .tbl-section-header .sub { font-size: 11px; color: rgba(255,255,255,0.6); }
-    .tbl-inner { padding: 0 0 4px; }
+    .tbl-section { background:var(--card); border-radius:var(--r); box-shadow:var(--sh); margin-bottom:18px; overflow:hidden; }
+    .tbl-section-header { background:#1a3a5c; padding:12px 20px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+    .tbl-section-header.purple-hd { background:#3d2a6e; }
+    .tbl-section-header h2 { font-size:13px; font-weight:700; color:#fff; letter-spacing:0.04em; }
+    .tbl-section-header .sub { font-size:11px; color:rgba(255,255,255,0.6); }
+    .tbl-inner { padding:0 0 4px; }
 
-    /* TABELAS */
-    table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    thead th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); padding: 8px 14px; border-bottom: 1.5px solid var(--border); text-align: left; background: #f7f9fb; }
-    thead th.r { text-align: right; }
-    tbody td { padding: 10px 14px; border-bottom: 0.5px solid var(--border); vertical-align: middle; color: var(--text); }
-    tbody td.r { text-align: right; }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr.zero td { color: var(--text2); }
-    tbody tr.anulacao { background: #fff5f5; }
-    tbody tr.andamento { background: #fffdf5; }
-    tbody tr.fermoju { background: #f5f0fd; }
-    tbody tr.total-row td { border-top: 2px solid #c0c7d0; border-bottom: none; font-weight: 700; padding-top: 11px; background: #f7f9fb; }
+    table { width:100%; border-collapse:collapse; font-size:12px; }
+    thead th { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text2); padding:8px 12px; border-bottom:1.5px solid var(--border); text-align:left; background:#f7f9fb; }
+    thead th.r { text-align:right; }
+    tbody td { padding:9px 12px; border-bottom:0.5px solid var(--border); vertical-align:middle; color:var(--text); font-size:12px; }
+    tbody td.r { text-align:right; }
+    tbody tr:last-child td { border-bottom:none; }
+    tbody tr.zero td { color:var(--text2); }
+    tbody tr.anulacao { background:#fff5f5; }
+    tbody tr.andamento { background:#fffdf5; }
+    tbody tr.andamento-purple { background:#f9f7fd; }
+    tbody tr.sem-pgto { background:#f9f7fd; }
+    tbody tr.total-row td { border-top:2px solid #c0c7d0; border-bottom:none; font-weight:700; padding-top:11px; background:#f7f9fb; }
 
-    /* BADGES */
-    .b { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
-    .b-blue   { background: var(--blue-l);   color: #0c447c; }
-    .b-amber  { background: var(--amber-l);  color: #633806; }
-    .b-purple { background: var(--purple-l); color: var(--purple); }
-    .b-red    { background: var(--red-l);    color: var(--red-d); font-family: var(--mono); }
-    .b-green  { background: var(--g-l);      color: var(--g-text); font-family: var(--mono); }
-    .b-gray   { background: #f0f1f3; color: var(--text2); font-family: var(--mono); font-size: 10px; }
-    .ug-pill  { display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 600; margin-left: 4px; vertical-align: middle; }
-    .ug-cont  { background: #e6f1fb; color: #0c447c; }
-    .ug-ferm  { background: var(--purple-l); color: var(--purple); }
-    .anulado-pill { background: var(--red-l); color: var(--red-d); font-size: 10px; padding: 1px 6px; border-radius: 3px; display: inline-block; margin-top: 3px; }
-    .status-pago      { color: var(--teal);   font-weight: 700; font-size: 11px; }
-    .status-andamento { color: var(--amber);  font-weight: 700; font-size: 11px; }
-    .saldo-pos  { color: var(--teal);  font-weight: 700; }
-    .saldo-zero { color: var(--text2); }
+    .saldo-footer { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:14px 14px 10px; border-top:1.5px solid var(--border); background:#f7f9fb; }
+    .saldo-footer.two-col { grid-template-columns:repeat(2,1fr); }
+    .sf-item { background:var(--card); border-radius:var(--r2); padding:10px 12px; border:0.5px solid var(--border); }
+    .sf-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--text2); margin-bottom:4px; }
+    .sf-value { font-size:15px; font-weight:700; }
+    .sf-value.green  { color:var(--teal); }
+    .sf-value.amber  { color:var(--amber); }
+    .sf-value.purple { color:var(--purple); }
+    .sf-sub { font-size:10px; color:var(--text2); margin-top:3px; }
 
-    /* GRÁFICOS */
-    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-    .chart-card { background: var(--card); border-radius: var(--r); padding: 16px 18px; box-shadow: var(--sh); }
-    .chart-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 14px; }
-    .chart-wrap { position: relative; height: 220px; }
+    .b { display:inline-block; font-size:10px; padding:2px 8px; border-radius:4px; font-weight:600; white-space:nowrap; }
+    .b-blue   { background:var(--blue-l);   color:#0c447c; }
+    .b-amber  { background:var(--amber-l);  color:#633806; }
+    .b-purple { background:var(--purple-l); color:var(--purple); }
+    .b-red    { background:var(--red-l);    color:var(--red-d); font-family:var(--mono); }
+    .b-green  { background:var(--g-l);      color:var(--g-text); font-family:var(--mono); }
+    .b-gray   { background:#f0f1f3; color:var(--text2); font-family:var(--mono); font-size:10px; }
+    .b-navy   { background:#e8edf4; color:var(--navy); font-family:var(--mono); }
+    .status-pago      { color:var(--teal);   font-weight:700; font-size:11px; }
+    .status-andamento { color:var(--amber);  font-weight:700; font-size:11px; }
+    .status-andamento-p { color:var(--purple); font-weight:700; font-size:11px; }
+    .status-aguarda   { color:var(--purple); font-weight:700; font-size:11px; }
+    .saldo-pos  { color:var(--teal);  font-weight:700; }
+    .saldo-warn { color:var(--amber); font-weight:700; }
 
-    .page-footer { text-align: center; font-size: 11px; color: var(--text2); margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--border); }
+    .charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+    .chart-card { background:var(--card); border-radius:var(--r); padding:16px 18px; box-shadow:var(--sh); }
+    .chart-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text2); margin-bottom:14px; }
+    .chart-wrap { position:relative; height:220px; }
 
-    @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } .pos-grid { grid-template-columns: repeat(3,1fr); } .charts-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .header-inner { flex-wrap: wrap; } .kpi-grid, .pos-grid { grid-template-columns: repeat(2,1fr); } }
-    @media print { body { background:#fff; } .page-header, .tbl-section-header { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+    .page-footer { text-align:center; font-size:11px; color:var(--text2); margin-top:10px; padding-top:10px; border-top:0.5px solid var(--border); }
+
+    @media(max-width:900px){ .kpi-grid{grid-template-columns:repeat(2,1fr);} .pos-grid{grid-template-columns:repeat(3,1fr);} .charts-grid{grid-template-columns:1fr;} .saldo-footer{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:600px){ .header-inner{flex-wrap:wrap;} .kpi-grid,.pos-grid{grid-template-columns:repeat(2,1fr);} }
+    @media print { body{background:#fff;} .page-header,.tbl-section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
   </style>
 </head>
 <body>
@@ -186,11 +169,8 @@
 </header>
 
 <div class="update-banner">
-  <strong>Agosto/2026:</strong> Incluídos três novos empenhos:
-  2026NE000888 — R$ 369.568,50 (UG 040001 · Contrapartida, 20/07/2026);
-  2026NE001026 — R$ 484.151,50 (UG 040101 · Fermoju, 16/07/2026);
-  2026NE001122 — R$ 385.937,50 (UG 040101 · Fermoju, 05/08/2026).
-  Pagamentos de jun/jul em andamento.
+  <strong>Agosto/2026:</strong> Pagamento de Julho/2026 (Proc. 8521630-51.2026.8.06.0000 — R$ 386.072,34)
+  deslocado para Fermoju, vinculado à NE001026. Pagamentos de jun/jul em andamento.
 </div>
 
 <div class="container">
@@ -205,41 +185,39 @@
     <span><strong>Fermoju (UG 040101):</strong> R$ 2.513.250,00</span>
   </div>
 
-  <!-- KPIs -->
   <div class="kpi-grid">
     <div class="kpi k-navy">
-      <p class="kpi-label">Total Empenhado (Contrapartida)</p>
+      <p class="kpi-label">Empenhado — Contrapartida</p>
       <p class="kpi-value">R$ 2.062.925,83</p>
-      <p class="kpi-sub">97,40% do teto — saldo: R$ 55.074,17</p>
+      <p class="kpi-sub">97,40% do teto · saldo: R$ 55.074,17</p>
     </div>
     <div class="kpi k-purple">
-      <p class="kpi-label">Total Empenhado (Fermoju)</p>
+      <p class="kpi-label">Empenhado — Fermoju</p>
       <p class="kpi-value">R$ 870.089,00</p>
-      <p class="kpi-sub">34,61% do teto — saldo: R$ 1.643.161,00</p>
+      <p class="kpi-sub">34,61% do teto · saldo: R$ 1.643.161,00</p>
     </div>
     <div class="kpi k-teal">
-      <p class="kpi-label">Total Pago</p>
+      <p class="kpi-label">Total Pago (Contrapartida)</p>
       <p class="kpi-value">R$ 1.683.521,34</p>
       <p class="kpi-sub">5 pagamentos efetivados (jan–mai)</p>
     </div>
     <div class="kpi k-amber">
       <p class="kpi-label">Em Andamento</p>
       <p class="kpi-value">R$ 753.218,28</p>
-      <p class="kpi-sub">Jun/26 + Jul/26 em tramitação</p>
+      <p class="kpi-sub">Jun/26 (Contrapartida) + Jul/26 (Fermoju)</p>
     </div>
   </div>
 
-  <!-- POSIÇÃO ATUAL -->
   <div class="pos-grid">
     <div class="pos-card">
-      <p class="pos-label">Empenhado Total (líquido)</p>
+      <p class="pos-label">Total empenhado (líquido)</p>
       <p class="pos-value navy">R$ 2.933.014,83</p>
       <p class="pos-sub">Contrapartida + Fermoju</p>
     </div>
     <div class="pos-card">
       <p class="pos-label">Saldo Contrapartida</p>
       <p class="pos-value amber">R$ 55.074,17</p>
-      <p class="pos-sub">2,60% do teto disponível</p>
+      <p class="pos-sub">⚠ 2,60% do teto — atenção!</p>
     </div>
     <div class="pos-card">
       <p class="pos-label">Saldo Fermoju</p>
@@ -247,18 +225,17 @@
       <p class="pos-sub">65,39% do teto disponível</p>
     </div>
     <div class="pos-card">
-      <p class="pos-label">% Pago / Empenhado</p>
+      <p class="pos-label">% Pago / Empenhado total</p>
       <p class="pos-value green">81,43%</p>
       <p class="pos-sub">Sobre total líquido empenhado</p>
     </div>
     <div class="pos-card">
-      <p class="pos-label">Saldo s/ Empenhos</p>
+      <p class="pos-label">Saldo s/ NEs (jan–mai)</p>
       <p class="pos-value amber">R$ 9.836,00</p>
       <p class="pos-sub">Empenhos jan–mai − Pago</p>
     </div>
   </div>
 
-  <!-- TERMÔMETRO -->
   <div class="thermo-card">
     <p class="thermo-title">Termômetro de Execução</p>
     <div class="thermo-row">
@@ -285,13 +262,13 @@
     </div>
     <div class="thermo-row">
       <div class="thermo-meta">
-        <span class="tlabel">Pagamentos × Total empenhado (jan–mai)</span>
+        <span class="tlabel">Pagamentos × Total empenhado (jan–mai · Contrapartida)</span>
         <span class="tpct" style="color:var(--teal);">99,42%</span>
       </div>
       <div class="bar-bg"><div class="bar-fill c-teal" style="width:99.42%;"></div></div>
       <div class="thermo-legend">
         <span class="tleg"><span class="tleg-dot" style="background:var(--teal);"></span>Pago — R$ 1.683.521,34</span>
-        <span class="tleg"><span class="tleg-dot" style="background:#e0e4ea;"></span>Saldo s/ empenho — R$ 9.836,00</span>
+        <span class="tleg"><span class="tleg-dot" style="background:#e0e4ea;"></span>Saldo s/ NEs — R$ 9.836,00</span>
       </div>
     </div>
     <div class="thermo-row">
@@ -307,7 +284,7 @@
     </div>
   </div>
 
-  <!-- EMPENHOS: CONTRAPARTIDA -->
+  <!-- EMPENHOS CONTRAPARTIDA -->
   <div class="tbl-section">
     <div class="tbl-section-header">
       <h2>Empenhos 2026 — Contrapartida</h2>
@@ -315,54 +292,42 @@
     </div>
     <div class="tbl-inner">
       <table>
-        <colgroup><col style="width:5%"><col style="width:18%"><col style="width:22%"><col style="width:22%"><col style="width:33%"></colgroup>
-        <thead>
-          <tr><th>#</th><th>Mês / NE</th><th class="r">Valor (R$)</th><th class="r">Acumulado (R$)</th><th>Observação</th></tr>
-        </thead>
+        <colgroup><col style="width:5%"><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:35%"></colgroup>
+        <thead><tr><th>#</th><th>Mês / NE</th><th class="r">Valor (R$)</th><th class="r">Acumulado (R$)</th><th>Observação</th></tr></thead>
         <tbody>
           <tr class="zero"><td>—</td><td>Janeiro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;color:var(--text2);">Sem empenho previsto</td></tr>
           <tr>
             <td style="font-weight:700;color:var(--navy);">1</td>
-            <td>Fevereiro/2026<br><span class="b b-green" style="margin-top:3px;display:inline-block;">NE000277</span></td>
-            <td class="r" style="font-weight:600;">R$ 1.108.705,50</td>
-            <td class="r">R$ 1.108.705,50</td>
+            <td>Fevereiro/2026<br><span class="b b-navy" style="margin-top:3px;display:inline-block;">NE000277</span></td>
+            <td class="r" style="font-weight:600;">R$ 1.108.705,50</td><td class="r">R$ 1.108.705,50</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 24/02/2026 · UG 040001</td>
           </tr>
           <tr>
             <td style="font-weight:700;color:var(--navy);">2</td>
-            <td>Março/2026<br><span class="b b-green" style="margin-top:3px;display:inline-block;">NE000501</span></td>
-            <td class="r" style="font-weight:600;">R$ 369.568,50</td>
-            <td class="r">R$ 1.478.274,00</td>
+            <td>Março/2026<br><span class="b b-navy" style="margin-top:3px;display:inline-block;">NE000501</span></td>
+            <td class="r" style="font-weight:600;">R$ 369.568,50</td><td class="r">R$ 1.478.274,00</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 17/04/2026 · UG 040001</td>
           </tr>
           <tr class="anulacao">
             <td style="color:var(--red);font-weight:700;">—</td>
             <td>Maio/2026<br><span class="b b-red" style="margin-top:3px;display:inline-block;">NE000609</span></td>
-            <td class="r" style="color:var(--red);font-weight:700;">− R$ 154.485,17</td>
-            <td class="r">R$ 1.323.788,83</td>
+            <td class="r" style="color:var(--red);font-weight:700;">− R$ 154.485,17</td><td class="r">R$ 1.323.788,83</td>
             <td style="font-size:11px;color:var(--red-d);">Anulação parcial de NE000277 · UG 040001</td>
           </tr>
           <tr>
             <td style="font-weight:700;color:var(--navy);">3</td>
-            <td>Abril/2026<br><span class="b b-green" style="margin-top:3px;display:inline-block;">NE000587</span></td>
-            <td class="r" style="font-weight:600;">R$ 369.568,50</td>
-            <td class="r">R$ 1.693.357,33</td>
+            <td>Abril/2026<br><span class="b b-navy" style="margin-top:3px;display:inline-block;">NE000587</span></td>
+            <td class="r" style="font-weight:600;">R$ 369.568,50</td><td class="r">R$ 1.693.357,33</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 02/06/2026 · UG 040001</td>
           </tr>
           <tr>
             <td style="font-weight:700;color:var(--navy);">4</td>
-            <td>Julho/2026<br><span class="b b-green" style="margin-top:3px;display:inline-block;">NE000888</span></td>
-            <td class="r" style="font-weight:600;">R$ 369.568,50</td>
-            <td class="r">R$ 2.062.925,83</td>
+            <td>Julho/2026<br><span class="b b-navy" style="margin-top:3px;display:inline-block;">NE000888</span></td>
+            <td class="r" style="font-weight:600;">R$ 369.568,50</td><td class="r">R$ 2.062.925,83</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 20/07/2026 · UG 040001</td>
           </tr>
-          <tr class="zero"><td>—</td><td>Agosto/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho realizado</td></tr>
-          <tr class="zero"><td>—</td><td>Setembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
-          <tr class="zero"><td>—</td><td>Outubro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
-          <tr class="zero"><td>—</td><td>Novembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
-          <tr class="zero"><td>—</td><td>Dezembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
           <tr class="total-row">
-            <td colspan="2">TOTAL EMPENHADO — CONTRAPARTIDA (LÍQUIDO)</td>
+            <td colspan="2">TOTAL (LÍQUIDO)</td>
             <td class="r" style="color:var(--teal);">R$ 2.062.925,83</td>
             <td class="r" style="color:var(--teal);">R$ 2.062.925,83</td>
             <td style="font-size:11px;color:var(--text2);">Saldo teto: R$ 55.074,17</td>
@@ -372,7 +337,7 @@
     </div>
   </div>
 
-  <!-- EMPENHOS: FERMOJU -->
+  <!-- EMPENHOS FERMOJU -->
   <div class="tbl-section">
     <div class="tbl-section-header purple-hd">
       <h2>Empenhos 2026 — Fermoju</h2>
@@ -380,31 +345,23 @@
     </div>
     <div class="tbl-inner">
       <table>
-        <colgroup><col style="width:5%"><col style="width:18%"><col style="width:22%"><col style="width:22%"><col style="width:33%"></colgroup>
-        <thead>
-          <tr><th>#</th><th>Mês / NE</th><th class="r">Valor (R$)</th><th class="r">Acumulado (R$)</th><th>Observação</th></tr>
-        </thead>
+        <colgroup><col style="width:5%"><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:35%"></colgroup>
+        <thead><tr><th>#</th><th>Mês / NE</th><th class="r">Valor (R$)</th><th class="r">Acumulado (R$)</th><th>Observação</th></tr></thead>
         <tbody>
           <tr>
             <td style="font-weight:700;color:var(--purple);">1</td>
             <td>Julho/2026<br><span class="b b-purple" style="margin-top:3px;display:inline-block;">NE001026</span></td>
-            <td class="r" style="font-weight:600;">R$ 484.151,50</td>
-            <td class="r">R$ 484.151,50</td>
+            <td class="r" style="font-weight:600;">R$ 484.151,50</td><td class="r">R$ 484.151,50</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 16/07/2026 · UG 040101</td>
           </tr>
           <tr>
             <td style="font-weight:700;color:var(--purple);">2</td>
             <td>Agosto/2026<br><span class="b b-purple" style="margin-top:3px;display:inline-block;">NE001122</span></td>
-            <td class="r" style="font-weight:600;">R$ 385.937,50</td>
-            <td class="r">R$ 870.089,00</td>
+            <td class="r" style="font-weight:600;">R$ 385.937,50</td><td class="r">R$ 870.089,00</td>
             <td style="font-size:11px;color:var(--text2);">Emitido em 05/08/2026 · UG 040101</td>
           </tr>
-          <tr class="zero"><td>—</td><td>Setembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho realizado</td></tr>
-          <tr class="zero"><td>—</td><td>Outubro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
-          <tr class="zero"><td>—</td><td>Novembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
-          <tr class="zero"><td>—</td><td>Dezembro/2026</td><td class="r">—</td><td class="r">—</td><td style="font-size:11px;">Sem empenho previsto</td></tr>
           <tr class="total-row">
-            <td colspan="2">TOTAL EMPENHADO — FERMOJU</td>
+            <td colspan="2">TOTAL FERMOJU</td>
             <td class="r" style="color:var(--purple);">R$ 870.089,00</td>
             <td class="r" style="color:var(--purple);">R$ 870.089,00</td>
             <td style="font-size:11px;color:var(--text2);">Saldo teto: R$ 1.643.161,00</td>
@@ -414,17 +371,23 @@
     </div>
   </div>
 
-  <!-- PAGAMENTOS -->
+  <!-- PAGAMENTOS CONTRAPARTIDA -->
   <div class="tbl-section">
     <div class="tbl-section-header">
-      <h2>Pagamentos 2026</h2>
-      <span class="sub">Pagos: R$ 1.683.521,34 (5 efetivados) | Em andamento: R$ 753.218,28 (2 processos)</span>
+      <h2>Pagamentos 2026 — Contrapartida (UG 040001)</h2>
+      <span class="sub">Pagos: R$ 1.683.521,34 (5 efetivados) | Em andamento: R$ 367.145,94</span>
     </div>
     <div class="tbl-inner">
       <table>
-        <colgroup><col style="width:13%"><col style="width:28%"><col style="width:14%"><col style="width:11%"><col style="width:10%"><col style="width:24%"></colgroup>
+        <colgroup>
+          <col style="width:12%"><col style="width:24%"><col style="width:12%">
+          <col style="width:10%"><col style="width:14%"><col style="width:10%"><col style="width:18%">
+        </colgroup>
         <thead>
-          <tr><th>Referência</th><th>Processo</th><th class="r">Valor (R$)</th><th>Data Pgto</th><th>Situação</th><th>Observação</th></tr>
+          <tr>
+            <th>Referência</th><th>Processo</th><th class="r">Valor pago (R$)</th>
+            <th>Data Pgto</th><th>NE vinculada</th><th class="r">Saldo NE</th><th>Situação</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
@@ -432,66 +395,141 @@
             <td><span class="b b-gray">8503555-65.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;">R$ 274.702,02</td>
             <td>11/03/2026</td>
+            <td><span class="b b-navy">NE000277</span><br><span style="font-size:10px;color:var(--text2);">saldo após: R$ 834.003,48</span></td>
+            <td class="r"><span class="saldo-pos" style="font-size:11px;">R$ 834.003,48</span></td>
             <td><span class="status-pago">✔ Pago</span></td>
-            <td style="font-size:11px;color:var(--text2);">Pagamento referente à prestação dos serviços de Janeiro/2026</td>
           </tr>
           <tr>
             <td><span class="b b-blue">Fevereiro/2026</span></td>
             <td><span class="b b-gray">8505706-10.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;">R$ 315.837,82</td>
             <td>16/04/2026</td>
+            <td><span class="b b-navy">NE000277</span><br><span style="font-size:10px;color:var(--text2);">saldo após: R$ 518.165,66</span></td>
+            <td class="r"><span class="saldo-pos" style="font-size:11px;">R$ 518.165,66</span></td>
             <td><span class="status-pago">✔ Pago</span></td>
-            <td style="font-size:11px;color:var(--text2);">Pagamento referente à prestação dos serviços de Fevereiro/2026</td>
           </tr>
           <tr>
             <td><span class="b b-blue">Março/2026</span></td>
             <td><span class="b b-gray">8508887-17.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;">R$ 363.680,49</td>
             <td>16/04/2026</td>
+            <td><span class="b b-navy">NE000277</span><br><span style="font-size:10px;color:var(--text2);">saldo após: R$ 154.485,17 → anulado</span></td>
+            <td class="r"><span style="color:var(--text2);font-size:11px;font-weight:600;">R$ 0,00</span><br><span style="font-size:9px;color:var(--red-d);">anulado (NE000609)</span></td>
             <td><span class="status-pago">✔ Pago</span></td>
-            <td style="font-size:11px;color:var(--text2);">Pagamento referente à prestação dos serviços de Março/2026</td>
           </tr>
           <tr>
             <td><span class="b b-blue">Abril/2026</span></td>
             <td><span class="b b-gray">8512547-46.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;">R$ 365.650,44</td>
             <td>01/06/2026</td>
+            <td><span class="b b-navy">NE000501</span><br><span style="font-size:10px;color:var(--text2);">saldo após: R$ 3.918,06</span></td>
+            <td class="r"><span class="saldo-pos" style="font-size:11px;">R$ 3.918,06</span></td>
             <td><span class="status-pago">✔ Pago</span></td>
-            <td style="font-size:11px;color:var(--text2);">Pagamento referente à prestação dos serviços de Abril/2026</td>
           </tr>
           <tr>
             <td><span class="b b-blue">Maio/2026</span></td>
             <td><span class="b b-gray">8516227-29.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;">R$ 363.650,57</td>
             <td>30/06/2026</td>
+            <td><span class="b b-navy">NE000587</span><br><span style="font-size:10px;color:var(--text2);">saldo após: R$ 5.917,93</span></td>
+            <td class="r"><span class="saldo-pos" style="font-size:11px;">R$ 5.917,93</span></td>
             <td><span class="status-pago">✔ Pago</span></td>
-            <td style="font-size:11px;color:var(--text2);">Pagamento referente à prestação dos serviços de Maio/2026</td>
           </tr>
           <tr class="andamento">
             <td><span class="b b-amber">Junho/2026</span></td>
             <td><span class="b b-gray">8518326-18.2026.8.06.0000</span></td>
             <td class="r" style="font-weight:700;color:var(--amber);">R$ 367.145,94</td>
             <td style="color:var(--text2);">—</td>
-            <td><span class="status-andamento">⧗ Em andamento</span></td>
-            <td style="font-size:11px;color:var(--amber);">Aguardando ajuste da Nota Fiscal</td>
-          </tr>
-          <tr class="andamento">
-            <td><span class="b b-amber">Julho/2026</span></td>
-            <td><span class="b b-gray">8521630-51.2026.8.06.0000</span></td>
-            <td class="r" style="font-weight:700;color:var(--amber);">R$ 386.072,34</td>
-            <td style="color:var(--text2);">—</td>
-            <td><span class="status-andamento">⧗ Em andamento</span></td>
-            <td style="font-size:11px;color:var(--amber);">Em fase de análise da medição</td>
+            <td><span class="b b-navy">NE000888</span><br><span style="font-size:10px;color:var(--text2);">saldo estimado: R$ 2.422,56</span></td>
+            <td class="r"><span class="saldo-warn" style="font-size:11px;">R$ 2.422,56</span></td>
+            <td><span class="status-andamento">⧗ Em andamento</span><br><span style="font-size:10px;color:var(--amber);">Aguardando ajuste NF</span></td>
           </tr>
           <tr class="total-row">
-            <td colspan="2">TOTAL PAGO</td>
+            <td colspan="2">TOTAL PAGO (CONTRAPARTIDA)</td>
             <td class="r" style="color:var(--teal);">R$ 1.683.521,34</td>
-            <td colspan="3" style="font-size:11px;color:var(--text2);font-weight:400;">
-              5 pagamentos efetivados | Em andamento: R$ 753.218,28 | Saldo s/ empenhos (jan–mai): R$ 9.836,00
+            <td colspan="4" style="font-size:11px;color:var(--text2);font-weight:400;">
+              5 pagamentos efetivados · Em andamento: R$ 367.145,94 (jun/26)
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="saldo-footer">
+        <div class="sf-item">
+          <p class="sf-label">Saldo NE000277 (após anulação)</p>
+          <p class="sf-value" style="color:var(--text2);">R$ 0,00</p>
+          <p class="sf-sub">Saldo de R$ 154.485,17 integralmente anulado via NE000609</p>
+        </div>
+        <div class="sf-item">
+          <p class="sf-label">Saldo NE000501 · NE000587</p>
+          <p class="sf-value green">R$ 9.836,00</p>
+          <p class="sf-sub">R$ 3.918,06 (NE501) + R$ 5.917,93 (NE587) — disponível p/ anulação</p>
+        </div>
+        <div class="sf-item">
+          <p class="sf-label">Saldo NE000888 (estimado)</p>
+          <p class="sf-value amber">R$ 2.422,56</p>
+          <p class="sf-sub">Após pagamento de junho (em andamento)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGAMENTOS FERMOJU -->
+  <div class="tbl-section">
+    <div class="tbl-section-header purple-hd">
+      <h2>Pagamentos 2026 — Fermoju (UG 040101)</h2>
+      <span class="sub">Em andamento: R$ 386.072,34 (1 processo) | NE001122 sem pagamento</span>
+    </div>
+    <div class="tbl-inner">
+      <table>
+        <colgroup>
+          <col style="width:12%"><col style="width:24%"><col style="width:12%">
+          <col style="width:10%"><col style="width:14%"><col style="width:10%"><col style="width:18%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Referência</th><th>Processo</th><th class="r">Valor (R$)</th>
+            <th>Data Pgto</th><th>NE vinculada</th><th class="r">Saldo NE</th><th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="andamento-purple">
+            <td><span class="b b-purple">Julho/2026</span></td>
+            <td><span class="b b-gray">8521630-51.2026.8.06.0000</span></td>
+            <td class="r" style="font-weight:700;color:var(--purple);">R$ 386.072,34</td>
+            <td style="color:var(--text2);">—</td>
+            <td><span class="b b-purple">NE001026</span><br><span style="font-size:10px;color:var(--text2);">saldo estimado: R$ 98.079,16</span></td>
+            <td class="r"><span style="color:var(--purple);font-weight:700;font-size:11px;">R$ 98.079,16</span></td>
+            <td><span class="status-andamento-p">⧗ Em andamento</span><br><span style="font-size:10px;color:var(--purple);">Análise da medição</span></td>
+          </tr>
+          <tr class="sem-pgto">
+            <td><span class="b b-purple">Agosto/2026</span></td>
+            <td style="font-size:11px;color:var(--text2);">Processo a ser aberto</td>
+            <td class="r" style="color:var(--text2);">—</td>
+            <td style="color:var(--text2);">—</td>
+            <td><span class="b b-purple">NE001122</span><br><span style="font-size:10px;color:var(--text2);">R$ 385.937,50 disponível</span></td>
+            <td class="r"><span style="color:var(--purple);font-weight:700;font-size:11px;">R$ 385.937,50</span></td>
+            <td><span class="status-aguarda">◌ Aguardando</span></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">SALDO TOTAL FERMOJU</td>
+            <td class="r" style="color:var(--purple);">R$ 386.072,34</td>
+            <td colspan="3">NE001026 (saldo est.) + NE001122</td>
+            <td class="r" style="color:var(--purple);">R$ 484.016,66</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="saldo-footer two-col">
+        <div class="sf-item">
+          <p class="sf-label">Saldo NE001026 (estimado após jul/26)</p>
+          <p class="sf-value purple">R$ 98.079,16</p>
+          <p class="sf-sub">R$ 484.151,50 empenhado − R$ 386.072,34 (em andamento)</p>
+        </div>
+        <div class="sf-item">
+          <p class="sf-label">Saldo NE001122 (disponível)</p>
+          <p class="sf-value purple">R$ 385.937,50</p>
+          <p class="sf-sub">Emitido em 05/08/2026 · sem pagamento vinculado</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -514,48 +552,41 @@
 </div>
 
 <script>
-  const gc = 'rgba(0,0,0,0.06)', lc = '#6b7280';
-
-  new Chart(document.getElementById('gEmpPag'), {
-    type: 'bar',
-    data: {
-      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'],
-      datasets: [
-        { label:'Empenhado (Contrapartida)', data:[0,1108705.50,369568.50,369568.50,-154485.17,0,369568.50,0],      backgroundColor:'#002d5a', borderRadius:4 },
-        { label:'Empenhado (Fermoju)',        data:[0,0,0,0,0,0,484151.50,385937.50],                               backgroundColor:'#5b3fa0', borderRadius:4 },
-        { label:'Pago',                       data:[274702.02,315837.82,363680.49,365650.44,363650.57,0,0,0],       backgroundColor:'#1d9e75', borderRadius:4 },
-        { label:'Em andamento',               data:[0,0,0,0,0,367145.94,386072.34,0],                               backgroundColor:'#ba7517', borderRadius:4 }
+  const gc='rgba(0,0,0,0.06)', lc='#6b7280';
+  new Chart(document.getElementById('gEmpPag'),{
+    type:'bar',
+    data:{
+      labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'],
+      datasets:[
+        {label:'Empenho Contrapartida', data:[0,1108705.50,369568.50,369568.50,-154485.17,0,369568.50,0],  backgroundColor:'#002d5a', borderRadius:4},
+        {label:'Empenho Fermoju',       data:[0,0,0,0,0,0,484151.50,385937.50],                            backgroundColor:'#5b3fa0', borderRadius:4},
+        {label:'Pago (Contrapartida)',  data:[274702.02,315837.82,363680.49,365650.44,363650.57,0,0,0],    backgroundColor:'#1d9e75', borderRadius:4},
+        {label:'Em and. Contrapartida',data:[0,0,0,0,0,367145.94,0,0],                                     backgroundColor:'#ba7517', borderRadius:4},
+        {label:'Em and. Fermoju',       data:[0,0,0,0,0,0,386072.34,0],                                    backgroundColor:'#9b6fd4', borderRadius:4}
       ]
     },
-    options: {
+    options:{
       responsive:true, maintainAspectRatio:false,
-      plugins:{
-        legend:{ position:'bottom', labels:{ font:{size:10}, color:lc, boxWidth:12 } },
-        tooltip:{ callbacks:{ label: c => c.dataset.label+': R$ '+Math.abs(c.raw).toLocaleString('pt-BR',{minimumFractionDigits:2}) } }
-      },
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},color:lc,boxWidth:12}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': R$ '+Math.abs(c.raw).toLocaleString('pt-BR',{minimumFractionDigits:2})}}},
       scales:{
-        x:{ grid:{color:gc}, ticks:{color:lc,font:{size:11}} },
-        y:{ grid:{color:gc}, ticks:{color:lc,font:{size:10}, callback: v=>'R$ '+(v/1000).toFixed(0)+'k'} }
+        x:{grid:{color:gc},ticks:{color:lc,font:{size:11}}},
+        y:{grid:{color:gc},ticks:{color:lc,font:{size:10},callback:v=>'R$ '+(v/1000).toFixed(0)+'k'}}
       }
     }
   });
-
-  new Chart(document.getElementById('gCompo'), {
-    type: 'doughnut',
+  new Chart(document.getElementById('gCompo'),{
+    type:'doughnut',
     data:{
-      labels:['Pago (5 pgtos)','Em andamento (2)','Saldo s/ empenho','Saldo Contrapartida','Saldo Fermoju'],
-      datasets:[{
-        data:[1683521.34, 753218.28, 9836.00, 55074.17, 1643161.00],
-        backgroundColor:['#1d9e75','#ba7517','#c0c7d0','#1a6fba','#5b3fa0'],
-        borderWidth:2, borderColor:'#fff'
-      }]
+      labels:['Pago Contrapartida','Em and. Contrapartida','Em and. Fermoju','Saldo s/ NEs','Saldo Contrapartida','Saldo Fermoju'],
+      datasets:[{data:[1683521.34,367145.94,386072.34,9836.00,55074.17,1643161.00],
+        backgroundColor:['#1d9e75','#ba7517','#9b6fd4','#c0c7d0','#1a6fba','#5b3fa0'],
+        borderWidth:2,borderColor:'#fff'}]
     },
     options:{
-      responsive:true, maintainAspectRatio:false, cutout:'60%',
-      plugins:{
-        legend:{ position:'bottom', labels:{ font:{size:10}, color:lc, boxWidth:12 } },
-        tooltip:{ callbacks:{ label: c=>c.label+': R$ '+c.raw.toLocaleString('pt-BR',{minimumFractionDigits:2}) } }
-      }
+      responsive:true,maintainAspectRatio:false,cutout:'60%',
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},color:lc,boxWidth:12}},
+        tooltip:{callbacks:{label:c=>c.label+': R$ '+c.raw.toLocaleString('pt-BR',{minimumFractionDigits:2})}}}
     }
   });
 </script>
