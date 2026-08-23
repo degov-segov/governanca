@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEGOV | Cockpit de Governança</title>
-  <meta name="description" content="Cockpit de Governança da Secretaria de Governança Institucional - TJCE" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SEGOV | Cockpit de Governança</title>
+<meta content="Cockpit de Governança da Secretaria de Governança Institucional - TJCE" name="description"/>
+<style>
     :root{
       --navy:#072f63;
       --navy-2:#0b417f;
@@ -240,105 +241,92 @@
 </head>
 <body>
 <div class="page">
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="tjce-brand" aria-label="Tribunal de Justiça do Estado do Ceará">
-        <div class="tjce-symbol" aria-hidden="true">
-          <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 19 L55 3 L58 12 L10 28 Z" fill="#d6a62e"/>
-            <path d="M12 31 L59 15 L62 24 L15 40 Z" fill="#0a356f"/>
-            <path d="M16 45 h8 v16 h-8zM30 40 h8 v21h-8zM44 35 h8 v26h-8zM58 30 h8 v31h-8z" fill="#0a356f"/>
-            <path d="M10 61h62v5H10z" fill="#0a356f"/>
-          </svg>
-        </div>
-        <div class="tjce-word">TJCE</div>
-      </div>
-      <div class="segov-brand">
-        <h1>SEGOV</h1>
-        <p>Secretaria de Governança Institucional</p>
-        <p>Diretoria de Estratégia e Governança</p>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" aria-labelledby="titulo-cockpit">
-      <!-- Marca d'água estilizada da sede: mantida à esquerda; brasão do lado direito removido -->
-      <svg class="building-watermark" viewBox="0 0 260 220" aria-hidden="true">
-        <g fill="none" stroke="#ffffff" stroke-width="3">
-          <path d="M18 64 L128 20 L242 64" />
-          <path d="M28 68 H230" />
-          <path d="M40 81 H218" />
-          <path d="M48 81 V184 M82 81 V184 M116 81 V184 M150 81 V184 M184 81 V184 M218 81 V184" />
-          <path d="M36 184 H226" />
-          <path d="M25 194 H238" />
-          <path d="M16 204 H246" />
-          <path d="M60 57 H195" opacity=".7"/>
-        </g>
-        <text x="87" y="74" fill="#fff" font-size="20" font-family="Arial, sans-serif" font-weight="700">TJCE</text>
-      </svg>
-
-      <svg class="wave" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,135 C220,95 335,170 545,115 C760,58 855,110 1200,50" fill="none" stroke="#7db7ee" stroke-width="1.4"/>
-        <path d="M0,146 C230,108 350,178 560,126 C780,70 900,126 1200,64" fill="none" stroke="#7db7ee" stroke-width="1" opacity=".8"/>
-        <path d="M0,157 C240,120 365,186 580,138 C805,85 925,143 1200,80" fill="none" stroke="#7db7ee" stroke-width=".9" opacity=".6"/>
-      </svg>
-
-      <div class="hero-content">
-        <h2 id="titulo-cockpit">Cockpit de Governança</h2>
-        <p>Ambiente integrado para acompanhamento das principais frentes de governança institucional da SEGOV.</p>
-      </div>
-    </section>
-
-    <section class="cards" aria-label="Áreas do Cockpit de Governança">
-      <a class="card active-card" href="rede_governanca_layout.html" aria-label="Acessar Rede de Governança">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><circle cx="24" cy="10" r="5"/><circle cx="10" cy="34" r="5"/><circle cx="38" cy="34" r="5"/><path d="M21 14 13 29M27 14l8 15M15 34h18"/></svg></div>
-        <div><h3>Rede de Governança</h3><p>Acompanhamento da rede colaborativa, ações, maturidade e articulação institucional.</p></div>
-      </a>
-
-      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar Arquitetura de Processos">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><rect x="17" y="5" width="14" height="9" rx="1"/><rect x="4" y="34" width="14" height="9" rx="1"/><rect x="30" y="34" width="14" height="9" rx="1"/><path d="M24 14v10M11 34v-7h26v7"/></svg></div>
-        <div><h3>Arquitetura de Processos</h3><p>Visão de processos, mapeamentos, redesenhos e iniciativas de melhoria.</p><div class="update-badge">Em atualização</div></div>
-      </a>
-
-      <a class="card active-card" href="projetos_estrategicos.html" aria-label="Acessar Projetos Estratégicos">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><circle cx="22" cy="26" r="15"/><circle cx="22" cy="26" r="9"/><circle cx="22" cy="26" r="3"/><path d="m27 20 13-13M34 7h6v6"/></svg></div>
-        <div><h3>Projetos Estratégicos</h3><p>Portfólio consolidado dos projetos estratégicos e suas principais entregas.</p></div>
-      </a>
-
-      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar Acompanhamento - Contratações">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M7 37h7V25H7zM20 37h7V18h-7zM33 37h7V10h-7z"/><path d="m7 19 10-8 8 3 15-9"/></svg></div>
-        <div><h3>Acompanhamento - Contratações</h3><p>Espaço para acompanhamento da execução orçamentária e financeira.</p><div class="update-badge">Em atualização</div></div>
-      </a>
-
-      <a class="card active-card" href="pac.html" aria-label="Acessar PAC">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="34" rx="2"/><path d="M18 7v34M30 7v34M7 18h34M7 30h34"/></svg></div>
-        <div><h3>PAC</h3><p>Acesso ao acompanhamento do Plano Anual de Contratações.</p></div>
-      </a>
-
-      <a class="card active-card" href="execucao_contratual.html" aria-label="Acessar Execução Contratual">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M11 5h19l8 8v15"/><path d="M30 5v8h8M11 5v38h18"/><path d="M17 21h14M17 27h10M17 33h7"/><path d="m29 39 10-10 4 4-10 10-6 1z"/></svg></div>
-        <div><h3>Execução Contratual</h3><p>Acompanhamento de contratos, vigências, entregas e fiscalização.</p></div>
-      </a>
-
-      <a class="card active-card" href="gestao_riscos.html" aria-label="Acessar Gestão de Riscos">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M24 5 40 11v11c0 10-6 17-16 21C14 39 8 32 8 22V11z"/><path d="m17 24 5 5 10-11"/></svg></div>
-        <div><h3>Gestão de Riscos</h3><p>Registro e acompanhamento dos riscos institucionais e respectivos controles.</p></div>
-      </a>
-
-      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar Prêmio CNJ">
-        <div class="icon-wrap">🏆</div>
-        <div><h3>Prêmio CNJ</h3><p>Acompanhamento das ações e resultados relacionados ao Prêmio CNJ de Qualidade.</p><div class="update-badge">Em atualização</div></div>
-      </a>
-
-      <a class="card updating" href="#" onclick="return false;" aria-label="Acessar GAM">
-        <div class="icon-wrap"><svg viewBox="0 0 48 48"><path d="M9 17V9h8M31 9h8v8M39 31v8h-8M17 39H9v-8"/><circle cx="24" cy="24" r="6" fill="currentColor" stroke="none"/></svg></div>
-        <div><h3>GAM</h3><p>Acompanhamento das informações relacionadas à Gratificação de Alcance de Metas.</p><div class="update-badge">Em atualização</div></div>
-      </a>
-    </section>
-  </main>
-
-  <footer>SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</footer>
+<header class="topbar">
+<div class="topbar-inner">
+<div aria-label="Tribunal de Justiça do Estado do Ceará" class="tjce-brand">
+<div aria-hidden="true" class="tjce-symbol">
+<svg viewbox="0 0 80 70" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 19 L55 3 L58 12 L10 28 Z" fill="#d6a62e"></path>
+<path d="M12 31 L59 15 L62 24 L15 40 Z" fill="#0a356f"></path>
+<path d="M16 45 h8 v16 h-8zM30 40 h8 v21h-8zM44 35 h8 v26h-8zM58 30 h8 v31h-8z" fill="#0a356f"></path>
+<path d="M10 61h62v5H10z" fill="#0a356f"></path>
+</svg>
+</div>
+<div class="tjce-word">TJCE</div>
+</div>
+<div class="segov-brand">
+<h1>SEGOV</h1>
+<p>Secretaria de Governança Institucional</p>
+<p>Diretoria de Estratégia e Governança</p>
+</div>
+</div>
+</header>
+<main>
+<section aria-labelledby="titulo-cockpit" class="hero">
+<!-- Marca d'água estilizada da sede: mantida à esquerda; brasão do lado direito removido -->
+<svg aria-hidden="true" class="building-watermark" viewbox="0 0 260 220">
+<g fill="none" stroke="#ffffff" stroke-width="3">
+<path d="M18 64 L128 20 L242 64"></path>
+<path d="M28 68 H230"></path>
+<path d="M40 81 H218"></path>
+<path d="M48 81 V184 M82 81 V184 M116 81 V184 M150 81 V184 M184 81 V184 M218 81 V184"></path>
+<path d="M36 184 H226"></path>
+<path d="M25 194 H238"></path>
+<path d="M16 204 H246"></path>
+<path d="M60 57 H195" opacity=".7"></path>
+</g>
+<text fill="#fff" font-family="Arial, sans-serif" font-size="20" font-weight="700" x="87" y="74">TJCE</text>
+</svg>
+<svg aria-hidden="true" class="wave" preserveaspectratio="none" viewbox="0 0 1200 180">
+<path d="M0,135 C220,95 335,170 545,115 C760,58 855,110 1200,50" fill="none" stroke="#7db7ee" stroke-width="1.4"></path>
+<path d="M0,146 C230,108 350,178 560,126 C780,70 900,126 1200,64" fill="none" opacity=".8" stroke="#7db7ee" stroke-width="1"></path>
+<path d="M0,157 C240,120 365,186 580,138 C805,85 925,143 1200,80" fill="none" opacity=".6" stroke="#7db7ee" stroke-width=".9"></path>
+</svg>
+<div class="hero-content">
+<h2 id="titulo-cockpit">Cockpit de Governança</h2>
+<p>Ambiente integrado para acompanhamento das principais frentes de governança institucional da SEGOV.</p>
+</div>
+</section>
+<section aria-label="Áreas do Cockpit de Governança" class="cards">
+<a aria-label="Acessar Rede de Governança" class="card active-card" href="rede_governanca_layout.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><circle cx="24" cy="10" r="5"></circle><circle cx="10" cy="34" r="5"></circle><circle cx="38" cy="34" r="5"></circle><path d="M21 14 13 29M27 14l8 15M15 34h18"></path></svg></div>
+<div><h3>Rede de Governança</h3><p>Acompanhamento da rede colaborativa, ações, maturidade e articulação institucional.</p></div>
+</a>
+<a aria-label="Acessar Arquitetura de Processos" class="card updating" href="#">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><rect height="9" rx="1" width="14" x="17" y="5"></rect><rect height="9" rx="1" width="14" x="4" y="34"></rect><rect height="9" rx="1" width="14" x="30" y="34"></rect><path d="M24 14v10M11 34v-7h26v7"></path></svg></div>
+<div><h3>Arquitetura de Processos</h3><p>Visão de processos, mapeamentos, redesenhos e iniciativas de melhoria.</p></div>
+</a>
+<a aria-label="Acessar Projetos Estratégicos" class="card active-card" href="projetos_estrategicos.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><circle cx="22" cy="26" r="15"></circle><circle cx="22" cy="26" r="9"></circle><circle cx="22" cy="26" r="3"></circle><path d="m27 20 13-13M34 7h6v6"></path></svg></div>
+<div><h3>Projetos Estratégicos</h3><p>Portfólio consolidado dos projetos estratégicos e suas principais entregas.</p></div>
+</a>
+<a aria-label="Acessar Acompanhamento - Contratações" class="card active-card" href="acompanhamento_contratacoes_padrao_cockpit.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><path d="M7 37h7V25H7zM20 37h7V18h-7zM33 37h7V10h-7z"></path><path d="m7 19 10-8 8 3 15-9"></path></svg></div>
+<div><h3>Acompanhamento - Contratações</h3><p>Acompanhamento dos processos de contratação e de seus principais marcos.</p></div>
+</a>
+<a aria-label="Acessar PAC" class="card active-card" href="pac.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><rect height="34" rx="2" width="34" x="7" y="7"></rect><path d="M18 7v34M30 7v34M7 18h34M7 30h34"></path></svg></div>
+<div><h3>PAC</h3><p>Acesso ao acompanhamento do Plano Anual de Contratações.</p></div>
+</a>
+<a aria-label="Acessar Execução Contratual" class="card active-card" href="execucao_contratual.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><path d="M11 5h19l8 8v15"></path><path d="M30 5v8h8M11 5v38h18"></path><path d="M17 21h14M17 27h10M17 33h7"></path><path d="m29 39 10-10 4 4-10 10-6 1z"></path></svg></div>
+<div><h3>Execução Contratual</h3><p>Acompanhamento de contratos, vigências, entregas e fiscalização.</p></div>
+</a>
+<a aria-label="Acessar Gestão de Riscos" class="card active-card" href="gestao_riscos.html">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><path d="M24 5 40 11v11c0 10-6 17-16 21C14 39 8 32 8 22V11z"></path><path d="m17 24 5 5 10-11"></path></svg></div>
+<div><h3>Gestão de Riscos</h3><p>Registro e acompanhamento dos riscos institucionais e respectivos controles.</p></div>
+</a>
+<a aria-label="Acessar Prêmio CNJ" class="card updating" href="#" onclick="return false;">
+<div class="icon-wrap">🏆</div>
+<div><h3>Prêmio CNJ</h3><p>Acompanhamento das ações e resultados relacionados ao Prêmio CNJ de Qualidade.</p><div class="update-badge">Em atualização</div></div>
+</a>
+<a aria-label="Acessar GAM" class="card updating" href="#" onclick="return false;">
+<div class="icon-wrap"><svg viewbox="0 0 48 48"><path d="M9 17V9h8M31 9h8v8M39 31v8h-8M17 39H9v-8"></path><circle cx="24" cy="24" fill="currentColor" r="6" stroke="none"></circle></svg></div>
+<div><h3>GAM</h3><p>Acompanhamento das informações relacionadas à Gratificação de Alcance de Metas.</p><div class="update-badge">Em atualização</div></div>
+</a>
+</section>
+</main>
+<footer>SEGOV - Secretaria de Governança Institucional | Diretoria de Estratégia e Governança</footer>
 </div>
 </body>
 </html>
