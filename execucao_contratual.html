@@ -16,6 +16,12 @@
     --line:#dfe7f1;
     --green:#1f9d68;
     --amber:#d89000;
+    --dedicacao:#1557a3;
+    --dedicacao-soft:#eaf2fb;
+    --servicos:#0f8a78;
+    --servicos-soft:#e8f7f3;
+    --consultores:#7a4bb3;
+    --consultores-soft:#f1ebf8;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
@@ -212,6 +218,13 @@
     background:#e8f7f0;
     color:#14754e;
   }
+
+  .status.upcoming{
+    color:#8a6410;
+    background:#fbf3df;
+    border:1px solid #ead6a3;
+  }
+
   .company{
     font-size:15px;
     font-weight:700;
@@ -252,68 +265,61 @@
     color:#8a96a6;
   }
 
-  /* Identidade visual por categoria de contrato */
-  .section.category-dedication,
-  .section.category-services,
-  .section.category-consultants{
-    padding:20px;
-    border-radius:18px;
-    border:1px solid transparent;
-  }
 
-  .section.category-dedication{
-    background:linear-gradient(135deg,#eef5ff 0%,#f8fbff 100%);
-    border-color:#cfe0f5;
-  }
-  .section.category-dedication .section-title:before{background:#2f6fb3;}
-  .section.category-dedication .section-count{background:#dceafd;color:#215a96;}
+  .section.dedicacao .section-title:before{background:var(--dedicacao)}
+  .section.servicos .section-title:before{background:var(--servicos)}
+  .section.consultores .section-title:before{background:var(--consultores)}
 
-  .section.category-services{
-    background:linear-gradient(135deg,#eef9f3 0%,#f9fdfb 100%);
-    border-color:#cfe9da;
-  }
-  .section.category-services .section-title:before{background:#2f8f62;}
-  .section.category-services .section-count{background:#dff3e8;color:#256e4d;}
+  .section.dedicacao .section-count{background:var(--dedicacao-soft);color:var(--dedicacao)}
+  .section.servicos .section-count{background:var(--servicos-soft);color:var(--servicos)}
+  .section.consultores .section-count{background:var(--consultores-soft);color:var(--consultores)}
 
-  .section.category-consultants{
-    background:linear-gradient(135deg,#fff7e8 0%,#fffdf8 100%);
-    border-color:#f0dfb8;
-  }
-  .section.category-consultants .section-title:before{background:#c48716;}
-  .section.category-consultants .section-count{background:#f8e9c5;color:#8b6211;}
+  .section.dedicacao .contract-card{border-top:4px solid var(--dedicacao)}
+  .section.servicos .contract-card{border-top:4px solid var(--servicos)}
+  .section.consultores .contract-card{border-top:4px solid var(--consultores)}
 
-  .section.category-dedication .contract-card,
-  .section.category-services .contract-card,
-  .section.category-consultants .contract-card{
-    background:rgba(255,255,255,.94);
-  }
+  .section.dedicacao .contract-code,
+  .section.dedicacao .metric strong.money{color:var(--dedicacao)}
+  .section.servicos .contract-code,
+  .section.servicos .metric strong.money{color:var(--servicos)}
+  .section.consultores .contract-code,
+  .section.consultores .metric strong.money{color:var(--consultores)}
 
-  .card-actions{
+  .contract-actions{
     margin-top:14px;
     padding-top:14px;
     border-top:1px solid #edf1f6;
     display:flex;
     justify-content:flex-end;
   }
-  .finance-btn{
+  .financial-btn{
     display:inline-flex;
     align-items:center;
-    justify-content:center;
-    gap:7px;
-    padding:9px 13px;
+    gap:8px;
+    padding:9px 12px;
     border-radius:9px;
-    background:var(--navy);
-    color:#fff;
     font-size:12px;
     font-weight:700;
-    box-shadow:0 4px 10px rgba(11,47,99,.14);
+    border:1px solid transparent;
     transition:.18s ease;
+    cursor:pointer;
   }
-  .finance-btn:hover{
-    background:var(--navy2);
-    transform:translateY(-1px);
-    box-shadow:0 6px 14px rgba(11,47,99,.20);
+  .section.dedicacao .financial-btn{
+    color:var(--dedicacao);
+    background:var(--dedicacao-soft);
+    border-color:#cfe0f4;
   }
+  .section.servicos .financial-btn{
+    color:var(--servicos);
+    background:var(--servicos-soft);
+    border-color:#ccece5;
+  }
+  .section.consultores .financial-btn{
+    color:var(--consultores);
+    background:var(--consultores-soft);
+    border-color:#dfd1ef;
+  }
+  .financial-btn:hover{transform:translateY(-1px);filter:brightness(.98)}
 
   .footer{
     margin-top:28px;
@@ -369,17 +375,17 @@
   <section class="summary">
     <div class="summary-card">
       <div class="summary-label">Contratos monitorados</div>
-      <div class="summary-value">8</div>
+      <div class="summary-value">10</div>
       <div class="summary-sub">Distribuídos em 3 categorias</div>
     </div>
     <div class="summary-card">
       <div class="summary-label">Dedicação exclusiva</div>
-      <div class="summary-value">2</div>
+      <div class="summary-value">3</div>
       <div class="summary-sub">Contratos DEMO</div>
     </div>
     <div class="summary-card">
       <div class="summary-label">Prestação de serviços</div>
-      <div class="summary-value">2</div>
+      <div class="summary-value">3</div>
       <div class="summary-sub">Serviços especializados</div>
     </div>
     <div class="summary-card">
@@ -389,10 +395,10 @@
     </div>
   </section>
 
-  <section class="section category-dedication">
+  <section class="section dedicacao">
     <div class="section-head">
       <div class="section-title">Contratos com Dedicação Exclusiva de Mão de Obra</div>
-      <div class="section-count">2 contratos</div>
+      <div class="section-count">3 contratos</div>
     </div>
 
     <div class="contracts-grid">
@@ -417,8 +423,9 @@
             <strong class="money">R$ 4.631.250,00</strong>
           </div>
         </div>
-        <div class="card-actions">
-          <a class="finance-btn" href="dashboard_CT25_2022_MVR%2012-08-2026.html">▣ Acompanhamento Financeiro</a>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="dashboard_CT25_2022_MVR%2012-08-2026.html" aria-label="Abrir acompanhamento financeiro do contrato CT-25/2022">↗ Acompanhamento financeiro</a>
         </div>
       </article>
 
@@ -444,17 +451,52 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 11 meses de vigência.</div>
-        <div class="card-actions">
-          <a class="finance-btn" href="SERVAL.html">▣ Acompanhamento Financeiro</a>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="SERVAL.html" aria-label="Abrir execução financeira do contrato CT-32/2025">↗ Execução financeira</a>
         </div>
       </article>
+    
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-42/2026</div>
+          <div class="status upcoming">Início programado</div>
+        </div>
+        <div class="company">PLANSUL - Planejamento e Consultoria LTDA</div>
+        <div class="object">Prestação de Serviços de Atendimento</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Início da vigência</span>
+            <strong>05/09/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Fim da vigência</span>
+            <strong>05/09/2028</strong>
+          </div>
+          <div class="metric">
+            <span>Valor mensal</span>
+            <strong class="money">R$ 6.793.668,38</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 166.309.002,00</strong>
+          </div>
+        </div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Execução financeira ainda não vinculada para CT-42/2026">
+            ↗ Execução financeira
+          </a>
+        </div>
+      </article>
+
     </div>
   </section>
 
-  <section class="section category-services">
+  <section class="section servicos">
     <div class="section-head">
       <div class="section-title">Contratos de Prestação de Serviços</div>
-      <div class="section-count">2 contratos</div>
+      <div class="section-count">3 contratos</div>
     </div>
 
     <div class="contracts-grid">
@@ -480,8 +522,9 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
-        <div class="card-actions">
-          <a class="finance-btn" href="dashboard_ct040_2021_12-08-26">▣ Acompanhamento Financeiro</a>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="dashboard_ct040_2021_12-08-26.html" aria-label="Abrir execução financeira do contrato CT-40/2021">↗ Execução financeira</a>
         </div>
       </article>
 
@@ -506,11 +549,51 @@
             <strong class="money">R$ 192.000,00</strong>
           </div>
         </div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
+    
+      <article class="contract-card">
+        <div class="contract-top">
+          <div class="contract-code">CT-17/2026</div>
+          <div class="status">Vigente</div>
+        </div>
+        <div class="company">Universidade Federal do Ceará - UFC</div>
+        <div class="object">Serviço de planejamento, organização, condução e avaliação de uma maratona de inovação aberta (Hackathon)</div>
+        <div class="metrics">
+          <div class="metric">
+            <span>Início da vigência</span>
+            <strong>30/07/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Fim da vigência</span>
+            <strong>27/11/2026</strong>
+          </div>
+          <div class="metric">
+            <span>Prazo</span>
+            <strong>120 dias</strong>
+          </div>
+          <div class="metric">
+            <span>Valor global</span>
+            <strong class="money">R$ 90.000,00</strong>
+          </div>
+        </div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Execução financeira ainda não vinculada para CT-17/2026">
+            ↗ Execução financeira
+          </a>
+        </div>
+      </article>
+
     </div>
   </section>
 
-  <section class="section category-consultants">
+  <section class="section consultores">
     <div class="section-head">
       <div class="section-title">Consultores Individuais</div>
       <div class="section-count">4 contratos</div>
@@ -539,6 +622,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -563,6 +652,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -587,6 +682,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
 
       <article class="contract-card">
@@ -611,6 +712,12 @@
           </div>
         </div>
         <div class="note">Valor mensal calculado pela divisão do valor global por 12 meses.</div>
+
+        <div class="contract-actions">
+          <a class="financial-btn" href="#" onclick="return false;" aria-label="Acessar execução financeira deste contrato">
+            ↗ Execução financeira
+          </a>
+        </div>
       </article>
     </div>
   </section>
