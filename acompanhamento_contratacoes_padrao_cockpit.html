@@ -431,6 +431,131 @@ body {
   flex-wrap:wrap;
 }
 
+
+/* =========================================================
+   SEÇÕES E CORES DOS CARDS
+   ========================================================= */
+.completed-panel,
+.progress-panel {
+  margin-bottom:20px;
+}
+
+.panel-head > div {
+  min-width:0;
+}
+
+.section-kicker {
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.65px;
+  margin-bottom:4px;
+}
+
+.completed-head {
+  background:linear-gradient(90deg,#eef9f2 0%,#fbfdfc 100%);
+  border-left:4px solid #2f8a5d;
+}
+
+.completed-head .section-kicker {
+  color:#2f8a5d;
+}
+
+.progress-head {
+  background:linear-gradient(90deg,#eef5fb 0%,#fbfcfe 100%);
+  border-left:4px solid #2a6496;
+}
+
+.progress-head .section-kicker {
+  color:#2a6496;
+}
+
+.section-count {
+  flex:0 0 auto;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:10px !important;
+  font-weight:800;
+}
+
+.completed-count {
+  background:#e5f5eb;
+  color:#28784f !important;
+}
+
+.progress-count {
+  background:#e8f1f9;
+  color:#245f91 !important;
+}
+
+.card {
+  position:relative;
+  border-left-width:5px;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+  transform:translateY(-1px);
+  box-shadow:0 8px 18px rgba(29,55,80,.10);
+}
+
+.card-green {
+  border-left-color:#2f8a5d;
+  background:linear-gradient(90deg,#f4fbf7 0%,#ffffff 16%);
+}
+
+.card-blue {
+  border-left-color:#2a6496;
+  background:linear-gradient(90deg,#f2f7fc 0%,#ffffff 16%);
+}
+
+.card-amber {
+  border-left-color:#d09a27;
+  background:linear-gradient(90deg,#fff9eb 0%,#ffffff 16%);
+}
+
+.card-purple {
+  border-left-color:#7863a8;
+  background:linear-gradient(90deg,#f7f4fb 0%,#ffffff 16%);
+}
+
+.card-teal {
+  border-left-color:#2d8c88;
+  background:linear-gradient(90deg,#f1f9f8 0%,#ffffff 16%);
+}
+
+.card-green .card-header {
+  background:linear-gradient(90deg,#edf8f1 0%,#fbfcfe 45%);
+}
+
+.card-blue .card-header {
+  background:linear-gradient(90deg,#edf5fb 0%,#fbfcfe 45%);
+}
+
+.card-amber .card-header {
+  background:linear-gradient(90deg,#fff7e4 0%,#fbfcfe 45%);
+}
+
+.card-purple .card-header {
+  background:linear-gradient(90deg,#f4f0fa 0%,#fbfcfe 45%);
+}
+
+.card-teal .card-header {
+  background:linear-gradient(90deg,#edf8f7 0%,#fbfcfe 45%);
+}
+
+.stage-dot.blue {
+  background:#2a6496;
+}
+
+.stage-dot.purple {
+  background:#7863a8;
+}
+
+.stage-dot.teal {
+  background:#2d8c88;
+}
+
+
 @media(max-width:760px) {
   .header-inner {
     width:94%;
@@ -518,6 +643,7 @@ body {
   </div>
 </section>
 
+
 <main class="container">
 
   <section class="summary">
@@ -540,15 +666,18 @@ body {
     </div>
   </section>
 
-  <section class="panel">
-    <div class="panel-head">
-      <h2>Contratações em Acompanhamento</h2>
-      <span>Posição atual dos processos</span>
+  <!-- CONTRATAÇÕES CONCLUÍDAS -->
+  <section class="panel completed-panel">
+    <div class="panel-head completed-head">
+      <div>
+        <div class="section-kicker">CONTRATAÇÕES CONCLUÍDAS</div>
+        <h2>Contratações com etapa de contratação finalizada</h2>
+      </div>
+      <span class="section-count completed-count">1 contratação</span>
     </div>
 
     <div class="list">
-
-      <article class="card">
+      <article class="card card-green">
         <div class="card-header">
           <h3 class="card-title">
             Contratação de Atendimento — Poder Judiciário do Estado do Ceará
@@ -576,8 +705,22 @@ body {
           </div>
         </div>
       </article>
+    </div>
+  </section>
 
-      <article class="card">
+  <!-- CONTRATAÇÕES EM ANDAMENTO -->
+  <section class="panel progress-panel">
+    <div class="panel-head progress-head">
+      <div>
+        <div class="section-kicker">CONTRATAÇÕES EM ANDAMENTO</div>
+        <h2>Processos em fase preparatória, instrução ou análise</h2>
+      </div>
+      <span class="section-count progress-count">4 contratações</span>
+    </div>
+
+    <div class="list">
+
+      <article class="card card-blue">
         <div class="card-header">
           <h3 class="card-title">
             Contratação de Serviço de Gerenciamento de Projetos e Processos
@@ -600,14 +743,14 @@ body {
             </div>
 
             <div class="stage">
-              <span class="stage-dot amber"></span>
+              <span class="stage-dot blue"></span>
               Processo em análise
             </div>
           </div>
         </div>
       </article>
 
-      <article class="card">
+      <article class="card card-amber">
         <div class="card-header">
           <h3 class="card-title">
             Contratação de Serviço de Estatísticos
@@ -635,8 +778,7 @@ body {
         </div>
       </article>
 
-
-      <article class="card">
+      <article class="card card-purple">
         <div class="card-header">
           <h3 class="card-title">
             Contratação de Serviços de Higienização e Digitalização de Documentos
@@ -662,14 +804,14 @@ body {
             </div>
 
             <div class="stage">
-              <span class="stage-dot amber"></span>
+              <span class="stage-dot purple"></span>
               Fase preparatória · elaboração do Termo de Referência
             </div>
           </div>
         </div>
       </article>
 
-      <article class="card">
+      <article class="card card-teal">
         <div class="card-header">
           <h3 class="card-title">
             Contratação de Cordelista
@@ -698,7 +840,7 @@ body {
             </div>
 
             <div class="stage">
-              <span class="stage-dot amber"></span>
+              <span class="stage-dot teal"></span>
               Inexigibilidade · aguardando assinatura
             </div>
           </div>
@@ -709,6 +851,7 @@ body {
   </section>
 
 </main>
+
 
 <footer class="footer">
   <div class="footer-inner">
