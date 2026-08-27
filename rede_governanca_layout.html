@@ -333,6 +333,192 @@ a.linkcard:hover{
   .sec-head .norm{margin-left:0;width:100%}
   table{display:block;overflow-x:auto;white-space:nowrap}
 }
+
+/* ---------- Calendário de reuniões ---------- */
+.calendar-intro{
+  padding-top:8px;
+}
+.today-highlight{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0b4f86 0%,#083a63 72%);
+  color:#fff;
+  border-radius:18px;
+  padding:26px 28px;
+  box-shadow:var(--sombra);
+  border-left:6px solid var(--dourado);
+  margin-bottom:20px;
+}
+.today-highlight::after{
+  content:"";
+  position:absolute;
+  width:190px;height:190px;border-radius:50%;
+  right:-55px;top:-85px;
+  background:rgba(255,255,255,.07);
+}
+.today-kicker{
+  display:inline-block;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#ffe6a0;
+  margin-bottom:8px;
+}
+.today-highlight h3{
+  color:#fff;
+  font-size:25px;
+  margin:0 0 8px;
+}
+.today-highlight p{
+  color:#e8f1f8;
+  margin:0;
+}
+.today-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:16px;
+}
+.today-meta span{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:13px;
+  font-weight:700;
+}
+.schedule-box{
+  background:#fff;
+  border:1px solid var(--linha);
+  border-radius:16px;
+  box-shadow:0 7px 20px rgba(9,58,99,.06);
+  overflow:hidden;
+}
+.schedule-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:17px 20px;
+  border-bottom:1px solid var(--linha);
+  background:#f8fbfe;
+}
+.schedule-head strong{
+  color:var(--azul-escuro);
+  font-size:18px;
+}
+.schedule-head span{
+  color:var(--texto-suave);
+  font-size:13px;
+}
+.schedule-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;
+}
+.schedule-item{
+  padding:18px 20px;
+  border-right:1px solid var(--linha);
+  border-bottom:1px solid var(--linha);
+  min-height:128px;
+  position:relative;
+}
+.schedule-item:nth-child(3n){border-right:none}
+.schedule-date{
+  font-size:12px;
+  font-weight:900;
+  color:var(--azul-medio);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.schedule-title{
+  color:var(--azul-escuro);
+  font-weight:800;
+  font-size:16px;
+  line-height:1.3;
+}
+.schedule-note{
+  color:var(--texto-suave);
+  font-size:13px;
+  margin-top:7px;
+}
+.status-pill{
+  display:inline-block;
+  margin-top:10px;
+  border-radius:999px;
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:900;
+}
+.status-done{background:#edf7f1;color:#267247}
+.status-today{background:#fff3cf;color:#8a6500}
+.status-next{background:#eaf3fb;color:#0b4f86}
+
+/* ---------- SEGOV em destaque na composição ---------- */
+tr.segov-coord td{
+  background:linear-gradient(90deg,#fff8df 0%,#eef6fc 100%) !important;
+  border-top:2px solid #d4a72c;
+  border-bottom:2px solid #d4a72c;
+}
+tr.segov-coord td:first-child{
+  border-left:5px solid #d4a72c;
+}
+.coord-badge{
+  display:inline-block;
+  margin-top:5px;
+  background:#0b4f86;
+  color:#fff;
+  border-radius:999px;
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+@media(max-width:980px){
+  .schedule-grid{grid-template-columns:1fr 1fr}
+  .schedule-item:nth-child(3n){border-right:1px solid var(--linha)}
+  .schedule-item:nth-child(2n){border-right:none}
+}
+@media(max-width:650px){
+  .schedule-grid{grid-template-columns:1fr}
+  .schedule-item{border-right:none !important}
+  .today-highlight{padding:22px}
+}
+
+
+.schedule-section-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 20px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.schedule-section-label.done{
+  background:#f1f7f3;
+  color:#2b6d49;
+  border-bottom:1px solid #d8e8df;
+}
+.schedule-section-label.future{
+  background:#eef5fb;
+  color:#0b4f86;
+  border-top:1px solid var(--linha);
+  border-bottom:1px solid var(--linha);
+}
+.schedule-section-label .count{
+  margin-left:auto;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0;
+  text-transform:none;
+  opacity:.75;
+}
+
 </style>
 </head>
 <body>
@@ -359,13 +545,156 @@ a.linkcard:hover{
       <a href="#coordenacao-segov">Coordenação: SEGOV</a>
       <a href="#unidades-setoriais">14 unidades setoriais</a>
       <a href="#frentes-atuacao">8 frentes de atuação</a>
-      <a href="#reunioes-periodicas">Reuniões periódicas</a>
+      <a href="#reunioes-periodicas">Calendário de reuniões</a>
     </div>
   </div>
 </div>
 
 
 
+
+
+
+<section id="reunioes-periodicas" class="calendar-intro">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">00</span>
+      <h2>Calendário de reuniões da Rede</h2>
+      <span class="norm">Cronograma previsto · 2026</span>
+    </div>
+
+    <div class="today-highlight">
+      <span class="today-kicker">Destaque de hoje · 27 de agosto de 2026</span>
+      <h3>Reunião Geral — Prêmio CNJ de Qualidade</h3>
+      <p>Encontro previsto no calendário da Rede para tratar do Prêmio CNJ de Qualidade.</p>
+      <div class="today-meta">
+        <span>Quinta-feira</span>
+        <span>Reunião Geral</span>
+        <span>Pauta: Prêmio CNJ de Qualidade</span>
+      </div>
+    </div>
+
+    <div class="schedule-box">
+      <div class="schedule-head">
+        <strong>Cronograma de reuniões</strong>
+        <span>Reuniões gerais e encontros de maturidade previstos na planilha</span>
+      </div>
+
+      <div class="schedule-section-label done">
+        Reuniões já realizadas
+        <span class="count">4 encontros</span>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <div class="schedule-date">28 mai · quinta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Fluxo de priorização de BI's e novo ciclo de avaliação de desempenho.</div>
+          <span class="status-pill status-done">Realizada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">08 jul · quarta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Planejamento Estratégico TJCE.</div>
+          <span class="status-pill status-done">Realizada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">11 ago · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">Diretoria Estadual de Atendimento e SETIN.</div>
+          <span class="status-pill status-done">Realizada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">25 ago · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">SGP e SEFIN.</div>
+          <span class="status-pill status-done">Realizada</span>
+        </div>
+      </div>
+
+      <div class="schedule-section-label future">
+        Reuniões programadas
+        <span class="count">10 encontros previstos</span>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <div class="schedule-date">27 ago · quinta</div>
+          <div class="schedule-title">Reunião Geral — Prêmio CNJ de Qualidade</div>
+          <div class="schedule-note">Reunião prevista para hoje.</div>
+          <span class="status-pill status-today">Hoje</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">15 set · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">SEADI.</div>
+          <span class="status-pill status-next">Próxima</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">24 set · quinta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Pauta ainda não informada na planilha.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">29 set · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">CGJ, SEGER JUD e SEJUD 2º Grau.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">06 out · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">FCB, SEJUD 1º Grau e CONJUR.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">20 out · terça</div>
+          <div class="schedule-title">Maturidade de Governança</div>
+          <div class="schedule-note">ESMEC, Assessoria de Precatórios e SEJUD 1º Grau Cariri.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">29 out · quinta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Pauta ainda não informada na planilha.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">26 nov · quinta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Pauta ainda não informada na planilha.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">10 dez · quinta</div>
+          <div class="schedule-title">Confraternização</div>
+          <div class="schedule-note">Encontro previsto no calendário da Rede.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">17 dez · quinta</div>
+          <div class="schedule-title">Reunião Geral</div>
+          <div class="schedule-note">Pauta ainda não informada na planilha.</div>
+          <span class="status-pill status-next">Programada</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 <!-- 1. O QUE É -->
@@ -579,8 +908,8 @@ a.linkcard:hover{
         <tr><th style="width:18%">Unidade</th><th style="width:38%">Representantes</th><th>Função na unidade setorial</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="unit">SEGOV<br><span style="font-weight:500;font-size:13px;color:var(--gold)">Coordenação</span></td>
+        <tr class="segov-coord">
+          <td class="unit">SEGOV<br><span class="coord-badge">Coordenação da Rede</span></td>
           <td>Renata Silveira Meneses<br>Luis Valdemiro de Sena<br>Michelle Cochrane Feitosa Mendes</td>
           <td class="role">Diretora de Estratégia e Governança · Gerente de Governança · Coordenadora de Apoio à Governança</td>
         </tr>
@@ -605,7 +934,7 @@ a.linkcard:hover{
 </section>
 
 <!-- 5. ROTINA -->
-<section id="reunioes-periodicas">
+<section>
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">05</span>
