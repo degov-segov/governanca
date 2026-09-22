@@ -347,6 +347,101 @@ table.t tr.tfoot-r td:first-child{text-align:left}
   </div>
 </div>
 
+<!-- ══ PAINEL PROSPECTIVO ══ -->
+<div class="sec">Posição Financeira — Pago e a Pagar</div>
+<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--r);padding:20px 24px;box-shadow:var(--shd);margin-bottom:24px">
+
+  <!-- barra visual empilhada -->
+  <div style="display:flex;gap:0;height:28px;border-radius:6px;overflow:hidden;margin-bottom:10px">
+    <div style="width:61.27%;background:#1a6e3c;display:flex;align-items:center;justify-content:center">
+      <span style="font-size:9.5px;font-weight:700;color:#fff;font-family:'IBM Plex Mono',monospace">Pago 61,3%</span>
+    </div>
+    <div style="width:24.65%;background:#b56d00;display:flex;align-items:center;justify-content:center">
+      <span style="font-size:9.5px;font-weight:700;color:#fff;font-family:'IBM Plex Mono',monospace">A pagar 24,6%</span>
+    </div>
+    <div style="width:14.08%;background:#e0e4ea"></div>
+  </div>
+  <div style="display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--g600)">
+      <div style="width:10px;height:10px;border-radius:2px;background:#1a6e3c;flex-shrink:0"></div>Pago efetivado
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--g600)">
+      <div style="width:10px;height:10px;border-radius:2px;background:#b56d00;flex-shrink:0"></div>A pagar (pendências)
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--g600)">
+      <div style="width:10px;height:10px;border-radius:2px;background:#e0e4ea;flex-shrink:0"></div>Saldo remanescente
+    </div>
+  </div>
+
+  <!-- grid de valores -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+    <div style="background:var(--green-bg);border:1px solid #8ecfb0;border-radius:var(--rs);padding:12px 14px">
+      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:5px">Pago efetivado</div>
+      <div style="font-size:16px;font-weight:700;color:var(--green)">R$ 16.725.322,74</div>
+      <div style="font-size:10px;color:var(--g400);margin-top:4px">Jan–Jun + 2 diárias</div>
+    </div>
+    <div style="background:var(--amber-bg);border:1px solid #e8c87a;border-radius:var(--rs);padding:12px 14px">
+      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:5px">Total a pagar</div>
+      <div style="font-size:16px;font-weight:700;color:var(--amber)">R$ 6.726.448,58</div>
+      <div style="font-size:10px;color:var(--g400);margin-top:4px">3 processos pendentes</div>
+    </div>
+    <div style="background:var(--navy-bg);border:1px solid #7aa3cc;border-radius:var(--rs);padding:12px 14px">
+      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:5px">Comprometido total</div>
+      <div style="font-size:16px;font-weight:700;color:var(--navy)">R$ 23.451.771,22</div>
+      <div style="font-size:10px;color:var(--g400);margin-top:4px">85,92% do limite autorizado</div>
+    </div>
+    <div style="background:var(--g50);border:1px solid var(--g200);border-radius:var(--rs);padding:12px 14px">
+      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g400);margin-bottom:5px">Saldo remanescente</div>
+      <div style="font-size:16px;font-weight:700;color:var(--g600)">R$ 1.598.546,46</div>
+      <div style="font-size:10px;color:var(--g400);margin-top:4px">Após liquidação de pendências</div>
+    </div>
+  </div>
+
+  <!-- detalhamento das pendências -->
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--g400);margin-bottom:10px">Detalhamento das pendências</div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <thead>
+      <tr style="background:var(--g50)">
+        <th style="text-align:left;padding:7px 12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:1px solid var(--g200)">Referência</th>
+        <th style="text-align:left;padding:7px 12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:1px solid var(--g200)">Processo</th>
+        <th style="text-align:right;padding:7px 12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:1px solid var(--g200)">Valor (R$)</th>
+        <th style="text-align:left;padding:7px 12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:1px solid var(--g200)">Situação</th>
+        <th style="text-align:left;padding:7px 12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:1px solid var(--g200)">NE vinculada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--g100)">
+        <td style="padding:8px 12px">Faturamento Jul/2026</td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px">8521890-46.2026.8.06.0000</td>
+        <td style="padding:8px 12px;text-align:right;font-weight:600">R$ 2.873.952,58</td>
+        <td style="padding:8px 12px"><span style="background:var(--amber-bg);color:var(--amber);border:1px solid #e8c87a;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px">Em tramitação</span></td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--g400)">2026NE000866</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--g100)">
+        <td style="padding:8px 12px">Faturamento Ago/2026</td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px">8524986-69.2026.8.06.0000</td>
+        <td style="padding:8px 12px;text-align:right;font-weight:600">R$ 2.972.758,30</td>
+        <td style="padding:8px 12px"><span style="background:var(--amber-bg);color:var(--amber);border:1px solid #e8c87a;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px">Em medição</span></td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--g400)">2026NE001077</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px">Repactuação contratual</td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px">8504116-51.2026.8.06.0000</td>
+        <td style="padding:8px 12px;text-align:right;font-weight:600">R$ 879.737,70</td>
+        <td style="padding:8px 12px"><span style="background:var(--amber-bg);color:var(--amber);border:1px solid #e8c87a;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px">Em processamento</span></td>
+        <td style="padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--g400)">2026NE001356</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr style="background:var(--navy-bg);border-top:2px solid var(--navy)">
+        <td colspan="2" style="padding:8px 12px;font-weight:700;color:var(--navy)">TOTAL A PAGAR</td>
+        <td style="padding:8px 12px;text-align:right;font-weight:700;color:var(--navy)">R$ 6.726.448,58</td>
+        <td colspan="2" style="padding:8px 12px;font-size:10.5px;color:var(--g600)">Sujeito a ajuste conforme medição final de Ago/2026</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
 <!-- ══ TERMÔMETRO ══ -->
 <div class="term-card">
   <div class="term-title">Termômetro de Execução</div>
