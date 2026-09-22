@@ -343,7 +343,7 @@ table.t tr.tfoot-r td:first-child{text-align:left}
   <div class="kpi k-red">
     <div class="kpi-lbl">Saldo s/ Empenhos</div>
     <div class="kpi-val c-red">R$ 8.331.099,67</div>
-    <div class="kpi-sub">Empenhado − Pago</div>
+    <div class="kpi-sub">Disponível para anulação</div>
   </div>
 </div>
 
@@ -527,8 +527,8 @@ table.t tr.tfoot-r td:first-child{text-align:left}
       <th class="cl">Competência</th>
       <th>Valor empenhado</th>
       <th class="cl">Pagamentos vinculados</th>
-      <th>Total pago vinculado</th>
-      <th>Saldo do empenho</th>
+      <th>Pago + comprometido</th>
+      <th>Saldo do empenho<br><span style="font-size:8.5px;font-weight:400;text-transform:none;letter-spacing:0">(emp. − pago efetivado)</span></th>
       <th class="cl">Observação</th>
     </tr></thead>
     <tbody>
@@ -647,8 +647,8 @@ table.t tr.tfoot-r td:first-child{text-align:left}
         <span style="color:var(--g400)">✔ Diárias Jul–Ago — R$ 5.144,45</span>
         <span style="color:var(--g400);font-size:10px;font-style:italic">Proc. 8523111-64.2026.8.06.0000 · Pago em 28/08/2026</span>
       </td>
-      <td style="color:var(--amber)">R$ 2.879.097,03<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Pendente pagamento</span></td>
-      <td class="saldo-warn">R$ 318.639,88<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Após liquidação</span></td>
+      <td style="color:var(--g600)">R$ 2.879.097,03<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Pago + comprometido</span></td>
+      <td class="saldo-warn">R$ 318.639,88<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo disponível</span></td>
       <td><span style="font-size:10.5px;color:var(--amber)">Fatura em tramitação —<br>aguardando Termo de Recebimento.</span></td>
     </tr>
 
@@ -668,8 +668,8 @@ table.t tr.tfoot-r td:first-child{text-align:left}
         <span style="color:var(--g400);font-size:10px;font-style:italic">Proc. 8524986-69.2026.8.06.0000</span>
         <span style="color:var(--g400);font-size:10px;font-style:italic">Valor em medição — apuração em andamento</span>
       </td>
-      <td style="color:var(--amber)">R$ 2.972.758,30<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Pendente pagamento</span></td>
-      <td class="saldo-warn">R$ 224.978,61<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo após liquidação</span></td>
+      <td style="color:var(--g600)">R$ 2.972.758,30<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Comprometido (em medição)</span></td>
+      <td class="saldo-warn">R$ 224.978,61<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo disponível</span></td>
       <td><span style="font-size:10.5px;color:var(--amber)">Fatura em medição —<br>apuração dos serviços de Ago/2026.</span></td>
     </tr>
 
@@ -691,8 +691,8 @@ table.t tr.tfoot-r td:first-child{text-align:left}
         <span style="color:var(--amber)">⏳ Faturamento Set/2026 — R$ 449.168,67</span>
         <span style="color:var(--g400);font-size:10px;font-style:italic">Processo a confirmar · A processar</span>
       </td>
-      <td style="color:var(--amber)">R$ 1.328.906,37<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Pendente pagamento</span></td>
-      <td class="saldo-warn">R$ 271.093,63<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo após liquidação</span></td>
+      <td style="color:var(--g600)">R$ 1.328.906,37<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Comprometido (pendente)</span></td>
+      <td class="saldo-warn">R$ 271.093,63<br><span style="font-size:10px;font-weight:400;color:var(--g400)">Saldo disponível</span></td>
       <td><span style="font-size:10.5px;color:var(--amber)">Repactuação em processamento.<br>Set/2026 a processar.</span></td>
     </tr>
 
@@ -700,8 +700,8 @@ table.t tr.tfoot-r td:first-child{text-align:left}
       <td colspan="2" style="text-align:left">TOTAL EMPENHADO (LÍQUIDO)</td>
       <td>R$ 25.056.422,41</td>
       <td style="text-align:left;font-size:10.5px">7 pgtos efetivados · 4 pendências · 2 anulações</td>
-      <td>R$ 7.175.617,25<br><span style="font-size:10px;font-weight:400">valor pendente</span></td>
-      <td>R$ 3.394.683,46<br><span style="font-size:10px;font-weight:400">saldo após pendências</span></td>
+      <td>R$ 23.900.939,99<br><span style="font-size:10px;font-weight:400">pago + comprometido</span></td>
+      <td>R$ 1.155.482,42<br><span style="font-size:10px;font-weight:400">saldo disponível p/ anulação</span></td>
       <td style="font-size:10px;color:var(--g600)">Limite: R$ 27.295.623,45</td>
     </tr>
     </tbody>
