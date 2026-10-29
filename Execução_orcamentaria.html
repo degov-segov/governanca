@@ -143,6 +143,21 @@ footer p+p{margin-top:4px}
 }
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media print{.fill,.seg{animation:none} body{background:#fff}}
+
+.h2tag{font-size:12px;font-weight:500;color:var(--mut);letter-spacing:0;text-transform:none}
+.tes-panel{border-top:4px solid #5a7aa8}
+.note.lead{color:var(--ink);font-size:13px;margin-top:0;margin-bottom:18px}
+.cnpj.nota{color:#3f6ea8;font-style:italic}
+.kpis-tes{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1100px){.kpis-tes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){.kpis-tes{grid-template-columns:1fr}}
+
+.mvr-box{border-top:4px solid var(--gold);margin-top:18px}
+.mvr-box h3{font-size:15px;font-weight:700;color:var(--navy-d);margin-bottom:8px}
+
+.fonte-tag{font-size:12.5px;font-weight:700;color:var(--navy-d);letter-spacing:.03em;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:baseline;gap:6px}
+.fonte-tag span{font-weight:500;color:var(--mut);text-transform:none;letter-spacing:0}
+.fonte-tag.fonte-tes{margin-top:26px}
 </style>
 </head>
 <body>
@@ -160,7 +175,8 @@ footer p+p{margin-top:4px}
 <main>
 
   <h2>Execução consolidada — todos os contratados</h2>
-  <section class="kpis" aria-label="Totais consolidados">
+  <p class="fonte-tag">FERMOJU <span>· UG 040101</span></p>
+  <section class="kpis" aria-label="Totais consolidados — FERMOJU">
     <div class="kpi k-dot">
       <div class="k">Dotação do exercício</div>
       <div class="v">R$ 46.210.926,00</div>
@@ -186,6 +202,35 @@ footer p+p{margin-top:4px}
       <div class="s">65,2% do empenhado<br>Saldo a pagar: R$ 12.843.665,88</div>
     </div>
   </section>
+
+  <p class="fonte-tag fonte-tes">Tesouro <span>· UG 040001 · SEGOV</span></p>
+  <section class="kpis" aria-label="Totais consolidados — Tesouro">
+    <div class="kpi k-dot">
+      <div class="k">Dotação do exercício</div>
+      <div class="v">R$ 5.074.477,86</div>
+      <div class="track"><div class="fill f-dot" style="--w:81.981%"></div></div>
+      <div class="s">82,0% empenhado<br>Saldo de dotação: R$ 914.355,41</div>
+    </div>
+    <div class="kpi k-emp">
+      <div class="k">Empenhado</div>
+      <div class="v">R$ 4.160.122,45</div>
+      <div class="track"><div class="fill emp" style="--w:100%"></div></div>
+      <div class="s">100% do empenhado<br>Base dos percentuais</div>
+    </div>
+    <div class="kpi">
+      <div class="k">Liquidado</div>
+      <div class="v">R$ 3.819.230,33</div>
+      <div class="track"><div class="fill liq" style="--w:91.806%"></div></div>
+      <div class="s">91,8% do empenhado</div>
+    </div>
+    <div class="kpi k-pag">
+      <div class="k">Pago</div>
+      <div class="v">R$ 3.817.770,89</div>
+      <div class="track"><div class="fill pag" style="--w:91.771%"></div></div>
+      <div class="s">91,8% do empenhado<br>Saldo a pagar: R$ 342.351,56</div>
+    </div>
+  </section>
+  <p class="note">As duas fontes não se somam: dotações, empenhos e saldos de orçamento são geridos separadamente. Detalhamento de cada uma nas seções abaixo.</p>
 
   <h2>Projeção de empenhos — dezembro</h2>
   <section class="panel" aria-label="Projeção de empenhos e necessidade de suplementação">
@@ -260,6 +305,100 @@ footer p+p{margin-top:4px}
   <p class="note">Saldo a pagar = empenhado − pago. Valores acumulados até outubro/2026, conforme SIAFE/SEFAZ (Lei nº 19.642, de 19/12/2025; FERMOJU / SEGOV).</p>
 </main>
 
+
+  <h2>Execução — Fonte Tesouro <span class="h2tag">UG 040001 · Tribunal de Justiça</span></h2>
+  <section class="panel tes-panel" aria-label="Execução financeira custeada pelo Tesouro">
+    <p class="note lead">Despesas custeadas por recursos do Tesouro (UG 040001), em separado dos recursos do FERMOJU (UG 040101) apresentados acima. Dotação conforme Quadro de Detalhamento da Despesa (SEPLAG), Secretaria 04000000 / Unidade Orçamentária 04100191.</p>
+    <div class="kpis kpis-tes">
+      <div class="kpi k-dot">
+        <div class="k">Dotação — Tesouro (SEGOV)</div>
+        <div class="v">R$ 5.074.477,86</div>
+        <div class="track"><div class="fill f-dot" style="--w:81.981%"></div></div>
+        <div class="s">82,0% empenhado<br>Saldo: R$ 914.355,41</div>
+      </div>
+      <div class="kpi k-emp">
+        <div class="k">Empenhado</div>
+        <div class="v">R$ 4.160.122,45</div>
+        <div class="track"><div class="fill emp" style="--w:100%"></div></div>
+        <div class="s">Base dos percentuais</div>
+      </div>
+      <div class="kpi">
+        <div class="k">Liquidado</div>
+        <div class="v">R$ 3.819.230,33</div>
+        <div class="track"><div class="fill liq" style="--w:91.806%"></div></div>
+        <div class="s">91,8% do empenhado</div>
+      </div>
+      <div class="kpi k-pag">
+        <div class="k">Pago</div>
+        <div class="v">R$ 3.817.770,89</div>
+        <div class="track"><div class="fill pag" style="--w:91.771%"></div></div>
+        <div class="s">91,8% do empenhado<br>Saldo a pagar: R$ 342.351,56</div>
+      </div>
+    </div>
+    <p class="note strong">Composição da dotação do Tesouro por ação orçamentária:</p>
+    <div class="tbl" style="margin-top:22px">
+      <table>
+        <thead><tr><th>Ação orçamentária — Tesouro</th><th>Dotação</th><th>Empenhado</th><th>% empenhado</th><th>Saldo</th></tr></thead>
+        <tbody><tr><th scope="row">Apoio financeiro — segurança a magistrados e servidores (ação 14525)</th><td>R$ 50.000,00</td><td>R$ 0,00</td><td>0,0%</td><td>R$ 50.000,00</td></tr><tr><th scope="row">PROMOJUD Comp. I — infraestrutura de TI e processos (ação 10712)</th><td>R$ 240.000,00</td><td>R$ 176.000,00</td><td>73,3%</td><td>R$ 64.000,00</td></tr><tr><th scope="row">PROMOJUD Comp. II — sistemas de governança e gestão (ação 10716)</th><td>R$ 4.784.477,86</td><td>R$ 3.984.122,45</td><td>83,3%</td><td>R$ 800.355,41</td></tr><tr class="tot"><th scope="row">Total Tesouro (SEGOV)</th><td>R$ 5.074.477,86</td><td>R$ 4.160.122,45</td><td>82,0%</td><td>R$ 914.355,41</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="tbl" style="margin-top:22px">
+      <table>
+        <thead><tr><th>Contratado</th><th>Empenhado</th><th>Liquidado</th><th>Pago</th><th>Saldo a pagar</th><th>% pago</th></tr></thead>
+        <tbody><tr>
+      <th scope="row"><div class="nm" title="M V R SERVICOS EIRELI">M V R SERVICOS EIRELI</div><div class="cnpj">CNPJ 07.867.775/0001-08</div><div class="cnpj nota">CT-025/2022 — mesma contratação do MVR mostrado no FERMOJU; esta parcela foi custeada pelo Tesouro</div></th>
+      <td>R$ 2.050.667,28</td><td>R$ 2.050.667,28</td><td>R$ 2.050.667,28</td>
+      <td class="sd">R$ 0,00</td>
+      <td><div class="pp">100,0%</div><div class="mini"><i style="width:100.0%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="PORTFOLIO CONSULTORIA EMPRESARIAL LTDA">PORTFOLIO CONSULTORIA EMPRESARIAL LTDA</div><div class="cnpj">CNPJ 10.889.470/0001-01</div></th>
+      <td>R$ 1.700.471,71</td><td>R$ 1.519.822,60</td><td>R$ 1.519.822,60</td>
+      <td class="sd">R$ 180.649,11</td>
+      <td><div class="pp">89,4%</div><div class="mini"><i style="width:89.4%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="MODULO SECURITY SOLUTIONS S/A">MODULO SECURITY SOLUTIONS S/A</div><div class="cnpj">CNPJ 28.712.123/0001-74</div><div class="cnpj nota">Consultoria LGPD</div></th>
+      <td>R$ 176.000,00</td><td>R$ 112.000,00</td><td>R$ 112.000,00</td>
+      <td class="sd">R$ 64.000,00</td>
+      <td><div class="pp">63,6%</div><div class="mini"><i style="width:63.6%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="FUNDAÇÃO DE APOIO A SERVIÇOS TÉCNICOS, ENSINO E FOMENTO A PESQUISAS - FUNDAÇÃO ASTEF">FUNDAÇÃO DE APOIO A SERVIÇOS TÉCNICOS, ENSINO E FOMENTO A PESQUISAS - FUNDAÇÃO ASTEF</div><div class="cnpj">CNPJ 08.918.421/0001-08</div></th>
+      <td>R$ 90.000,00</td><td>R$ 30.600,00</td><td>R$ 30.600,00</td>
+      <td class="sd">R$ 59.400,00</td>
+      <td><div class="pp">34,0%</div><div class="mini"><i style="width:34.0%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="RAFAEL DA SILVA RODRIGUES">RAFAEL DA SILVA RODRIGUES</div><div class="cnpj">CPF 528.675.012-53</div><div class="cnpj nota">Consultor individual</div></th>
+      <td>R$ 39.571,14</td><td>R$ 28.778,96</td><td>R$ 28.383,25</td>
+      <td class="sd">R$ 11.187,89</td>
+      <td><div class="pp">71,7%</div><div class="mini"><i style="width:71.7%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="IAGO JOSÉ CAPISTRANO SÁ">IAGO JOSÉ CAPISTRANO SÁ</div><div class="cnpj">CPF 076.341.343-76</div><div class="cnpj nota">Consultor individual</div></th>
+      <td>R$ 39.571,13</td><td>R$ 28.778,96</td><td>R$ 28.383,25</td>
+      <td class="sd">R$ 11.187,88</td>
+      <td><div class="pp">71,7%</div><div class="mini"><i style="width:71.7%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="LUCIANA DO VALE CAVALCANTE">LUCIANA DO VALE CAVALCANTE</div><div class="cnpj">CPF 618.647.433-01</div><div class="cnpj nota">Consultora individual</div></th>
+      <td>R$ 34.242,68</td><td>R$ 24.903,76</td><td>R$ 24.561,33</td>
+      <td class="sd">R$ 9.681,35</td>
+      <td><div class="pp">71,7%</div><div class="mini"><i style="width:71.7%"></i></div></td></tr><tr>
+      <th scope="row"><div class="nm" title="FELLIPE CAMARA BRANCO D'OLIVEIRA">FELLIPE CAMARA BRANCO D'OLIVEIRA</div><div class="cnpj">CPF 057.934.987-02</div><div class="cnpj nota">Consultor individual</div></th>
+      <td>R$ 29.598,51</td><td>R$ 23.678,77</td><td>R$ 23.353,18</td>
+      <td class="sd">R$ 6.245,33</td>
+      <td><div class="pp">78,9%</div><div class="mini"><i style="width:78.9%"></i></div></td></tr><tr class="tot"><th scope="row">Total — Fonte Tesouro</th><td>R$ 4.160.122,45</td><td>R$ 3.819.230,33</td><td>R$ 3.817.770,89</td><td class="sd">R$ 342.351,56</td><td>91,8%</td></tr></tbody>
+      </table>
+    </div>
+    <p class="note">Saldo a pagar = empenhado − pago. Valores acumulados até outubro/2026, conforme SIAFE/SEFAZ. M V R SERVIÇOS EIRELI aparece também na tabela do FERMOJU (acima): é o mesmo CT-025/2022, cujo custeio migrou do Tesouro para o FERMOJU ao longo do exercício — ver o quadro consolidado do contrato logo abaixo.</p>
+  </section>
+
+
+  <section class="panel mvr-box" aria-label="CT-025/2022 consolidado">
+    <h3>CT-025/2022 (M V R SERVIÇOS EIRELI) — visão consolidada</h3>
+    <p class="note lead">Mesmo contrato, financiado por duas fontes ao longo do exercício: parte dos empenhos foi custeada pelo Tesouro e, em seguida, passou a ser custeada pelo FERMOJU. Os valores abaixo somam as duas fontes.</p>
+    <div class="tbl" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Fonte</th><th>Empenhado</th><th>Liquidado</th><th>Pago</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Tesouro (UG 040001)</th><td>R$ 2.050.667,28</td><td>R$ 2.050.667,28</td><td>R$ 2.050.667,28</td></tr>
+          <tr><th scope="row">FERMOJU (UG 040101)</th><td>R$ 2.017.803,93</td><td>R$ 859.991,43</td><td>R$ 859.991,43</td></tr>
+          <tr class="tot"><th scope="row">Total CT-025/2022</th><td>R$ 4.068.471,21</td><td>R$ 2.910.658,71</td><td>R$ 2.910.658,71</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 <footer>
   <p>Fonte: Governo do Estado do Ceará — Secretaria da Fazenda / SEFAZ. Execução Orçamentária 2026 e Detalhamento das Despesas (SIAFE-CE), acumulado até outubro. Valores em reais (R$).</p>
   <p>Tribunal de Justiça do Estado do Ceará — SEGOV / ECP. Atualização em 28/10/2026.</p>
