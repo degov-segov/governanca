@@ -174,26 +174,25 @@
   <div class="kpi-grid kpi-grid-auth" style="margin-bottom:14px;">
     <div class="kpi-card teal">
       <div class="kpi-label">Limite Autorizado — Empenho</div>
-      <div class="kpi-value">R$&nbsp;10.063.601,94</div>
-      <div class="kpi-sub">Teto de empenho do Contrato nº 42/2026</div>
+      <div class="kpi-value">R$&nbsp;18.063.601,94</div>
+      <div class="kpi-sub">Teto de empenho do Contrato nº 42/2026 (atualizado; anterior: R$&nbsp;10.063.601,94)</div>
     </div>
     <div class="kpi-card azul-m">
       <div class="kpi-label">Empenhado vs. Limite</div>
-      <div class="kpi-value" style="color:var(--vermelho)">179,49%</div>
-      <div class="kpi-sub">R$&nbsp;18.063.601,94 de R$&nbsp;10.063.601,94</div>
-      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:100%;background:var(--vermelho)"></div></div>
+      <div class="kpi-value">100,00%</div>
+      <div class="kpi-sub">R$&nbsp;18.063.601,94 de R$&nbsp;18.063.601,94</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:100%;background:var(--azul-medio)"></div></div>
     </div>
-    <div class="kpi-card verm">
+    <div class="kpi-card roxo">
       <div class="kpi-label">Saldo — Limite de Empenho</div>
-      <div class="kpi-value" style="color:var(--vermelho)">−R$&nbsp;8.000.000,00</div>
-      <div class="kpi-sub">Empenhos excedem o limite autorizado — verificar</div>
+      <div class="kpi-value">R$&nbsp;0,00</div>
+      <div class="kpi-sub">Limite integralmente comprometido</div>
     </div>
   </div>
 
   <div class="auth-nota">
     <strong>Contratada:</strong> PLANSUL &nbsp;|&nbsp;
-    3 notas de empenho emitidas: 2 de R$&nbsp;5.031.800,97 (competências setembro e outubro/2026) e 1 de R$&nbsp;8.000.000,00 (competências novembro e dezembro/2026).
-    <br><strong style="color:var(--vermelho)">Atenção:</strong> o total empenhado (R$&nbsp;18.063.601,94) supera o limite autorizado registrado (R$&nbsp;10.063.601,94) em R$&nbsp;8.000.000,00. Verificar eventual ampliação do limite.
+    Limite de empenho atualizado para R$&nbsp;18.063.601,94 e integralmente utilizado por meio de 3 notas de empenho: 2 de R$&nbsp;5.031.800,97 (competências setembro e outubro/2026) e 1 de R$&nbsp;8.000.000,00 (competências novembro e dezembro/2026).
   </div>
 
   <!-- BLOCO 2 — EXECUÇÃO -->
@@ -229,15 +228,12 @@
 
     <div class="prog-row">
       <div class="prog-row-head">
-        <span class="prog-lbl">Empenhos × Limite autorizado — R$&nbsp;10.063.601,94</span>
-        <span class="prog-pct" style="color:var(--vermelho)">179,49%</span>
+        <span class="prog-lbl">Empenhos × Limite autorizado — R$&nbsp;18.063.601,94</span>
+        <span class="prog-pct" style="color:var(--azul-medio)">100,00%</span>
       </div>
       <div class="prog-bar-bg">
-        <div class="pb-fill" style="width:55.71%;background:var(--azul-medio)">
-          <span class="pb-label">Limite R$&nbsp;10.063.601,94</span>
-        </div>
-        <div class="pb-fill" style="width:44.29%;background:var(--vermelho)">
-          <span class="pb-label">Excedente R$&nbsp;8.000.000,00</span>
+        <div class="pb-fill" style="width:100%;background:var(--azul-medio)">
+          <span class="pb-label">R$&nbsp;18.063.601,94</span>
         </div>
       </div>
     </div>
@@ -257,7 +253,7 @@
     <div class="prog-legend">
       <div class="leg-item"><div class="leg-dot" style="background:var(--azul-medio)"></div>Empenhado — R$&nbsp;18.063.601,94</div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--verde)"></div>Pago — R$&nbsp;3.224.445,72</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--vermelho)"></div>Excedente ao limite — R$&nbsp;8.000.000,00</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--cinza-borda)"></div>Saldo limite empenho — R$&nbsp;0,00</div>
     </div>
   </div>
 
@@ -316,7 +312,7 @@
           <tr style="background:var(--azul-claro);font-weight:700">
             <td colspan="2" style="padding:9px 12px;color:var(--azul-escuro)">TOTAL EMPENHADO</td>
             <td class="td-right" style="color:var(--azul-escuro)">18.063.601,94</td>
-            <td class="td-right" style="color:var(--vermelho);font-size:11px;font-weight:600">Limite: 10.063.601,94<br>Excedente: 8.000.000,00</td>
+            <td class="td-right" style="color:var(--texto-sub);font-size:11px;font-weight:400">Limite: 18.063.601,94</td>
           </tr>
         </tbody>
       </table>
@@ -560,10 +556,10 @@
   new Chart(document.getElementById('chartLimites'), {
     type:'bar',
     data:{
-      labels:['Empenho (Lim. 10.063.601,94)'],
+      labels:['Empenho (Lim. 18.063.601,94)'],
       datasets:[
-        { label:'Dentro do limite',    data:[10063601.94], backgroundColor:['rgba(46,117,182,.85)'], borderRadius:4 },
-        { label:'Excedente ao limite', data:[8000000],     backgroundColor:['rgba(192,0,0,.80)'],   borderRadius:4 },
+        { label:'Realizado',       data:[18063601.94], backgroundColor:['rgba(46,117,182,.85)'], borderRadius:4 },
+        { label:'Saldo do limite', data:[0],           backgroundColor:['rgba(222,226,230,.7)'], borderRadius:4 },
       ]
     },
     options:{
