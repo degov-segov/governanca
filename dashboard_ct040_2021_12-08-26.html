@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
+<html lang="pt-BR"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard – Contrato 040/2021</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -39,8 +37,8 @@
   .section-label::after { content:''; flex:1; height:1px; background:var(--cinza-borda); }
 
   .kpi-grid { display:grid; gap:14px; margin-bottom:8px; }
-  .kpi-grid-auth { grid-template-columns:repeat(5,1fr); }
-  .kpi-grid-exec { grid-template-columns:repeat(5,1fr); margin-bottom:24px; }
+  .kpi-grid-auth { grid-template-columns:repeat(3,1fr); }
+  .kpi-grid-exec { grid-template-columns:repeat(4,1fr); margin-bottom:24px; }
 
   .kpi-card { background:var(--branco); border-radius:8px; border-top:4px solid var(--azul-medio);
     padding:14px 16px 12px; box-shadow:0 1px 4px rgba(0,0,0,.07); }
@@ -117,6 +115,37 @@
 
   .footer { text-align:center; font-size:11px; color:var(--texto-sub); padding:20px;
     border-top:1px solid var(--cinza-borda); background:var(--branco); margin-top:8px; }
+
+  .badge-aguard { background:var(--laranja-bg); color:#8A6512; }
+  .vazio { padding:34px 20px; text-align:center; color:var(--texto-sub); font-size:12.5px; line-height:1.6; }
+  .vazio strong { display:block; color:var(--azul-escuro); font-size:13px; margin-bottom:4px; }
+  /* controle de saldo por empenho */
+  .col-2r { grid-template-columns:1.6fr 1fr; }
+  .panel-header.laranja-s { background:var(--laranja); color:#000; }
+  .saldo-cell { text-align:right; font-variant-numeric:tabular-nums; }
+  .saldo-destaque { display:inline-block; padding:5px 10px; border-radius:6px; font-weight:700;
+    background:var(--laranja-bg); color:#8A6512; border:1px solid #E8C770; white-space:nowrap; }
+  .saldo-zero { background:var(--verde-claro); color:var(--verde); border-color:#9BD3AE; }
+  .saldo-neg  { background:var(--verm-claro); color:var(--vermelho); border-color:#F19AA6; }
+  .saldo-na   { background:var(--cinza-claro); color:var(--texto-sub); border-color:var(--cinza-borda); font-weight:600; }
+  .uso-bar { height:6px; background:var(--cinza-borda); border-radius:3px; overflow:hidden; margin-top:4px; min-width:70px; }
+  .uso-bar span { display:block; height:100%; background:var(--verde); border-radius:3px; }
+  .uso-pct { font-size:11px; font-weight:600; color:var(--texto); }
+  .badge-analise { background:var(--laranja-bg); color:#8A6512; }
+  .badge-quitado { background:var(--verde-claro); color:var(--verde); }
+  .badge-alerta  { background:var(--verm-claro); color:var(--vermelho); }
+  .badge-semdado { background:var(--cinza-borda); color:var(--texto-sub); }
+  .saldo-nota { padding:12px 18px; font-size:11.5px; color:var(--texto-sub); line-height:1.6;
+    border-top:1px solid var(--cinza-borda); background:var(--branco); }
+  .saldo-nota strong { color:#8A6512; }
+  .td-proc { font-size:11px; color:var(--texto); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  @media (max-width:1000px){
+    .kpi-grid-auth,.kpi-grid-exec,.col-2,.col-2r,.col-3 { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:640px){
+    .kpi-grid-auth,.kpi-grid-exec,.col-2,.col-2r,.col-3 { grid-template-columns:1fr; }
+    .header { flex-wrap:wrap; } .header-badge { padding:12px 28px; }
+  }
 </style>
 </head>
 <body>
@@ -130,15 +159,15 @@
   <div class="header-badge">
     <div class="badge-data">
       <div class="label">Atualização</div>
-      <div class="value" id="data-atual"></div>
+      <div class="value" id="data-atual">03/11/2026</div>
     </div>
   </div>
 </header>
 
 <main class="main">
 
-  <!-- BLOCO 1 — AUTORIZAÇÃO -->
-  <div class="section-label" style="margin-top:20px;">Autorização Presidencial — Portaria nº 320/2025</div>
+  <!-- BLOCO 1 — LIMITES AUTORIZADOS -->
+  <div class="section-label" style="margin-top:20px;">Limites Autorizados — Exercício 2026 (Portaria nº 320/2025)</div>
 
   <div class="kpi-grid kpi-grid-auth" style="margin-bottom:14px;">
     <div class="kpi-card teal">
@@ -146,22 +175,11 @@
       <div class="kpi-value">R$&nbsp;2.035.000,00</div>
       <div class="kpi-sub">Teto anual 2026 para empenhos</div>
     </div>
-    <div class="kpi-card teal">
-      <div class="kpi-label">Limite Autorizado — Pagamento</div>
-      <div class="kpi-value">R$&nbsp;1.850.000,00</div>
-      <div class="kpi-sub">Teto anual 2026 para pagamentos</div>
-    </div>
     <div class="kpi-card azul-m">
       <div class="kpi-label">Empenhado vs. Limite</div>
       <div class="kpi-value">97,04%</div>
-      <div class="kpi-sub">R$&nbsp;1.974.822,04 de R$&nbsp;2.035.000,00</div>
+      <div class="kpi-sub">R$&nbsp;1.974.822,04 (bruto) de R$&nbsp;2.035.000,00</div>
       <div class="kpi-bar"><div class="kpi-bar-fill" style="width:97.04%;background:var(--azul-medio)"></div></div>
-    </div>
-    <div class="kpi-card verde">
-      <div class="kpi-label">Pago vs. Limite Pgto</div>
-      <div class="kpi-value">52,12%</div>
-      <div class="kpi-sub">R$&nbsp;964.280,38 de R$&nbsp;1.850.000,00</div>
-      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:52.1%;background:var(--verde)"></div></div>
     </div>
     <div class="kpi-card roxo">
       <div class="kpi-label">Saldo — Limite de Empenho</div>
@@ -169,11 +187,30 @@
       <div class="kpi-sub">2,96% do limite disponível</div>
     </div>
   </div>
+  <div class="kpi-grid kpi-grid-auth" style="margin-bottom:14px;">
+    <div class="kpi-card teal">
+      <div class="kpi-label">Limite Autorizado — Pagamento</div>
+      <div class="kpi-value">R$&nbsp;1.850.000,00</div>
+      <div class="kpi-sub">Teto anual 2026 para pagamentos</div>
+    </div>
+    <div class="kpi-card verde">
+      <div class="kpi-label">Pago vs. Limite de Pagamento</div>
+      <div class="kpi-value">71,90%</div>
+      <div class="kpi-sub">R$&nbsp;1.330.226,05 de R$&nbsp;1.850.000,00</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:71.90%;background:var(--verde)"></div></div>
+    </div>
+    <div class="kpi-card roxo">
+      <div class="kpi-label">Saldo — Limite de Pagamento</div>
+      <div class="kpi-value">R$&nbsp;519.773,95</div>
+      <div class="kpi-sub">28,10% do limite disponível</div>
+    </div>
+  </div>
 
   <div class="auth-nota">
     <strong>Autorização:</strong> Presidente Heraclito Vieira de Sousa Neto &nbsp;|&nbsp;
     Base: arts. 58 a 62 da Lei Federal nº 4.320/1964 e Portaria nº 320/2025 (12/02/2025, republicada em 19/02/2025) &nbsp;|&nbsp;
-    Ação: 04100191.02.126.10716.15
+    Ação: 04100191.02.126.10716.15 &nbsp;|&nbsp;
+    7 notas de empenho emitidas (R$&nbsp;1.974.822,04) e 2 anulações (R$&nbsp;109.353,33).
   </div>
 
   <!-- BLOCO 2 — EXECUÇÃO -->
@@ -181,29 +218,25 @@
 
   <div class="kpi-grid kpi-grid-exec">
     <div class="kpi-card azul-m">
-      <div class="kpi-label">Total Empenhado (Bruto)</div>
-      <div class="kpi-value">R$&nbsp;1.974.822,04</div>
-      <div class="kpi-sub">7 empenhos · 2 anulações: R$&nbsp;109.353,33</div>
-    </div>
-    <div class="kpi-card verm">
-      <div class="kpi-label">Anulações (NE000972 + NE001270)</div>
-      <div class="kpi-value">− R$&nbsp;109.353,33</div>
-      <div class="kpi-sub">Empenho líquido: R$&nbsp;1.865.468,71</div>
+      <div class="kpi-label">Total Empenhado (Líquido)</div>
+      <div class="kpi-value">R$&nbsp;1.865.468,71</div>
+      <div class="kpi-sub">Bruto R$&nbsp;1.974.822,04 − anulações R$&nbsp;109.353,33</div>
     </div>
     <div class="kpi-card verde">
       <div class="kpi-label">Total Pago</div>
-      <div class="kpi-value">R$&nbsp;964.280,38</div>
-      <div class="kpi-sub">6 pagamentos efetivados</div>
+      <div class="kpi-value">R$&nbsp;1.330.226,05</div>
+      <div class="kpi-sub">8 pagamentos concluídos · 1 em aberto: R$&nbsp;172.148,53</div>
     </div>
     <div class="kpi-card roxo">
       <div class="kpi-label">% Executado</div>
-      <div class="kpi-value">51,69%</div>
-      <div class="kpi-sub">Pago / Emp. líquido</div>
+      <div class="kpi-value">71,31%</div>
+      <div class="kpi-sub">Pago / Empenho líquido</div>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="width:71.31%;background:var(--roxo)"></div></div>
     </div>
     <div class="kpi-card laranja">
-      <div class="kpi-label">Saldo s/ Empenho Líquido</div>
-      <div class="kpi-value">R$&nbsp;901.188,33</div>
-      <div class="kpi-sub">Emp. líquido ainda não pago</div>
+      <div class="kpi-label">Saldo s/ Empenho</div>
+      <div class="kpi-value">R$&nbsp;535.242,66</div>
+      <div class="kpi-sub">Empenho líquido ainda não pago</div>
     </div>
   </div>
 
@@ -216,42 +249,30 @@
         <span class="prog-lbl">Empenhos (bruto) × Limite autorizado — R$&nbsp;2.035.000,00</span>
         <span class="prog-pct" style="color:var(--azul-medio)">97,04%</span>
       </div>
-      <div class="prog-bar-bg">
-        <div class="pb-fill" style="width:97.04%;background:var(--azul-medio)">
-          <span class="pb-label">R$&nbsp;1.974.822,04</span>
-        </div>
-      </div>
+      <div class="prog-bar-bg"><div class="pb-fill" style="width:97.04%;background:var(--azul-medio)"><span class="pb-label">R$&nbsp;1.974.822,04</span></div></div>
     </div>
 
     <div class="prog-row">
       <div class="prog-row-head">
         <span class="prog-lbl">Pagamentos × Limite autorizado — R$&nbsp;1.850.000,00</span>
-        <span class="prog-pct" style="color:var(--verde)">52,12%</span>
+        <span class="prog-pct" style="color:var(--teal)">71,90%</span>
       </div>
-      <div class="prog-bar-bg">
-        <div class="pb-fill" style="width:52.12%;background:var(--verde)">
-          <span class="pb-label">R$&nbsp;964.280,38</span>
-        </div>
-      </div>
+      <div class="prog-bar-bg"><div class="pb-fill" style="width:71.90%;background:var(--teal)"><span class="pb-label">R$&nbsp;1.330.226,05</span></div></div>
     </div>
 
     <div class="prog-row" style="margin-bottom:0">
       <div class="prog-row-head">
         <span class="prog-lbl">Pago × Empenho líquido — R$&nbsp;1.865.468,71</span>
-        <span class="prog-pct" style="color:var(--roxo)">51,69%</span>
+        <span class="prog-pct" style="color:var(--verde)">71,31%</span>
       </div>
-      <div class="prog-bar-bg">
-        <div class="pb-fill" style="width:51.69%;background:var(--verde)">
-          <span class="pb-label">Pago 51,69%</span>
-        </div>
-      </div>
+      <div class="prog-bar-bg"><div class="pb-fill" style="width:71.31%;background:var(--verde)"><span class="pb-label">R$&nbsp;1.330.226,05</span></div></div>
     </div>
 
     <div class="prog-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:var(--verde)"></div>Pago — R$&nbsp;964.280,38</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--azul-medio)"></div>Empenhado (bruto) — R$&nbsp;1.974.822,04</div>
       <div class="leg-item"><div class="leg-dot" style="background:var(--vermelho)"></div>Anulações — R$&nbsp;109.353,33</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--azul-medio)"></div>Saldo limite empenho — R$&nbsp;60.177,96</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--cinza-borda)"></div>Saldo limite pagamento — R$&nbsp;885.719,62</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--verde)"></div>Pago — R$&nbsp;1.330.226,05</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--cinza-borda)"></div>Saldo limite empenho — R$&nbsp;60.177,96</div>
     </div>
   </div>
 
@@ -407,62 +428,53 @@
       <table>
         <thead>
           <tr>
-            <th>Referência</th><th>Processo</th>
+            <th>Pagamento – SYDLE</th>
+            <th class="td-center">Status</th>
+            <th class="td-center">Data</th>
             <th class="td-right">Valor (R$)</th>
-            <th>Data Pgto</th><th class="td-center">Situação</th>
+            <th>Processo SEI nº</th>
+            <th>Empenho</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Janeiro/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8500948-26.2026.8.06.0000</td>
-            <td class="td-right">150.117,06</td><td class="td-center">13/03/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr>
-            <td>Fevereiro/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8506647-89.2026.8.06.0000</td>
-            <td class="td-right">145.947,14</td><td class="td-center">26/03/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr>
-            <td>Março/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8507212-51.2026.8.06.0000</td>
-            <td class="td-right">166.796,74</td><td class="td-center">29/04/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr>
-            <td>Abril/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8514626-91.2026.8.06.0000</td>
-            <td class="td-right">158.456,90</td><td class="td-center">15/06/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr>
-            <td>Maio/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8514627-72.2026.8.06.0000</td>
-            <td class="td-right">171.480,77</td><td class="td-center">06/07/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr>
-            <td>Junho/2026</td>
-            <td style="font-size:11px;color:var(--texto-sub)">8515382-64.2026.8.06.0000</td>
-            <td class="td-right">171.481,77</td><td class="td-center">27/07/2026</td>
-            <td class="td-center"><span class="badge badge-pago">Pago</span></td>
-          </tr>
-          <tr style="background:var(--verde-claro);font-weight:700">
-            <td colspan="2" style="padding:9px 12px;color:var(--verde)">TOTAL PAGO</td>
-            <td class="td-right" style="color:var(--verde)">964.280,38</td>
-            <td colspan="2" style="font-size:11px;color:var(--texto-sub);padding:9px 12px">Limite pgto: R$&nbsp;1.850.000,00</td>
-          </tr>
-        </tbody>
+        <tbody id="tbPag"></tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- CONTROLE DE SALDO POR EMPENHO -->
+  <div class="section-label">Controle de Saldo por Empenho</div>
+  <div class="content-grid col-2r">
+    <div class="panel">
+      <div class="panel-header laranja-s">Saldo Remanescente por Empenho</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nº Empenho</th>
+            <th class="td-right">Valor do Empenho (R$)</th>
+            <th class="td-right">Pagamentos Vinculados (R$)</th>
+            <th class="td-center">Data(s) de Pagamento</th>
+            <th class="td-right">Saldo Remanescente (R$)</th>
+            <th>% Pago</th>
+            <th class="td-center">Situação</th>
+          </tr>
+        </thead>
+        <tbody id="tbSaldo"></tbody>
+      </table>
+      <div class="saldo-nota">
+        <strong>Fórmula:</strong> saldo remanescente = valor do empenho − total dos pagamentos vinculados (pagamentos repetidos — mesma solicitação/processo, data e valor — são contabilizados uma única vez). O valor do 2026NE000313 já considera a anulação parcial 2026NE000972.<br>
+        <strong>Atenção:</strong> o saldo positivo é apresentado como informação para análise e não indica, por si só, disponibilidade para anulação parcial ou total do empenho. Os pagamentos de Jan e Fev/2026 superam em R$&nbsp;3,00 o valor líquido do 2026NE000313; a anulação 2026NE001270 ainda deve ser vinculada ao empenho de setembro correspondente (2026NE001203 ou 2026NE001208). A SOLIC-PAG-1186/2026 (R$&nbsp;172.148,53, em aberto) não entra no total pago nem no saldo até ser concluída. O pagamento de Junho/2026 (SEI 8515382-64.2026.8.06.0000) foi atualizado conforme o SOLIC-PAG-52/2026: R$&nbsp;180.054,81 em 21/07/2026. A SOLIC-PAG-1186/2026, vinculada ao 2026NE001208, está indicada na linha do empenho como valor em aberto.
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header laranja-s">Pago × Saldo por Empenho</div>
+      <div class="chart-wrap" style="height:420px"><canvas id="chartSaldoEmp"></canvas></div>
     </div>
   </div>
 
   <!-- GRÁFICOS -->
   <div class="content-grid col-3">
     <div class="panel">
-      <div class="panel-header">Empenhos × Pagamentos por Mês</div>
+      <div class="panel-header">Empenhos × Pagamentos por Mês (emissão / pagamento)</div>
       <div class="chart-wrap"><canvas id="chartMensal"></canvas></div>
     </div>
     <div class="panel">
@@ -489,26 +501,177 @@
   Chart.defaults.font.family = 'Inter, sans-serif';
   Chart.defaults.font.size   = 11;
   const gridColor = '#DEE2E6';
+  const brl = v => ' R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const mil = v => 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';
+  const fmt = v => v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const cent = v => Math.round(v*100);
+
+  /* ===== DADOS ===== */
+  // valor = valor do empenho (líquido de anulações já vinculadas)
+  const empenhos = [
+    { ne:'2026NE000313', data:'Março/2026',    comp:'Jan e Fev/2026', valor:296061.20, obs:'líquido após anulação 2026NE000972' },
+    { ne:'2026NE000482', data:'Abril/2026',    comp:'Mar/2026',       valor:166796.74 },
+    { ne:'2026NE000829', data:'Junho/2026',    comp:'Mai a Ago/2026 + retroativos', valor:754515.84 },
+    { ne:'2026NE000724', data:'09/06/2026',    comp:'Abr/2026',       valor:158456.90 },
+    { ne:'2026NE001203', data:'24/09/2026',    comp:'não informada',  valor:171480.77 },
+    { ne:'2026NE001208', data:'24/09/2026',    comp:'não informada',  valor:181316.87 },
+    { ne:'2026NE001270', data:'Outubro/2026',  comp:'Set/2026',       valor:-28159.61, anulacao:true, obs:'anulação a vincular (NE001203 ou NE001208)' },
+    { ne:'2026NE001804', data:'28/10/2026',    comp:'não informada',  valor:165000.00 },
+  ];
+  // sydle: nº da solicitação de pagamento no SYDLE (null = não informado)
+  // ne: empenho vinculado (null = a vincular)
+  const pagamentos = [
+    { sydle:null, status:'Concluído', data:'13/03/2026', valor:150117.06, processo:'8500948-26.2026.8.06.0000', ne:'2026NE000313', ref:'Janeiro/2026' },
+    { sydle:null, status:'Concluído', data:'26/03/2026', valor:145947.14, processo:'8506647-89.2026.8.06.0000', ne:'2026NE000313', ref:'Fevereiro/2026' },
+    { sydle:null, status:'Concluído', data:'29/04/2026', valor:166796.74, processo:'8507212-51.2026.8.06.0000', ne:'2026NE000482', ref:'Março/2026' },
+    { sydle:null, status:'Concluído', data:'15/06/2026', valor:158456.90, processo:'8514626-91.2026.8.06.0000', ne:'2026NE000724', ref:'Abril/2026' },
+    { sydle:null, status:'Concluído', data:'06/07/2026', valor:171480.77, processo:'8514627-72.2026.8.06.0000', ne:'2026NE000829', ref:'Maio/2026' },
+    { sydle:'SOLIC-PAG-52/2026',  status:'Concluído', data:'21/07/2026', valor:180054.81, processo:'8515382-64.2026.8.06.0000', ne:'2026NE000829', ref:'Junho/2026' },
+    { sydle:'SOLIC-PAG-555/2026', status:'Concluído', data:'04/09/2026', valor:184796.74, processo:'8524899-16.2026.8.06.0000', ne:'2026NE000829', ref:null },
+    { sydle:'SOLIC-PAG-860/2026', status:'Concluído', data:'29/09/2026', valor:172575.89, processo:'8527084-27.2026.8.06.0000', ne:'2026NE000829', ref:null },
+    { sydle:'SOLIC-PAG-1186/2026', status:'Aberto',   data:null,         valor:172148.53, processo:null, ne:'2026NE001208', ref:null },
+  ];
+
+  /* ===== PAGAMENTOS ===== */
+  // elimina duplicidades (mesma solicitação/processo, data e valor)
+  const pgTodos = [...new Map(pagamentos.map(p => [(p.sydle||'')+'|'+p.processo+'|'+p.data+'|'+cent(p.valor), p])).values()];
+  // somente pagamentos concluídos entram no total pago e no controle de saldo
+  const pgUnicos = pgTodos.filter(p => p.status === 'Concluído');
+  const pgAbertos = pgTodos.filter(p => p.status !== 'Concluído');
+  const totPago = pgUnicos.reduce((a,p)=>a+cent(p.valor),0)/100;
+  const totAberto = pgAbertos.reduce((a,p)=>a+cent(p.valor),0)/100;
+  const na = t => '<span style="color:var(--texto-sub);font-style:italic;font-weight:400">'+t+'</span>';
+  document.getElementById('tbPag').innerHTML = pgTodos.map(p =>
+      '<tr><td style="white-space:nowrap">'+(p.sydle ? '<strong style="color:var(--azul-escuro)">'+p.sydle+'</strong>' : na('Não informado'))
+    + (p.ref ? '<div class="emp-meta">Competência: '+p.ref+'</div>' : '')+'</td>'
+    + '<td class="td-center"><span class="badge '+(p.status==='Concluído'?'badge-pago':'badge-aguard')+'">'+p.status+'</span></td>'
+    + '<td class="td-center" style="white-space:nowrap">'+(p.data || na('—'))+'</td>'
+    + '<td class="td-right"'+(p.status==='Concluído'?'':' style="color:var(--texto-sub)"')+'>'+fmt(p.valor)+'</td>'
+    + '<td class="td-proc">'+(p.processo || na('Não se aplica'))+'</td>'
+    + '<td>'+(p.ne ? '<span class="emp-meta" style="margin:0"><span class="ne">'+p.ne+'</span></span>' : '<span class="badge badge-analise">A vincular</span>')+'</td></tr>').join('')
+    + '<tr style="background:var(--verde-claro);font-weight:700">'
+    + '<td colspan="3" style="padding:9px 12px;color:var(--verde)">TOTAL PAGO</td>'
+    + '<td class="td-right" style="color:var(--verde)">'+fmt(totPago)+'</td>'
+    + '<td colspan="2" style="font-size:11px;color:var(--texto-sub);padding:9px 12px">Limite pgto: R$&nbsp;1.850.000,00</td></tr>'
+    + (pgAbertos.length ? '<tr style="background:var(--laranja-bg);font-weight:700">'
+    + '<td colspan="3" style="padding:9px 12px;color:#8A6512">EM ABERTO (não incluído no total pago)</td>'
+    + '<td class="td-right" style="color:#8A6512">'+fmt(totAberto)+'</td>'
+    + '<td colspan="2" style="font-size:11px;color:var(--texto-sub);padding:9px 12px;font-weight:400">'+pgAbertos.length+' solicitação(ões) em andamento</td></tr>' : '');
+
+  /* ===== CONTROLE DE SALDO POR EMPENHO ===== */
+  const saldos = empenhos.map(e => {
+    const vinc = pgUnicos.filter(p => p.ne === e.ne);
+    const pago = vinc.reduce((a,p) => a + cent(p.valor), 0) / 100;
+    const saldo = (cent(e.valor) - cent(pago)) / 100;
+    const ab = pgAbertos.filter(p => p.ne === e.ne);
+    const aberto = ab.reduce((a,p)=>a+cent(p.valor),0)/100;
+    return { ...e, pago, saldo, qtd: vinc.length, datas: vinc.map(p => p.data), aberto, abertos: ab };
+  });
+  const semVinc = pgUnicos.filter(p => !p.ne);
+  if (semVinc.length) {
+    const pg = semVinc.reduce((a,p)=>a+cent(p.valor),0)/100;
+    saldos.push({ ne:'Pagamentos sem empenho vinculado', data:semVinc.map(p=>p.sydle||p.processo).join(', '), comp:'—',
+      valor:0, pago:pg, saldo:-pg, qtd:semVinc.length, datas:semVinc.map(p=>p.data), naoVinc:true });
+  }
+
+  document.getElementById('tbSaldo').innerHTML = saldos.map(e => {
+    let saldoHtml, sit, pct = null;
+    if (e.naoVinc) {
+      saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
+      sit = '<span class="badge badge-analise">A vincular</span>';
+    } else if (e.anulacao) {
+      saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
+      sit = '<span class="badge badge-analise">A vincular</span>';
+    } else {
+      pct = e.valor > 0 ? e.pago / e.valor * 100 : 0;
+      if (e.saldo > 0 && e.pago === 0) {
+        saldoHtml = '<span class="saldo-destaque">'+fmt(e.saldo)+'</span>';
+        sit = '<span class="badge badge-aguard">Aguardando</span>';
+      } else if (e.saldo > 0) {
+        saldoHtml = '<span class="saldo-destaque">'+fmt(e.saldo)+'</span>';
+        sit = '<span class="badge badge-analise">Saldo para análise</span>';
+      } else if (e.saldo === 0) {
+        saldoHtml = '<span class="saldo-destaque saldo-zero">0,00</span>';
+        sit = '<span class="badge badge-quitado">Sem saldo</span>';
+      } else {
+        saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
+        sit = '<span class="badge badge-alerta">Pagos excedem empenho</span>';
+      }
+    }
+    const usoHtml = pct == null ? '<span class="uso-pct">—</span>'
+      : '<span class="uso-pct">'+pct.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%</span>'
+        +'<div class="uso-bar"><span style="width:'+Math.min(pct,100)+'%"></span></div>';
+    const cor = e.anulacao ? ' style="color:var(--vermelho)"' : '';
+    if (e.naoVinc) return '<tr class="row-anulacao">'
+      + '<td><strong style="color:#8A6512;font-size:12px">'+e.ne+'</strong>'
+      + '<div class="emp-meta">'+e.data+' · '+e.qtd+' pgto(s)</div></td>'
+      + '<td class="td-right">'+na('—')+'</td>'
+      + '<td class="td-right">'+fmt(e.pago)+'</td>'
+      + '<td class="td-center" style="font-size:11.5px;line-height:1.5;white-space:nowrap">'+e.datas.join('<br>')+'</td>'
+      + '<td class="saldo-cell">'+saldoHtml+'</td><td>'+usoHtml+'</td>'
+      + '<td class="td-center">'+sit+'</td></tr>';
+    return '<tr'+(e.anulacao?' class="row-anulacao"':'')+'>'
+      + '<td><span class="emp-meta" style="margin:0"><span class="ne"'+cor+'>'+e.ne+'</span></span>'
+      + '<div class="emp-meta">'+e.data+' · Competência: '+e.comp+' · '+e.qtd+' pgto(s)'+(e.obs?' · '+e.obs:'')+'</div>'
+      + (e.aberto ? '<div class="emp-meta" style="color:#8A6512;font-weight:600;font-style:normal">Em aberto: R$ '+fmt(e.aberto)+' ('+e.abertos.map(p=>p.sydle).join(', ')+')</div>' : '')+'</td>'
+      + '<td class="td-right"'+cor+'>'+(e.valor<0?'− '+fmt(Math.abs(e.valor)):fmt(e.valor))+'</td>'
+      + '<td class="td-right">'+fmt(e.pago)+'</td>'
+      + '<td class="td-center" style="font-size:11.5px;line-height:1.5;white-space:nowrap">'+(e.datas.length ? e.datas.join('<br>') : '<span style="color:var(--texto-sub)">—</span>')+'</td>'
+      + '<td class="saldo-cell">'+saldoHtml+'</td>'
+      + '<td>'+usoHtml+'</td>'
+      + '<td class="td-center">'+sit+'</td></tr>';
+  }).join('') + (() => {
+    const tv = saldos.reduce((a,e)=>a+cent(e.valor),0)/100;
+    const tp = saldos.reduce((a,e)=>a+cent(e.pago),0)/100;
+    const ts = saldos.reduce((a,e)=>a+cent(e.saldo),0)/100;
+    return '<tr style="background:var(--laranja-bg);font-weight:700">'
+      + '<td style="padding:9px 12px;color:#8A6512">TOTAL</td>'
+      + '<td class="td-right" style="color:#8A6512">'+fmt(tv)+'</td>'
+      + '<td class="td-right" style="color:#8A6512">'+fmt(tp)+'</td><td></td>'
+      + '<td class="td-right" style="color:#8A6512">'+fmt(ts)+'</td>'
+      + '<td colspan="2"></td></tr>';
+  })();
+
+  const semAnul = saldos.filter(e => !e.anulacao && !e.naoVinc);
+  new Chart(document.getElementById('chartSaldoEmp'), {
+    type:'bar',
+    data:{
+      labels: semAnul.map(e => e.ne),
+      datasets:[
+        { label:'Pago',               data: semAnul.map(e => e.pago),                backgroundColor:'rgba(30,113,69,.85)',  borderRadius:4 },
+        { label:'Saldo remanescente', data: semAnul.map(e => Math.max(e.saldo,0)),   backgroundColor:'rgba(200,149,32,.85)', borderRadius:4 },
+      ]
+    },
+    options:{
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
+        tooltip:{ callbacks:{ label: ctx=>ctx.dataset.label+':'+brl(ctx.parsed.x) } }
+      },
+      scales:{
+        x:{ stacked:true, beginAtZero:true, grid:{ color:gridColor }, ticks:{ callback: mil } },
+        y:{ stacked:true, grid:{ color:gridColor } }
+      }
+    }
+  });
 
   new Chart(document.getElementById('chartMensal'), {
     type: 'bar',
     data: {
       labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out'],
       datasets: [
-        { label:'Empenhado',  data:[0,0,377254.92,166796.74,0,912972.74,0,0,352797.64,165000.00],
-           backgroundColor:'rgba(46,117,182,0.82)', borderRadius:4 },
-        { label:'Anulação',   data:[0,0,0,0,0,0,0,-81193.72,0,-28159.61],
-           backgroundColor:'rgba(192,0,0,0.72)', borderRadius:4 },
-        { label:'Pago',       data:[150117.06,145947.14,166796.74,158456.90,171480.77,171481.77,0,0,0,0],
-           backgroundColor:'rgba(30,113,69,0.82)', borderRadius:4 },
+        { label:'Empenhado', data:[0,0,377254.92,166796.74,0,912972.74,0,0,352797.64,165000.00], backgroundColor:'rgba(46,117,182,0.82)', borderRadius:4 },
+        { label:'Anulação',  data:[0,0,0,0,0,0,0,-81193.72,0,-28159.61],                          backgroundColor:'rgba(192,0,0,0.72)',   borderRadius:4 },
+        { label:'Pago',      data:[0,0,296064.20,166796.74,0,158456.90,351535.58,0,357372.63,0], backgroundColor:'rgba(30,113,69,0.82)', borderRadius:4 },
       ]
     },
     options:{
       responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } } },
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
+                tooltip:{ callbacks:{ label: ctx=>ctx.dataset.label+':'+brl(ctx.parsed.y) } } },
       scales:{
         x:{ grid:{ color:gridColor } },
-        y:{ grid:{ color:gridColor }, ticks:{ callback: v=>'R$ '+(v/1000).toFixed(0)+'k' } }
+        y:{ grid:{ color:gridColor }, ticks:{ callback: mil } }
       }
     }
   });
@@ -516,9 +679,9 @@
   new Chart(document.getElementById('chartPizza'), {
     type:'doughnut',
     data:{
-      labels:['Pago','Saldo emp. líquido'],
+      labels:['Pago','Saldo empenhado a pagar'],
       datasets:[{
-        data:[964280.38,901188.33],
+        data:[1330226.05,535242.66],
         backgroundColor:['rgba(30,113,69,.85)','rgba(222,226,230,.9)'],
         borderWidth:2, borderColor:'#fff', hoverOffset:8
       }]
@@ -527,7 +690,7 @@
       responsive:true, maintainAspectRatio:false, cutout:'62%',
       plugins:{
         legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
-        tooltip:{ callbacks:{ label: ctx=>' R$ '+ctx.parsed.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) } }
+        tooltip:{ callbacks:{ label: ctx=>brl(ctx.parsed) } }
       }
     }
   });
@@ -535,26 +698,23 @@
   new Chart(document.getElementById('chartLimites'), {
     type:'bar',
     data:{
-      labels:['Empenho (Lim. 2.035.000)','Pagamento (Lim. 1.850.000)'],
+      labels:['Empenho (Lim. 2.035.000,00)','Pagamento (Lim. 1.850.000,00)'],
       datasets:[
-        { label:'Realizado', data:[1974822.04,964280.38],
-           backgroundColor:['rgba(46,117,182,.85)','rgba(30,113,69,.85)'], borderRadius:4 },
-        { label:'Saldo do limite', data:[60177.96,885719.62],
-           backgroundColor:['rgba(222,226,230,.7)','rgba(222,226,230,.7)'], borderRadius:4 },
+        { label:'Realizado',       data:[1974822.04,1330226.05], backgroundColor:['rgba(46,117,182,.85)','rgba(30,113,69,.85)'], borderRadius:4 },
+        { label:'Saldo do limite', data:[60177.96,519773.95],   backgroundColor:['rgba(222,226,230,.7)','rgba(222,226,230,.7)'], borderRadius:4 },
       ]
     },
     options:{
       indexAxis:'y', responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
-        tooltip:{ callbacks:{ label: ctx=>' R$ '+ctx.parsed.x.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) } }
+        tooltip:{ callbacks:{ label: ctx=>ctx.dataset.label+':'+brl(ctx.parsed.x) } }
       },
       scales:{
-        x:{ stacked:true, grid:{ color:gridColor }, ticks:{ callback: v=>'R$ '+(v/1000).toFixed(0)+'k' } },
+        x:{ stacked:true, beginAtZero:true, grid:{ color:gridColor }, ticks:{ callback: mil } },
         y:{ stacked:true, grid:{ color:gridColor } }
       }
     }
   });
 </script>
-</body>
-</html>
+</body></html>
