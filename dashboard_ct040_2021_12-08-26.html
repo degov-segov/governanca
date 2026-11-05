@@ -146,6 +146,58 @@
     .kpi-grid-auth,.kpi-grid-exec,.col-2,.col-2r,.col-3 { grid-template-columns:1fr; }
     .header { flex-wrap:wrap; } .header-badge { padding:12px 28px; }
   }
+
+  /* ===== controle de saldo — layout v2 ===== */
+  .sx-card { background:var(--branco); border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,.07); overflow:hidden; margin-bottom:24px; }
+  .sx-resumo { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-bottom:1px solid var(--cinza-borda); }
+  .sx-resumo > div { padding:14px 20px; border-left:1px solid var(--cinza-borda); }
+  .sx-resumo > div:first-child { border-left:0; }
+  .sx-resumo .k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:var(--texto-sub); }
+  .sx-resumo .v { font-size:19px; font-weight:800; margin-top:4px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .sx-resumo .s { font-size:11px; color:var(--texto-sub); margin-top:2px; }
+  .sx-head, .sx-row, .sx-tot { display:grid; grid-template-columns:34px minmax(170px,1.1fr) 118px minmax(260px,2.2fr) 118px 132px 150px; gap:14px; align-items:center; padding:0 20px; }
+  .sx-head { background:var(--azul-claro); color:var(--azul-escuro); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding-top:10px; padding-bottom:10px; border-bottom:2px solid var(--azul-medio); }
+  .sx-row { padding-top:13px; padding-bottom:13px; border-bottom:1px solid var(--cinza-borda); }
+  .sx-row:nth-child(even) { background:#FAFBFC; }
+  .sx-row.anul { background:#FDF6EC; }
+  .sx-n { font-size:12px; font-weight:700; color:var(--texto-sub); text-align:center; }
+  .sx-ne { font-size:14px; font-weight:700; color:var(--azul-medio); }
+  .sx-row.anul .sx-ne { color:var(--vermelho); }
+  .sx-meta { font-size:11px; color:var(--texto-sub); margin-top:3px; line-height:1.45; }
+  .sx-num { text-align:right; font-size:13.5px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .sx-num.neg { color:var(--vermelho); }
+  .sx-bar-top { display:flex; justify-content:space-between; font-size:11px; color:var(--texto-sub); margin-bottom:4px; }
+  .sx-bar-top b { color:var(--texto); }
+  .sx-bar { height:12px; border-radius:4px; background:#F1E4C2; display:flex; overflow:hidden; }
+  .sx-bar .p { background:var(--verde); }
+  .sx-bar .a { background:repeating-linear-gradient(45deg,#C89520 0 5px,#DDB65A 5px 10px); }
+  .sx-chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
+  .sx-chip { font-size:11px; background:var(--cinza-claro); border:1px solid var(--cinza-borda); border-radius:11px; padding:2px 8px; white-space:nowrap; }
+  .sx-chip b { color:var(--verde); }
+  .sx-chip.ab { background:var(--laranja-bg); border-color:#E8C770; }
+  .sx-chip.ab b { color:#8A6512; }
+  .sx-chip.vz { color:var(--texto-sub); font-style:italic; }
+  .sx-saldo { text-align:right; }
+  .sx-saldo span:not(.sx-lbl) { display:inline-block; padding:5px 10px; border-radius:6px; font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap;
+    background:var(--laranja-bg); color:#8A6512; border:1px solid #E8C770; }
+  .sx-saldo span.zero { background:var(--verde-claro); color:var(--verde); border-color:#9BD3AE; }
+  .sx-saldo span.neg  { background:var(--verm-claro); color:var(--vermelho); border-color:#F19AA6; }
+  .sx-sit .badge { white-space:normal; line-height:1.3; text-align:center; }
+  .sx-tot { background:var(--laranja-bg); padding-top:12px; padding-bottom:12px; font-weight:800; color:#8A6512; font-size:13.5px; }
+  .sx-tot .sx-num { font-weight:800; color:#8A6512; }
+  .sx-legend { display:flex; gap:16px; flex-wrap:wrap; padding:10px 20px; font-size:11px; color:var(--texto-sub); border-top:1px solid var(--cinza-borda); }
+  .sx-legend i { display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+  .sx-lbl { display:none; }
+  @media (max-width:1100px){
+    .sx-head { display:none; }
+    .sx-row, .sx-tot { grid-template-columns:1fr 1fr; gap:8px 14px; }
+    .sx-n { display:none; }
+    .sx-row > .sx-id, .sx-row > .sx-exec { grid-column:1 / -1; }
+    .sx-lbl { display:block; font-size:10px; font-weight:600; text-transform:uppercase; color:var(--texto-sub); text-align:left; }
+    .sx-num, .sx-saldo { text-align:left; }
+    .sx-resumo { grid-template-columns:1fr 1fr; }
+    .sx-resumo > div:nth-child(3) { border-left:0; }
+  }
 </style>
 </head>
 <body>
@@ -331,22 +383,9 @@
             <td class="td-right">166.796,74</td>
             <td class="td-right">462.857,94</td>
           </tr>
-          <!-- 3 - Junho (NE000829) -->
+          <!-- 3 - Junho (NE000724) -->
           <tr>
             <td class="td-center">3</td>
-            <td>
-              Junho/2026
-              <div class="emp-meta">
-                <span class="ne">2026NE000829</span>
-                <span class="comp"> &nbsp;·&nbsp; Competência: Mai, Jun, Jul, Ago/2026 + retroativos reajuste Jan/2026</span>
-              </div>
-            </td>
-            <td class="td-right">754.515,84</td>
-            <td class="td-right">1.217.373,78</td>
-          </tr>
-          <!-- 4 - Junho (NE000724) -->
-          <tr>
-            <td class="td-center">4</td>
             <td>
               Junho/2026
               <div class="emp-meta">
@@ -355,6 +394,19 @@
               </div>
             </td>
             <td class="td-right">158.456,90</td>
+            <td class="td-right">621.314,84</td>
+          </tr>
+          <!-- 4 - Junho (NE000829) -->
+          <tr>
+            <td class="td-center">4</td>
+            <td>
+              Junho/2026
+              <div class="emp-meta">
+                <span class="ne">2026NE000829</span>
+                <span class="comp"> &nbsp;·&nbsp; Competência: Mai, Jun, Jul, Ago/2026 + retroativos reajuste Jan/2026</span>
+              </div>
+            </td>
+            <td class="td-right">754.515,84</td>
             <td class="td-right">1.375.830,68</td>
           </tr>
           <!-- 5 - Setembro (NE001203) -->
@@ -443,31 +495,27 @@
 
   <!-- CONTROLE DE SALDO POR EMPENHO -->
   <div class="section-label">Controle de Saldo por Empenho</div>
-  <div class="content-grid col-2r">
-    <div class="panel">
-      <div class="panel-header laranja-s">Saldo Remanescente por Empenho</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Nº Empenho</th>
-            <th class="td-right">Valor do Empenho (R$)</th>
-            <th class="td-right">Pagamentos Vinculados (R$)</th>
-            <th class="td-center">Data(s) de Pagamento</th>
-            <th class="td-right">Saldo Remanescente (R$)</th>
-            <th>% Pago</th>
-            <th class="td-center">Situação</th>
-          </tr>
-        </thead>
-        <tbody id="tbSaldo"></tbody>
-      </table>
-      <div class="saldo-nota">
-        <strong>Fórmula:</strong> saldo remanescente = valor do empenho − total dos pagamentos vinculados (pagamentos repetidos — mesma solicitação/processo, data e valor — são contabilizados uma única vez). O valor do 2026NE000313 já considera a anulação parcial 2026NE000972.<br>
-        <strong>Atenção:</strong> o saldo positivo é apresentado como informação para análise e não indica, por si só, disponibilidade para anulação parcial ou total do empenho. Os pagamentos de Jan e Fev/2026 superam em R$&nbsp;3,00 o valor líquido do 2026NE000313; a anulação 2026NE001270 ainda deve ser vinculada ao empenho de setembro correspondente (2026NE001203 ou 2026NE001208). A SOLIC-PAG-1186/2026 (R$&nbsp;172.148,53, em aberto) não entra no total pago nem no saldo até ser concluída. O pagamento de Junho/2026 (SEI 8515382-64.2026.8.06.0000) foi atualizado conforme o SOLIC-PAG-52/2026: R$&nbsp;180.054,81 em 21/07/2026. A SOLIC-PAG-1186/2026, vinculada ao 2026NE001208, está indicada na linha do empenho como valor em aberto.
-      </div>
+  <div class="sx-card">
+    <div class="panel-header laranja-s">Saldo Remanescente por Empenho &nbsp;·&nbsp; ordem de emissão</div>
+    <div class="sx-resumo" id="sxResumo"></div>
+    <div class="sx-head">
+      <div style="text-align:center">#</div>
+      <div>Nº Empenho</div>
+      <div style="text-align:right">Valor do Empenho (R$)</div>
+      <div>Execução e pagamentos vinculados</div>
+      <div style="text-align:right">Pagamentos Vinculados (R$)</div>
+      <div style="text-align:right">Saldo Remanescente (R$)</div>
+      <div style="text-align:center">Situação</div>
     </div>
-    <div class="panel">
-      <div class="panel-header laranja-s">Pago × Saldo por Empenho</div>
-      <div class="chart-wrap" style="height:420px"><canvas id="chartSaldoEmp"></canvas></div>
+    <div id="sxRows"></div>
+    <div class="sx-legend">
+      <span><i style="background:var(--verde)"></i>Pago (concluído)</span>
+      <span><i style="background:#C89520"></i>Pagamento em aberto</span>
+      <span><i style="background:#F1E4C2"></i>Saldo remanescente</span>
+    </div>
+    <div class="saldo-nota">
+      <strong>Fórmula:</strong> saldo remanescente = valor do empenho − total dos pagamentos vinculados (somente pagamentos concluídos; pagamentos repetidos são contabilizados uma única vez). O valor do 2026NE000313 já considera a anulação parcial 2026NE000972 (R$&nbsp;377.254,92 − R$&nbsp;81.193,72).<br>
+      <strong>Atenção:</strong> o saldo positivo é informação para análise e não indica, por si só, disponibilidade para anulação. Pendências: (1) pagamentos do 2026NE000313 superam o empenho em R$&nbsp;3,00; (2) a anulação 2026NE001270 aguarda indicação do empenho de origem (2026NE001203 ou 2026NE001208); (3) a SOLIC-PAG-1186/2026 (em aberto) só reduzirá o saldo do 2026NE001208 após concluída.
     </div>
   </div>
 
@@ -511,8 +559,8 @@
   const empenhos = [
     { ne:'2026NE000313', data:'Março/2026',    comp:'Jan e Fev/2026', valor:296061.20, obs:'líquido após anulação 2026NE000972' },
     { ne:'2026NE000482', data:'Abril/2026',    comp:'Mar/2026',       valor:166796.74 },
-    { ne:'2026NE000829', data:'Junho/2026',    comp:'Mai a Ago/2026 + retroativos', valor:754515.84 },
     { ne:'2026NE000724', data:'09/06/2026',    comp:'Abr/2026',       valor:158456.90 },
+    { ne:'2026NE000829', data:'Junho/2026',    comp:'Mai a Ago/2026 + retroativos', valor:754515.84 },
     { ne:'2026NE001203', data:'24/09/2026',    comp:'não informada',  valor:171480.77 },
     { ne:'2026NE001208', data:'24/09/2026',    comp:'não informada',  valor:181316.87 },
     { ne:'2026NE001270', data:'Outubro/2026',  comp:'Set/2026',       valor:-28159.61, anulacao:true, obs:'anulação a vincular (NE001203 ou NE001208)' },
@@ -561,99 +609,73 @@
   /* ===== CONTROLE DE SALDO POR EMPENHO ===== */
   const saldos = empenhos.map(e => {
     const vinc = pgUnicos.filter(p => p.ne === e.ne);
+    const ab   = pgAbertos.filter(p => p.ne === e.ne);
     const pago = vinc.reduce((a,p) => a + cent(p.valor), 0) / 100;
+    const aberto = ab.reduce((a,p) => a + cent(p.valor), 0) / 100;
     const saldo = (cent(e.valor) - cent(pago)) / 100;
-    const ab = pgAbertos.filter(p => p.ne === e.ne);
-    const aberto = ab.reduce((a,p)=>a+cent(p.valor),0)/100;
-    return { ...e, pago, saldo, qtd: vinc.length, datas: vinc.map(p => p.data), aberto, abertos: ab };
+    return { ...e, pago, aberto, saldo, vinc, ab };
   });
-  const semVinc = pgUnicos.filter(p => !p.ne);
-  if (semVinc.length) {
-    const pg = semVinc.reduce((a,p)=>a+cent(p.valor),0)/100;
-    saldos.push({ ne:'Pagamentos sem empenho vinculado', data:semVinc.map(p=>p.sydle||p.processo).join(', '), comp:'—',
-      valor:0, pago:pg, saldo:-pg, qtd:semVinc.length, datas:semVinc.map(p=>p.data), naoVinc:true });
-  }
+  const sgn = v => (v < 0 ? '− ' : '') + fmt(Math.abs(v));
+  const curto = d => d ? d.slice(0,5) : '—';
 
-  document.getElementById('tbSaldo').innerHTML = saldos.map(e => {
-    let saldoHtml, sit, pct = null;
-    if (e.naoVinc) {
-      saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
-      sit = '<span class="badge badge-analise">A vincular</span>';
-    } else if (e.anulacao) {
-      saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
-      sit = '<span class="badge badge-analise">A vincular</span>';
-    } else {
-      pct = e.valor > 0 ? e.pago / e.valor * 100 : 0;
-      if (e.saldo > 0 && e.pago === 0) {
-        saldoHtml = '<span class="saldo-destaque">'+fmt(e.saldo)+'</span>';
-        sit = '<span class="badge badge-aguard">Aguardando</span>';
-      } else if (e.saldo > 0) {
-        saldoHtml = '<span class="saldo-destaque">'+fmt(e.saldo)+'</span>';
-        sit = '<span class="badge badge-analise">Saldo para análise</span>';
-      } else if (e.saldo === 0) {
-        saldoHtml = '<span class="saldo-destaque saldo-zero">0,00</span>';
-        sit = '<span class="badge badge-quitado">Sem saldo</span>';
-      } else {
-        saldoHtml = '<span class="saldo-destaque saldo-neg">− '+fmt(Math.abs(e.saldo))+'</span>';
-        sit = '<span class="badge badge-alerta">Pagos excedem empenho</span>';
-      }
+  let nEmp = 0;
+  document.getElementById('sxRows').innerHTML = saldos.map(e => {
+    if (e.anulacao) {
+      return '<div class="sx-row anul">'
+        + '<div class="sx-n">↩</div>'
+        + '<div class="sx-id"><div class="sx-ne">'+e.ne+'</div><div class="sx-meta">Anulação · '+e.data+' · ref. empenho de '+e.comp+'</div></div>'
+        + '<div class="sx-num neg"><div class="sx-lbl">Valor</div>'+sgn(e.valor)+'</div>'
+        + '<div class="sx-exec" style="font-size:11.5px;color:var(--texto-sub)">Empenho de origem a definir (2026NE001203 ou 2026NE001208). Após a indicação, o desconto passa para a linha correspondente.</div>'
+        + '<div class="sx-num"><div class="sx-lbl">Pago</div>—</div>'
+        + '<div class="sx-saldo"><div class="sx-lbl">Saldo</div><span class="neg">'+sgn(e.valor)+'</span></div>'
+        + '<div class="sx-sit" style="text-align:center"><span class="badge badge-analise">A vincular</span></div></div>';
     }
-    const usoHtml = pct == null ? '<span class="uso-pct">—</span>'
-      : '<span class="uso-pct">'+pct.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%</span>'
-        +'<div class="uso-bar"><span style="width:'+Math.min(pct,100)+'%"></span></div>';
-    const cor = e.anulacao ? ' style="color:var(--vermelho)"' : '';
-    if (e.naoVinc) return '<tr class="row-anulacao">'
-      + '<td><strong style="color:#8A6512;font-size:12px">'+e.ne+'</strong>'
-      + '<div class="emp-meta">'+e.data+' · '+e.qtd+' pgto(s)</div></td>'
-      + '<td class="td-right">'+na('—')+'</td>'
-      + '<td class="td-right">'+fmt(e.pago)+'</td>'
-      + '<td class="td-center" style="font-size:11.5px;line-height:1.5;white-space:nowrap">'+e.datas.join('<br>')+'</td>'
-      + '<td class="saldo-cell">'+saldoHtml+'</td><td>'+usoHtml+'</td>'
-      + '<td class="td-center">'+sit+'</td></tr>';
-    return '<tr'+(e.anulacao?' class="row-anulacao"':'')+'>'
-      + '<td><span class="emp-meta" style="margin:0"><span class="ne"'+cor+'>'+e.ne+'</span></span>'
-      + '<div class="emp-meta">'+e.data+' · Competência: '+e.comp+' · '+e.qtd+' pgto(s)'+(e.obs?' · '+e.obs:'')+'</div>'
-      + (e.aberto ? '<div class="emp-meta" style="color:#8A6512;font-weight:600;font-style:normal">Em aberto: R$ '+fmt(e.aberto)+' ('+e.abertos.map(p=>p.sydle).join(', ')+')</div>' : '')+'</td>'
-      + '<td class="td-right"'+cor+'>'+(e.valor<0?'− '+fmt(Math.abs(e.valor)):fmt(e.valor))+'</td>'
-      + '<td class="td-right">'+fmt(e.pago)+'</td>'
-      + '<td class="td-center" style="font-size:11.5px;line-height:1.5;white-space:nowrap">'+(e.datas.length ? e.datas.join('<br>') : '<span style="color:var(--texto-sub)">—</span>')+'</td>'
-      + '<td class="saldo-cell">'+saldoHtml+'</td>'
-      + '<td>'+usoHtml+'</td>'
-      + '<td class="td-center">'+sit+'</td></tr>';
-  }).join('') + (() => {
+    nEmp++;
+    const pct  = e.valor > 0 ? Math.min(e.pago / e.valor * 100, 100) : 0;
+    const pctA = e.valor > 0 ? Math.min(e.aberto / e.valor * 100, 100 - pct) : 0;
+    let sit, cls = '';
+    if (e.saldo < 0)          { sit = '<span class="badge badge-alerta">Pagos excedem empenho</span>'; cls = 'neg'; }
+    else if (e.saldo === 0)   { sit = '<span class="badge badge-quitado">Sem saldo</span>'; cls = 'zero'; }
+    else if (e.aberto > 0)    { sit = '<span class="badge badge-aguard">Pgto em aberto</span>'; }
+    else if (e.pago > 0)      { sit = '<span class="badge badge-analise">Saldo para análise</span>'; }
+    else                      { sit = '<span class="badge badge-semdado">Aguardando pagamento</span>'; }
+    const chips = e.vinc.map(p => '<span class="sx-chip"><b>'+curto(p.data)+'</b> R$ '+fmt(p.valor)
+                    + (p.ref ? ' · '+p.ref.slice(0,3) : '') + (p.sydle ? ' · '+p.sydle.replace('SOLIC-','').replace('/2026','') : '') + '</span>').join('')
+                + e.ab.map(p => '<span class="sx-chip ab"><b>Em aberto</b> R$ '+fmt(p.valor)+' · '+p.sydle.replace('SOLIC-','').replace('/2026','')+'</span>').join('');
+    return '<div class="sx-row">'
+      + '<div class="sx-n">'+nEmp+'</div>'
+      + '<div class="sx-id"><div class="sx-ne">'+e.ne+'</div><div class="sx-meta">Emissão '+e.data+' · Comp. '+e.comp+(e.obs ? '<br>'+e.obs : '')+'</div></div>'
+      + '<div class="sx-num"><div class="sx-lbl">Valor do empenho</div>'+fmt(e.valor)+'</div>'
+      + '<div class="sx-exec"><div class="sx-bar-top"><span><b>'+(e.pago/e.valor*100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%</b> pago'
+      + (e.aberto ? ' · '+(e.aberto/e.valor*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'% em aberto' : '')+'</span>'
+      + '<span>'+e.vinc.length+' pgto(s)</span></div>'
+      + '<div class="sx-bar"><span class="p" style="width:'+pct+'%"></span><span class="a" style="width:'+pctA+'%"></span></div>'
+      + '<div class="sx-chips">'+(chips || '<span class="sx-chip vz">Nenhum pagamento registrado</span>')+'</div></div>'
+      + '<div class="sx-num"><div class="sx-lbl">Pagamentos vinculados</div>'+fmt(e.pago)+'</div>'
+      + '<div class="sx-saldo"><div class="sx-lbl">Saldo remanescente</div><span class="'+cls+'">'+sgn(e.saldo)+'</span></div>'
+      + '<div class="sx-sit" style="text-align:center">'+sit+'</div></div>';
+  }).join('');
+
+  (() => {
     const tv = saldos.reduce((a,e)=>a+cent(e.valor),0)/100;
     const tp = saldos.reduce((a,e)=>a+cent(e.pago),0)/100;
     const ts = saldos.reduce((a,e)=>a+cent(e.saldo),0)/100;
-    return '<tr style="background:var(--laranja-bg);font-weight:700">'
-      + '<td style="padding:9px 12px;color:#8A6512">TOTAL</td>'
-      + '<td class="td-right" style="color:#8A6512">'+fmt(tv)+'</td>'
-      + '<td class="td-right" style="color:#8A6512">'+fmt(tp)+'</td><td></td>'
-      + '<td class="td-right" style="color:#8A6512">'+fmt(ts)+'</td>'
-      + '<td colspan="2"></td></tr>';
+    const ta = saldos.reduce((a,e)=>a+cent(e.aberto),0)/100;
+    const pp = tp/tv*100, pa = ta/tv*100;
+    document.getElementById('sxRows').insertAdjacentHTML('beforeend',
+        '<div class="sx-tot"><div></div><div>TOTAL</div>'
+      + '<div class="sx-num">'+fmt(tv)+'</div>'
+      + '<div class="sx-exec"><div class="sx-bar"><span class="p" style="width:'+pp+'%"></span><span class="a" style="width:'+pa+'%"></span></div></div>'
+      + '<div class="sx-num">'+fmt(tp)+'</div>'
+      + '<div class="sx-num">'+fmt(ts)+'</div><div></div></div>');
+    const comSaldo = saldos.filter(e => !e.anulacao && e.saldo > 0).length;
+    const quit = saldos.filter(e => !e.anulacao && e.saldo === 0).length;
+    document.getElementById('sxResumo').innerHTML =
+        '<div><div class="k">Valor líquido empenhado</div><div class="v" style="color:var(--azul-medio)">R$ '+fmt(tv)+'</div><div class="s">'+nEmp+' empenhos + 1 anulação a vincular</div></div>'
+      + '<div><div class="k">Pagamentos vinculados</div><div class="v" style="color:var(--verde)">R$ '+fmt(tp)+'</div><div class="s">'+pp.toLocaleString('pt-BR',{maximumFractionDigits:2})+'% do empenhado</div></div>'
+      + '<div><div class="k">Saldo remanescente</div><div class="v" style="color:#8A6512">R$ '+fmt(ts)+'</div><div class="s">'+comSaldo+' empenhos com saldo · '+quit+' sem saldo</div></div>'
+      + '<div><div class="k">Pagamentos em aberto</div><div class="v" style="color:var(--laranja)">R$ '+fmt(ta)+'</div><div class="s">Não deduzidos do saldo</div></div>';
   })();
-
-  const semAnul = saldos.filter(e => !e.anulacao && !e.naoVinc);
-  new Chart(document.getElementById('chartSaldoEmp'), {
-    type:'bar',
-    data:{
-      labels: semAnul.map(e => e.ne),
-      datasets:[
-        { label:'Pago',               data: semAnul.map(e => e.pago),                backgroundColor:'rgba(30,113,69,.85)',  borderRadius:4 },
-        { label:'Saldo remanescente', data: semAnul.map(e => Math.max(e.saldo,0)),   backgroundColor:'rgba(200,149,32,.85)', borderRadius:4 },
-      ]
-    },
-    options:{
-      indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{
-        legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
-        tooltip:{ callbacks:{ label: ctx=>ctx.dataset.label+':'+brl(ctx.parsed.x) } }
-      },
-      scales:{
-        x:{ stacked:true, beginAtZero:true, grid:{ color:gridColor }, ticks:{ callback: mil } },
-        y:{ stacked:true, grid:{ color:gridColor } }
-      }
-    }
-  });
 
   new Chart(document.getElementById('chartMensal'), {
     type: 'bar',
